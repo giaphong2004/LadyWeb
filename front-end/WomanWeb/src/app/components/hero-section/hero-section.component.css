@@ -1,0 +1,51 @@
+/* --- Custom Styles for Components --- */
+        .text-pink {
+            color: var(--brand-pink) !important;
+        }
+
+        .text-pink-dark {
+            color: var(--brand-pink-dark) !important;
+        }
+
+        .text-purple-dark {
+            color: var(--brand-purple) !important;
+        }
+
+        .btn-pink {
+            background-color: var(--brand-pink);
+            color: white;
+            border-color: var(--brand-pink);
+        }
+
+        .btn-pink:hover {
+            background-color: var(--brand-pink-dark);
+            border-color: var(--brand-pink-dark);
+            color: white;
+        }
+
+        .btn-outline-pink {
+            color: var(--brand-pink);
+            border-color: var(--brand-pink);
+        }
+
+        .btn-outline-pink:hover {
+            background-color: var(--brand-pink);
+            color: white;
+        }
+
+        .bg-pink-light {
+            background-color: var(--brand-pink-light);
+        }
+
+        /* Hover vào .nav-item.dropdown thì hiện menu */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-item :hover {
+            color: var(--brand-pink);
+            font-weight: 600;
+            background-color: white;
+        }

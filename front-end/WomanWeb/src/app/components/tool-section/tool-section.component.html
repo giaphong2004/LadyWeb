@@ -1,0 +1,60 @@
+<section id="cycle-calculator" class="py-5" style="background-color: var(--brand-purple-light);">
+  <div class="container">
+    <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5">
+      <div class="card-body">
+        <h2 class="text-center fw-bold mb-4">Công cụ tính toán</h2>
+        <p class="text-center text-muted mb-5">Nhập thông tin của bạn để chúng tôi dự đoán ^.^</p>
+        <form>
+          <div class="row g-4">
+            <div class="col-md-12">
+              <label for="last-period-date" class="form-label fw-bold">Ngày đầu tiên của kỳ kinh cuối cùng?</label>
+              <input type="text" class="form-control" placeholder="Chọn một ngày..." #datePickerInput>
+            </div>
+            <div class="col-md-6">
+              <label for="cycle-length" class="form-label fw-bold">Độ dài chu kỳ trung bình (ngày)</label>
+              <div class="input-group">
+                <button class="btn btn-outline-secondary" type="button"
+                  (click)="updateValue('cycleLength', -1)">-</button>
+                <input type="text" class="form-control text-center" [value]="cycleLength" name="cycleLength" readonly>
+                <button class="btn btn-outline-secondary" type="button"
+                  (click)="updateValue('cycleLength', 1)">+</button>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="period-duration" class="form-label fw-bold">Kỳ kinh kéo dài bao lâu (ngày)</label>
+              <div class="input-group">
+                <button class="btn btn-outline-secondary" type="button"
+                  (click)="updateValue('periodDuration', -1)">-</button>
+                <input type="text" class="form-control text-center" [value]="periodDuration" name="periodDuration"
+                  readonly>
+                <button class="btn btn-outline-secondary" type="button"
+                  (click)="updateValue('periodDuration', 1)">+</button>
+              </div>
+            </div>
+            <div class="col-12 text-center mt-4">
+              <button type="button" class="btn btn-lg px-5" (click)="calculate()"
+                style="background-color: var(--brand-purple); color: white;">Xem kết quả</button>
+            </div>
+          </div>
+        </form>
+        <div id="results-area" class="mt-5" *ngIf="results">
+          <h3 class="fw-bold mb-4">Kết quả dự đoán</h3>
+          <div class="row">
+            <div class="col-md-3 result-item">
+              <p>Kỳ kinh tiếp theo</p>
+              <div class="result-date" style="color: var(--brand-pink);">{{ results.nextPeriodDate }}</div>
+            </div>
+            <div class="col-md-6 result-item">
+              <p>Thời gian "vàng" để thụ thai</p>
+              <div class="result-date" style="color: var(--brand-purple);">{{ results.fertileWindow }}</div>
+            </div>
+            <div class="col-md-3 result-item">
+              <p>Ngày rụng trứng</p>
+              <div class="result-date" style="color: #28a745;">{{ results.ovulationDate }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

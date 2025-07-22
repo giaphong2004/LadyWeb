@@ -1,0 +1,35 @@
+  :root {
+    --brand-pink: #e91e63;
+    --brand-pink-dark: #c2185b;
+    --brand-pink-light: #fce4ec;
+    --brand-purple: #9c27b0;
+    --brand-purple-light: #f3e5f5;
+    --text-dark: #343a40;
+    --text-muted: #6c757d;
+    --pink-primary: #e91e63;
+    /* Màu hồng rất nhạt cho nền */
+    --pink-gradient: linear-gradient(135deg, #fff0f5, #ffe4e1);
+    /* Gradient nền */
+    --text-dark: #333;
+    --text-light: #666;
+    --border-color: #e0e0e0;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* Màu hồng đậm cho nút và điểm nhấn */
+    --pink-light: #fce4ec;
+  }
+body{
+  font-family: 'Roboto', sans-serif;
+}
+  /* Thay thế body { ... } bằng class này */
+.login-page-background {
+  font-family: 'Roboto', sans-serif;
+  background: var(--pink-gradient);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  color: var(--text-dark);
+  }
+

@@ -1,0 +1,27 @@
+/* Category Cards */
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background-color: white;
+      border-radius: 1rem;
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      height: 100%;
+      border: 1px solid #eee;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      color: var(--brand-pink);
+    }
+
+    .text-pink {
+    color: var(--brand-pink) !important;
+}

@@ -1,0 +1,12 @@
+.btn-outline-pink {
+    color: var(--brand-pink);
+    border-color: var(--brand-pink);
+}
+
+.bg-pink-light {
+    background-color: var(--brand-pink-light);
+}
+
+.text-pink-dark {
+    color: var(--brand-pink-dark) !important;
+}

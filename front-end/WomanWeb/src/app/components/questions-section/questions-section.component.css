@@ -1,0 +1,15 @@
+/* Accordion Styling */
+    .accordion-button:not(.collapsed) {
+      color: var(--brand-pink-dark);
+      background-color: var(--brand-pink-light);
+    }
+
+    .accordion-button:focus {
+      box-shadow: 0 0 0 0.25rem rgba(233, 30, 99, 0.25);
+    }
+
+    .btn-pink {
+    background-color: var(--brand-pink);
+    color: white;
+    border-color: var(--brand-pink);
+}

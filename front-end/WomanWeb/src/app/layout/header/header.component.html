@@ -1,0 +1,46 @@
+<!-- Header -->
+<header>
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <svg class="text-pink me-2" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+          fill="currentColor">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+          </path>
+        </svg>
+        <span class="fs-4 fw-bold text-pink-dark">LadyHeath</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="caculator.html" id="navbarDropdown" role="button"
+              aria-expanded="false">
+              Công cụ tính toán
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="menstrual.html">Tính ngày kinh nguyệt</a></li>
+              <li><a class="dropdown-item" href="ovulation.html">Tính ngày rụng trứng</a></li>
+              <li><a class="dropdown-item" href="pregnancy_due_date.html">Tính ngày dự sinh</a></li>
+              <li><a class="dropdown-item" href="pregnancy_test.html">Tính ngày thử thai</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="libraryheath.html">Sức khỏe A-Z</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experts">Chuyên gia</a></li>
+          <li class="nav-item"><a class="nav-link" href="Q_A.html">Hỏi & Đáp</a></li>
+        </ul>
+        <form class="d-flex me-lg-2 mb-2 mb-lg-0" role="search">
+          <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Tìm kiếm">
+        </form>
+        <div class="d-flex align-items-center">
+          <a routerLink="/login" class="btn btn-sm btn-outline-secondary me-2">Đăng nhập</a>
+          <a routerLink="/login" [queryParams]="{ view: 'signup' }" class="btn btn-sm btn-pink">Đăng ký</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
