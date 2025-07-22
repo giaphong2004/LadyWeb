@@ -2,6 +2,8 @@ const User = require('../models/user.model');
 const bcrypt = require('bcryptjs'); // Thư viện bcryptjs để mã hóa mật khẩu
 const jwt = require('jsonwebtoken');
 const Joi = require('joi'); // Thư viện Joi để validate dữ liệu đầu vào
+const TokenBlacklist = require('../models/tokenBlacklist.model'); // Thêm dòng này
+
 
 // Logic đăng ký
 exports.register = async (req, res) => {
@@ -91,6 +93,42 @@ exports.login = async (req, res) => {
       token,
       user: { id: user.id, email: user.email, full_name: user.full_name }
     });
+
+  } catch (error) {
+    res.status(500).json({ message: 'Lỗi server', error: error.message });
+  }
+};
+
+// Logic đăng xuất
+exports.logout = async (req, res) => {
+  try {
+    const authHeader = req.header('Authorization');
+    if (!authHeader) {
+      // Nếu không có token, coi như đã đăng xuất
+      return res.status(200).json({ message: 'Đã đăng xuất thành công.' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    if (!token) {
+        return res.status(200).json({ message: 'Đã đăng xuất thành công.' });
+    }
+
+    // Lấy thông tin từ token để biết thời gian hết hạn
+    const decoded = jwt.decode(token);
+    if (!decoded) {
+        return res.status(400).json({ message: 'Token không hợp lệ.' });
+    }
+    
+    // expires_at được tính bằng giây (timestamp), cần chuyển sang mili-giây
+    const expiresAt = new Date(decoded.exp * 1000);
+
+    // Thêm token vào blacklist
+    await TokenBlacklist.create({
+      token: token,
+      expires_at: expiresAt
+    });
+
+    res.status(200).json({ message: 'Đã đăng xuất thành công.' });
 
   } catch (error) {
     res.status(500).json({ message: 'Lỗi server', error: error.message });
