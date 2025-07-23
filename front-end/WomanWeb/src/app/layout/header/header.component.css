@@ -49,3 +49,40 @@
       font-weight: 600;
       background-color: white;
     }
+
+/* --- CSS CHO MENU NGƯỜI DÙNG (PHIÊN BẢN SỬA LỖI) --- */
+
+/* 1. Định vị cho container cha */
+.user-profile {
+  position: relative;
+}
+
+/* 2. Style cho phần tên người dùng có thể hover */
+.user-display {
+  cursor: pointer;
+}
+
+/* 3. Mặc định, ẩn menu con đi và chuẩn bị cho hiệu ứng mượt mà */
+.user-profile .dropdown-menu {
+  display: block; /* Giữ display là block để transition hoạt động */
+  opacity: 0; /* Ẩn menu bằng cách làm nó trong suốt */
+  visibility: hidden; /* Ẩn hoàn toàn khỏi trang */
+  transform: translateY(10px); /* Hiệu ứng trượt nhẹ từ dưới lên */
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, visibility 0.2s; /* Hiệu ứng mượt */
+  position: absolute;
+  right: 0;
+  left: auto;
+  margin-top: 0.5rem;
+}
+
+/* 4. KHI DI CHUỘT VÀO CONTAINER CHA... */
+.user-profile:hover .dropdown-menu {
+  opacity: 1; /* ...LÀM MENU HIỆN RA */
+  visibility: visible; /* ...CHO PHÉP TƯƠNG TÁC */
+  transform: translateY(0); /* ...ĐƯA MENU VỀ VỊ TRÍ GỐC */
+}
+
+.dropdown-menu h6:hover{
+  margin: 0;
+  color: var(--text-dark);
+}

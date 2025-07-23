@@ -18,6 +18,12 @@ import { AuthHeaderComponent } from './layout/auth-header/auth-header.component'
 import { FormLoginComponent } from './components/form-login/form-login.component';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+// 1. Import các hàm cần thiết thay vì module cũ
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 
 
@@ -42,10 +48,16 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

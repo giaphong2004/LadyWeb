@@ -7,22 +7,21 @@
 
   <div class="form-wrapper">
 
-    <section *ngIf="isLoginMode" id="login-form" class="form-section">
+    <section *ngIf="isLoginMode" class="form-section">
       <h2>Đăng nhập</h2>
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
         <div class="form-group">
           <label for="login-email">Địa chỉ Email</label>
-          <input type="email" id="login-email" class="form-control" placeholder="you@example.com">
+          <input type="email" id="login-email" class="form-control" placeholder="you@example.com"
+            formControlName="email">
         </div>
         <div class="form-group">
-          <div class="inline">
-            <label for="login-password">Mật khẩu</label>
-
-          </div>
-          <input type="password" id="login-password" class="form-control" placeholder="••••••••">
-          <a href="#" class="forgot-link ">Bạn quên mật khẩu?</a>
+          <label for="login-password">Mật khẩu</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••"
+            formControlName="password">
+          <a href="#" class="forgot-link">Bạn quên mật khẩu?</a>
         </div>
-        <button type="submit" class="btn-primary">Đăng nhập</button>
+        <button type="submit" class="btn-primary" [disabled]="loginForm.invalid">Đăng nhập</button>
       </form>
 
       <div class="divider">Hoặc tiếp tục với</div>
@@ -39,39 +38,36 @@
       </p>
     </section>
 
-    <section *ngIf="!isLoginMode" id="signup-form" class="form-section">
+    <section *ngIf="!isLoginMode" class="form-section">
       <h2>Tạo tài khoản</h2>
-      <form>
-        <div class="form-group">
-          <!-- <label for="role">Tôi là...</label>
-          <select id="role" class="form-control">
-            <option>Phụ nữ tìm kiếm thông tin sức khỏe</option>
-            <option>Chuyên gia y tế</option>
-          </select> -->
-        </div>
-        <div class="form-group">
-          <label for="fullname">Họ và Tên</label>
-          <input type="text" id="fullname" class="form-control" placeholder="Jane Doe">
-        </div>
+
+      <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()">
+
         <div class="form-group">
           <label for="signup-email">Địa chỉ Email</label>
-          <input type="email" id="signup-email" class="form-control" placeholder="you@example.com">
+          <input type="email" id="signup-email" class="form-control" placeholder="you@gmail.com"
+            formControlName="email">
         </div>
         <div class="form-group">
           <label for="signup-password">Mật khẩu</label>
-          <input type="password" id="signup-password" class="form-control" placeholder="••••••••">
+          <input type="password" id="signup-password" class="form-control" placeholder="••••••••"
+            formControlName="password">
         </div>
         <div class="form-group">
-          <label for="confirm-password">Xác nhận mật khẩu</label>
-          <input type="password" id="confirm-password" class="form-control" placeholder="••••••••">
+          <label for="fullname">Họ và Tên </label>
+          <input type="text" id="fullname" class="form-control" placeholder="Jane Doe" formControlName="full_name">
         </div>
         <div class="checkbox-group">
           <input type="checkbox" id="terms" required>
-          <label for="terms">Tôi đồng ý với <a href="#">Điều khoản Dịch vụ</a> và <a href="#">Chính sách
-              Bảo mật</a>.</label>
+          <label for="terms">Tôi đồng ý với <a href="#">Điều khoản Dịch vụ</a> và <a href="#">Chính sách Bảo
+              mật</a>.</label>
         </div>
-        <button type="submit" class="btn-primary">Tạo tài khoản</button>
+
+        <button type="button" (click)="onSignupSubmit()" class="btn-primary" [disabled]="signupForm.invalid">Tạo tài
+          khoản</button>
+
       </form>
+
       <p class="toggle-auth">
         Đã có tài khoản?
         <a (click)="switchToLogin()" style="cursor: pointer;">Đăng nhập</a>

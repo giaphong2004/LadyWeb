@@ -36,9 +36,25 @@
         <form class="d-flex me-lg-2 mb-2 mb-lg-0" role="search">
           <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Tìm kiếm">
         </form>
-        <div class="d-flex align-items-center">
+        <div *ngIf="!(isLoggedIn$ | async)" class="d-flex align-items-center">
           <a routerLink="/login" class="btn btn-sm btn-outline-secondary me-2">Đăng nhập</a>
           <a routerLink="/login" [queryParams]="{ view: 'signup' }" class="btn btn-sm btn-pink">Đăng ký</a>
+        </div>
+
+        <div *ngIf="currentUser$ | async as user" class="nav-item dropdown user-profile">
+
+          <a class="nav-link dropdown-toggle user-display">
+            {{ user.full_name }}
+          </a>
+
+          <ul class="dropdown-menu ">
+            <li>
+              <h6 class="dropdown-item">Chào, {{ user.full_name }}</h6>
+              <hr>
+            </li>
+            <li><a class="dropdown-item" routerLink="/settings">Hồ sơ</a></li>
+            <li><a class="dropdown-item" (click)="onLogout()" style="cursor: pointer;">Đăng xuất</a></li>
+          </ul>
         </div>
       </div>
     </div>
