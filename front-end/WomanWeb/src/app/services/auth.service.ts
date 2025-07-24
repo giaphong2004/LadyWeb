@@ -74,7 +74,7 @@ export class AuthService {
     }
     this._isLoggedIn$.next(false);
     this._currentUser$.next(null);
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/login']); // Điều hướng về trang đăng nhập
   }
 
   // hàm register không thay đổi

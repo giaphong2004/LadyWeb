@@ -1,41 +1,43 @@
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import flatpickr from 'flatpickr';
-import { PLATFORM_ID, Inject } from '@angular/core';
+import flatpickr from 'flatpickr'; // 👈 Bạn đã import flatpickr ở đây
+import { Vietnamese } from 'flatpickr/dist/l10n/vn';
+// ⛔ Vì đã import ở trên, bạn không cần dòng "declare" này nữa
+// declare var flatpickr: any;
 
 @Component({
   selector: 'app-tool-section',
-  standalone: false, // Đây là giá trị mặc định, có thể bỏ qua
+  standalone: false,
   templateUrl: './tool-section.component.html',
   styleUrls: ['./tool-section.component.css']
 })
 export class ToolSectionComponent implements AfterViewInit {
 
-  // Lấy tham chiếu đến thẻ input ngày tháng từ file HTML
   @ViewChild('datePickerInput') datePickerInput!: ElementRef;
 
-  // Các thuộc tính để lưu trữ dữ liệu và kết nối với HTML
   public cycleLength: number = 28;
   public periodDuration: number = 5;
   public results: any = null;
 
-  private fpInstance: any;
+  private fpInstance: any; // Lưu trữ instance của flatpickr
 
-  // 2. Inject PLATFORM_ID vào constructor để nhận biết môi trường
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngAfterViewInit(): void {
-    // 3. Chỉ chạy code flatpickr nếu đang ở trên trình duyệt
     if (isPlatformBrowser(this.platformId)) {
+      // 2. Thiết lập ngôn ngữ mặc định cho flatpickr
+      flatpickr.localize(Vietnamese);
+      // Khởi tạo flatpickr và gán vào fpInstance
       this.fpInstance = flatpickr(this.datePickerInput.nativeElement, {
+        // dateFormat là các ký tự định dạng của riêng flatpickr
         dateFormat: "j F, Y",
-        defaultDate: "today",
-        locale: "vn"
+        defaultDate: "today"
+
       });
     }
   }
 
-  // Phương thức được gọi bởi các nút +/- trong HTML
+  // Phương thức được gọi bởi các nút +/-
   updateValue(field: 'cycleLength' | 'periodDuration', amount: number): void {
     if (field === 'cycleLength' && this.cycleLength + amount >= 1) {
       this.cycleLength += amount;
@@ -48,12 +50,15 @@ export class ToolSectionComponent implements AfterViewInit {
   // Phương thức được gọi bởi nút "Xem kết quả"
   calculate(): void {
     if (!this.fpInstance) return;
+
+    // Lấy ngày đã chọn từ instance của flatpickr
     const lastPeriodDate = this.fpInstance.selectedDates[0];
     if (!lastPeriodDate) {
       alert("Vui lòng chọn ngày bắt đầu kỳ kinh cuối.");
       return;
     }
 
+    // Phần logic tính toán của bạn đã đúng
     const cycleLength = this.cycleLength;
     const ovulationDayOffset = cycleLength - 14;
     const nextPeriodDate = new Date(lastPeriodDate);
@@ -64,7 +69,6 @@ export class ToolSectionComponent implements AfterViewInit {
     fertileWindowStart.setDate(fertileWindowStart.getDate() - 5);
     const fertileWindowEnd = new Date(ovulationDate);
 
-    // Gán kết quả để giao diện tự động cập nhật
     this.results = {
       nextPeriodDate: this.formatDate(nextPeriodDate),
       fertileWindow: `${this.formatDate(fertileWindowStart)} - ${this.formatDate(fertileWindowEnd)}`,

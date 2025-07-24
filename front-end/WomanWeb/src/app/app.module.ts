@@ -20,7 +20,7 @@ import { FormLoginComponent } from './components/form-login/form-login.component
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 // 1. Import các hàm cần thiết thay vì module cũ
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withFetch } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -53,7 +53,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ReactiveFormsModule,
   ],
   providers: [
-    provideHttpClient(withInterceptorsFromDi()),
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

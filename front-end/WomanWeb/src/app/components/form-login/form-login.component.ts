@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service'; // Import AuthService để xử lý đăng nhập và đăng ký
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form-login',
@@ -49,20 +49,30 @@ export class FormLoginComponent implements OnInit {
 
   // 4. Hàm xử lý sự kiện submit form đăng nhập
   onLoginSubmit(): void {
-    console.log('Nút Đăng nhập đã được nhấn.'); // Kiểm tra xem hàm có được gọi không
     if (this.loginForm.invalid) {
       return; // Dừng lại nếu form không hợp lệ
     }
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
-        alert('Đăng nhập thành công!');
+        Swal.fire({
+          icon: 'success',
+          title: 'Đăng nhập thành công!',
+          text: 'Chào mừng bạn trở lại với LadyHeath!',
+          showConfirmButton: false,
+          timer: 2500,
+          timerProgressBar: true,
+        });
         // Lưu token vào localStorage
         localStorage.setItem('authToken', response.token);
         // Điều hướng đến trang chính sau khi đăng nhập
         this.router.navigate(['/']);
       },
       error: (err) => {
-        alert(`Lỗi đăng nhập: ${err.error.message}`);
+        Swal.fire({
+          icon: 'error',
+          title: 'Đăng nhập thất bại',
+          text: err.error.message,
+        });
       }
     });
   }
@@ -70,46 +80,33 @@ export class FormLoginComponent implements OnInit {
   // 5. Hàm xử lý sự kiện submit form đăng ký
   onRegisterSubmit(): void {
     if (this.signupForm.invalid) {
-      alert('Vui lòng điền đầy đủ và đúng thông tin');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Thông tin chưa hợp lệ',
+        text: 'Vui lòng điền đầy đủ và đúng thông tin.',
+      });
       return;
     }
     this.authService.register(this.signupForm.value).subscribe({
       next: (response) => {
-        alert('Bạn đã tạo tài khoản thành công!');
+        Swal.fire({
+          icon: 'success',
+          title: 'Thành công!',
+          text: 'Bạn đã tạo tài khoản thành công! Vui lòng đăng nhập.',
+        });
         // 👇 THÊM DÒNG NÀY ĐỂ XÓA SẠCH FORM 👇
         this.signupForm.reset();
         this.switchToLogin();
       },
       error: (err) => {
-        alert(`Lỗi đăng ký: ${err.error.message}`);
+        Swal.fire({
+          icon: 'error',
+          title: 'Đăng ký thất bại',
+          text: err.error.message,
+        });
       }
     });
   }
-
-  // onRegisterSubmit(): void {
-  //   console.log('1. Nút Đăng ký đã được nhấn.'); // Kiểm tra xem hàm có được gọi không
-
-  //   if (this.signupForm.invalid) {
-  //     console.log('Form không hợp lệ, dừng lại.');
-  //     return;
-  //   }
-
-  //   const formData = this.signupForm.value;
-  //   console.log('2. Dữ liệu từ form chuẩn bị gửi đi:', formData); // Xem dữ liệu form
-
-  //   this.authService.register(formData).subscribe({
-  //     next: (response) => {
-  //       console.log('4. Backend đã phản hồi thành công:', response); // Xem phản hồi thành công
-  //       alert('Đăng ký thành công! Vui lòng đăng nhập.');
-  //       this.switchToLogin();
-  //     },
-  //     error: (err) => {
-  //       console.error('5. Backend đã phản hồi lỗi:', err); // Xem chi tiết lỗi
-  //       alert(`Lỗi đăng ký: ${err.error.message}`);
-  //     }
-  //   });
-  //   console.log('3. Đã gọi authService.register, đang chờ phản hồi từ backend...');
-  // }
 
   // Các hàm chuyển đổi giao diện
   switchToSignup(): void {
