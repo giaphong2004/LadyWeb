@@ -41,30 +41,45 @@
     <section *ngIf="!isLoginMode" class="form-section">
       <h2>Tạo tài khoản</h2>
 
-      <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()">
+      <form [formGroup]="signupForm" (ngSubmit)="onRegisterSubmit()">
 
         <div class="form-group">
           <label for="signup-email">Địa chỉ Email</label>
           <input type="email" id="signup-email" class="form-control" placeholder="you@gmail.com"
             formControlName="email">
         </div>
+
         <div class="form-group">
           <label for="signup-password">Mật khẩu</label>
+
           <input type="password" id="signup-password" class="form-control" placeholder="••••••••"
-            formControlName="password">
+            formControlName="password" [class.is-invalid]="password?.invalid && (password?.dirty || password?.touched)">
+
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="invalid-feedback">
+
+            <div *ngIf="password?.hasError('required')">
+              Mật khẩu không được để trống.
+            </div>
+
+            <div *ngIf="password?.hasError('minlength')">
+              Mật khẩu phải có ít nhất 6 ký tự.
+            </div>
+
+          </div>
         </div>
+
         <div class="form-group">
           <label for="fullname">Họ và Tên </label>
           <input type="text" id="fullname" class="form-control" placeholder="Jane Doe" formControlName="full_name">
         </div>
-        <div class="checkbox-group">
-          <input type="checkbox" id="terms" required>
+
+        <!-- <div class="checkbox-group">
+          <input type="checkbox" id="terms" formControlName="terms">
           <label for="terms">Tôi đồng ý với <a href="#">Điều khoản Dịch vụ</a> và <a href="#">Chính sách Bảo
               mật</a>.</label>
-        </div>
+        </div> -->
 
-        <button type="button" (click)="onSignupSubmit()" class="btn-primary" [disabled]="signupForm.invalid">Tạo tài
-          khoản</button>
+        <button type="submit" class="btn-primary" [disabled]="signupForm.invalid">Tạo tài khoản</button>
 
       </form>
 
