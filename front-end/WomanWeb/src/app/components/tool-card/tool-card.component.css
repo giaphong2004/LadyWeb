@@ -1,0 +1,49 @@
+/* Tool Card */
+        .tool-card {
+            text-decoration: none;
+            color: var(--flo-text-dark);
+            display: flex;
+            flex-direction: column;
+            /* Sử dụng flex để sắp xếp dọc */
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s ease-in-out;
+            height: 100%;
+            /* Đảm bảo card có chiều cao */
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-card .card-img-container {
+            background-color: var(--flo-light-purple);
+            border-radius: 1rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            /* Căn giữa hình ảnh theo chiều dọc */
+            justify-content: center;
+            /* Căn giữa hình ảnh theo chiều ngang */
+        }
+
+        .tool-card img {
+            max-width: 100%;
+            max-height: 100%;
+            /* Đảm bảo hình ảnh không vượt quá container */
+            object-fit: contain;
+        }
+
+        .tool-card .card-body {
+            padding: 1rem 0;
+        }
+
+        .tool-card .card-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .tool-card .card-text {
+            color: var(--flo-text-secondary);
+            font-size: 0.9rem;
+        }

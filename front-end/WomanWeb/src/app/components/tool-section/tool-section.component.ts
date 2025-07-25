@@ -2,8 +2,6 @@ import { Component, AfterViewInit, ViewChild, ElementRef, Inject, PLATFORM_ID } 
 import { isPlatformBrowser } from '@angular/common';
 import flatpickr from 'flatpickr'; // 👈 Bạn đã import flatpickr ở đây
 import { Vietnamese } from 'flatpickr/dist/l10n/vn';
-// ⛔ Vì đã import ở trên, bạn không cần dòng "declare" này nữa
-// declare var flatpickr: any;
 
 @Component({
   selector: 'app-tool-section',

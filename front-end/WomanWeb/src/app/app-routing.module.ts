@@ -4,13 +4,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
+import { ToolsComponent } from './pages/tools/tools.component';
+import { MenstrualComponent } from './pages/menstrual/menstrual.component';
 
 
 const routes: Routes = [
   {
     path: 'login', component: LoginSignupComponent
   },
-
+  {
+    path: 'tools', component: ToolsComponent
+  },
+  {
+    path: 'menstrual', component: MenstrualComponent
+  },
   {
     path: '',
     component: MainLayoutComponent, // Layout này có header và footer

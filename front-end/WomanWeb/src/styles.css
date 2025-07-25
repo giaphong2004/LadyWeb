@@ -7,16 +7,25 @@
     --text-dark: #343a40;
     --text-muted: #6c757d;
     --pink-primary: #e91e63;
-    /* Màu hồng rất nhạt cho nền */
     --pink-gradient: linear-gradient(135deg, #fff0f5, #ffe4e1);
-    /* Gradient nền */
     --text-dark: #333;
     --text-light: #666;
     --border-color: #e0e0e0;
     --white: #ffffff;
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    /* Màu hồng đậm cho nút và điểm nhấn */
     --pink-light: #fce4ec;
+    --flo-pink: #e94079;
+    --flo-light-purple: #f8f3ff;
+    --flo-border-color: #e0e0e0;
+    --flo-text-dark: #212529;
+    --flo-text-secondary: #6c757d;
+    --brand-pink: #e91e63;
+    --brand-pink-dark: #c2185b;
+    --brand-pink-light: #fce4ec;
+    --brand-purple: #9c27b0;
+    --brand-purple-light: #f3e5f5;
+    --text-dark: #343a40;
+    --text-muted: #6c757d;
   }
 body{
   font-family: 'Roboto', sans-serif;

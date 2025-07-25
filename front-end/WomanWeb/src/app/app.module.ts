@@ -15,7 +15,6 @@ import { ExpertsSectionComponent } from './components/experts-section/experts-se
 import { QuestionsSectionComponent } from './components/questions-section/questions-section.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthHeaderComponent } from './layout/auth-header/auth-header.component';
 import { FormLoginComponent } from './components/form-login/form-login.component';
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
@@ -25,6 +24,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ToolTitleComponent } from './components/tool-title/tool-title.component';
+import { ToolCardComponent } from './components/tool-card/tool-card.component';
+import { ToolsComponent } from './pages/tools/tools.component';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { MenstrualHeroSectionComponent } from './components/menstrual-hero-section/menstrual-hero-section.component';
+import { MenstrualCaculatorComponent } from './components/menstrual-caculator/menstrual-caculator.component';
+import { MenstrualDescribeComponent } from './components/menstrual-describe/menstrual-describe.component';
+import { MenstrualComponent } from './pages/menstrual/menstrual.component';
 
 
 
@@ -40,10 +47,17 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     TopicsSectionComponent,
     ExpertsSectionComponent,
     QuestionsSectionComponent,
-    AuthHeaderComponent,
     FormLoginComponent,
     LoginSignupComponent,
-    MainLayoutComponent
+    MainLayoutComponent,
+    ToolTitleComponent,
+    ToolCardComponent,
+    ToolsComponent,
+    BreadcrumbsComponent,
+    MenstrualHeroSectionComponent,
+    MenstrualCaculatorComponent,
+    MenstrualDescribeComponent,
+    MenstrualComponent,
   ],
   imports: [
     BrowserModule,
