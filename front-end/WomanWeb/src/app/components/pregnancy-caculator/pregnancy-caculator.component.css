@@ -1,0 +1,114 @@
+/* Thanh bên (Sidebar) */
+.sidebar-card {
+    border: 1px solid var(--flo-border-color);
+    background-color: white;
+    position: sticky;
+    top: 20px;
+}
+
+.sidebar-title {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--flo-text-secondary);
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--flo-border-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 0.5rem 0;
+    text-decoration: none;
+    color: var(--flo-text-dark);
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.sidebar-link:hover {
+    color: var(--flo-pink);
+}
+/* Khung máy tính */
+.calculator-card {
+    background-color: white;
+    border: 1px solid var(--flo-border-color);
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.text-muted {
+    width: 60%;
+    line-height: 28.8px;
+}
+
+.form-label {
+    color: var(--flo-text-dark);
+}
+
+.form-control {
+    border: 1px solid var(--flo-border-color);
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(233, 64, 121, 0.25);
+    border-color: var(--flo-pink);
+}
+
+/* Ô nhập liệu với nút +/- */
+.input-group .form-control {
+    border-left: none;
+    border-right: none;
+}
+
+.input-group .btn {
+    border-color: var(--flo-border-color);
+    background-color: white;
+}
+
+.input-group .btn:hover {
+    background-color: #f1f1f1;
+}
+
+.input-group .btn-minus {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .btn-plus {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+/* Khu vực hiển thị kết quả */
+#results-area {
+
+    border: 1px solid var(--flo-border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+#results-area h4 {
+    color: var(--flo-pink);
+    font-weight: 600;
+}
+
+/* Nút bấm */
+.btn-flo-primary {
+    background-color: var(--flo-pink);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn-flo-primary:hover {
+    background-color: #d83168;
+    color: white;
+}
+.mt-4{
+  margin-top: 2.5rem !important;
+}

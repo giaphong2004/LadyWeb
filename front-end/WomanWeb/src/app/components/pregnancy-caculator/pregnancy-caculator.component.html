@@ -1,0 +1,54 @@
+<section class="calculator-card p-4 rounded-3 mt-3 shadow-sm">
+  <div class="text-muted small mb-3">
+    <p class="mb-1">Cập nhật ngày 18 tháng 12 năm 2024</p>
+    <p class="mb-1">Được đánh giá về mặt y khoa bởi <strong>Tiến sĩ Charlsie Celestine</strong>, Bác
+      sĩ sản phụ khoa, Georgia, Hoa Kỳ</p>
+    <p>Được viết bởi <strong>Natalia Hedly</strong></p>
+
+
+    <form id="cycle-form" (submit)="$event.preventDefault()">
+      <div class="mb-3">
+        <label for="last-period-date" class="form-label fw-medium">Ngày đầu tiên của kỳ kinh
+          cuối cùng của bạn</label>
+        <input type="text" class="form-control" id="last-period-date" placeholder="Chọn ngày" #datePickerInput>
+      </div>
+
+      <button type="button" id="calculate-btn" class="btn btn-flo-primary w-100 mt-3 py-2 fw-bold"
+        (click)="calculate()">Xem kết quả</button>
+      <!-- Khu vực hiển thị kết quả -->
+      <div id="results-area" class="mt-4" *ngIf="results">
+        <h4 class="mb-3">Kết quả của bạn</h4>
+        <div class="row text-start gy-3">
+          <div class="col-md-6 mb-3">
+            <p class="mb-1"><strong>Ngày dự sinh của bạn là:</strong></p>
+            <p class="fs-4 fw-bold" style="color: var(--brand-purple);">{{ results.dueDate }}</p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <p class="mb-1"><strong>Tuổi thai hiện tại:</strong></p>
+            <p class="fs-4 fw-bold" style="color: var(--brand-pink);">{{ results.gestationalAge }}</p>
+          </div>
+        </div>
+        <p class="small mt-4">*Ngày dự sinh chỉ là ước tính. Em bé của bạn có thể chào đời sớm hơn hoặc muộn hơn.</p>
+      </div>
+    </form>
+
+  </div>
+
+  <!-- Cột phải: Thanh bên -->
+  <div class="col-lg-4">
+    <aside class="sidebar">
+      <div class="sidebar-card p-4 rounded-3 shadow-sm">
+        <h5 class="sidebar-title">TRONG BÀI VIẾT NÀY</h5>
+        <ul class="list-unstyled">
+          <li><a href="#ovulation-calculator" class="sidebar-link">Những điểm chính cần lưu ý
+              khi sử dụng máy tính ngày dự sinh</a></li>
+          <li><a href="#" class="sidebar-link">Ngày dự sinh của tôi được tính như thế nào?
+            </a></li>
+          <li><a href="#" class="sidebar-link">Nhìn thoáng qua, tôi dự sinh vào tháng nào?
+            </a></li>
+          <li><a href="#faq" class="sidebar-link">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>

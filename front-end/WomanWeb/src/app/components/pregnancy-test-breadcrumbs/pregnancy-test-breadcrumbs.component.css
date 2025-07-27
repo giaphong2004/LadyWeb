@@ -1,0 +1,13 @@
+/* Breadcrumb (Đường dẫn trang) */
+.breadcrumb {
+    font-size: 0.9rem;
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: var(--flo-text-secondary);
+}
+
+.breadcrumb-item.active {
+    color: var(--flo-text-dark);
+}

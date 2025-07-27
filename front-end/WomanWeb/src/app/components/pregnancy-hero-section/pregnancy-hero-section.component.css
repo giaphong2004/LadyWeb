@@ -1,0 +1,15 @@
+ /* Phần giới thiệu (Hero Section) */
+.hero-section {
+    background-color: var(--flo-light-purple);
+    line-height: 28.8px;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--flo-text-dark);
+}
+
+.hero-text {
+    color: var(--flo-text-secondary);
+}

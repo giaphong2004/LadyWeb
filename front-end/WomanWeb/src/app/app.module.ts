@@ -32,6 +32,21 @@ import { MenstrualHeroSectionComponent } from './components/menstrual-hero-secti
 import { MenstrualCaculatorComponent } from './components/menstrual-caculator/menstrual-caculator.component';
 import { MenstrualDescribeComponent } from './components/menstrual-describe/menstrual-describe.component';
 import { MenstrualComponent } from './pages/menstrual/menstrual.component';
+import { OvulationBreadcrumbsComponent } from './components/ovulation-breadcrumbs/ovulation-breadcrumbs.component';
+import { OvulationHeroSectionComponent } from './components/ovulation-hero-section/ovulation-hero-section.component';
+import { OvulationCaculatorComponent } from './components/ovulation-caculator/ovulation-caculator.component';
+import { OvulationDescribeComponent } from './components/ovulation-describe/ovulation-describe.component';
+import { OvulationComponent } from './pages/ovulation/ovulation.component';
+import { PregnancyBreadcrumbsComponent } from './components/pregnancy-breadcrumbs/pregnancy-breadcrumbs.component';
+import { PregnancyCaculatorComponent } from './components/pregnancy-caculator/pregnancy-caculator.component';
+import { PregnancyDescribeComponent } from './components/pregnancy-describe/pregnancy-describe.component';
+import { PregnancyHeroSectionComponent } from './components/pregnancy-hero-section/pregnancy-hero-section.component';
+import { PregnancyComponent } from './pages/pregnancy/pregnancy.component';
+import { PregnancyTestBreadcrumbsComponent } from './components/pregnancy-test-breadcrumbs/pregnancy-test-breadcrumbs.component';
+import { PregnancyTestHeroSectionComponent } from './components/pregnancy-test-hero-section/pregnancy-test-hero-section.component';
+import { PregnancyTestCaculatorComponent } from './components/pregnancy-test-caculator/pregnancy-test-caculator.component';
+import { PregnancyTestDescribeComponent } from './components/pregnancy-test-describe/pregnancy-test-describe.component';
+import { PregnancyTestComponent } from './pages/pregnancy-test/pregnancy-test.component';
 
 
 
@@ -58,6 +73,21 @@ import { MenstrualComponent } from './pages/menstrual/menstrual.component';
     MenstrualCaculatorComponent,
     MenstrualDescribeComponent,
     MenstrualComponent,
+    OvulationBreadcrumbsComponent,
+    OvulationHeroSectionComponent,
+    OvulationCaculatorComponent,
+    OvulationDescribeComponent,
+    OvulationComponent,
+    PregnancyBreadcrumbsComponent,
+    PregnancyCaculatorComponent,
+    PregnancyDescribeComponent,
+    PregnancyHeroSectionComponent,
+    PregnancyComponent,
+    PregnancyTestBreadcrumbsComponent,
+    PregnancyTestHeroSectionComponent,
+    PregnancyTestCaculatorComponent,
+    PregnancyTestDescribeComponent,
+    PregnancyTestComponent,
   ],
   imports: [
     BrowserModule,

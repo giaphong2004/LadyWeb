@@ -2,6 +2,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef, Inject, PLATFORM_ID } 
 import flatpickr from 'flatpickr';
 import { Vietnamese } from 'flatpickr/dist/l10n/vn.js';
 import { isPlatformBrowser } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menstrual-caculator',
@@ -59,7 +60,14 @@ export class MenstrualCaculatorComponent implements AfterViewInit {
 
     const lastPeriodDate = this.fpInstance.selectedDates[0];
     if (!lastPeriodDate) {
-      alert("Vui lòng chọn ngày bắt đầu kỳ kinh cuối.");
+      // Bước 2: Thay thế lời gọi showModal bằng Swal.fire
+      Swal.fire({
+        title: 'Chưa chọn ngày!',
+        text: 'Vui lòng chọn ngày bắt đầu kỳ kinh cuối của bạn.',
+        icon: 'warning',
+        confirmButtonText: 'Đã hiểu',
+        confirmButtonColor: '#E94079' // Màu nút cho hợp với theme của bạn
+      });
       return;
     }
 

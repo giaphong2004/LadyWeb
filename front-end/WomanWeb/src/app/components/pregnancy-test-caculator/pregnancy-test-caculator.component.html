@@ -1,0 +1,88 @@
+<section class="calculator-card p-4 mt-3 rounded-3 shadow-sm">
+  <div class="text-muted small mb-3">
+    <p class="mb-1">Cập nhật ngày 10 tháng 2 năm 2025</p>
+    <p class="mb-1">Được đánh giá về mặt y khoa bởi <strong> Tiến sĩ Jennifer Boyle </strong> , Bác
+      sĩ sản phụ khoa, Bệnh viện đa khoa Massachusetts, Massachusetts, Hoa Kỳ</p>
+    <p>Được viết bởi <strong>Natalia Hedly</strong></p>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mt-4" id="calculatorTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" [class.active]="activeTab === 'period'" (click)="setActiveTab('period')">Ngày kinh
+          cuối</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" [class.active]="activeTab === 'conception'" (click)="setActiveTab('conception')">Ngày
+          rụng trứng</button>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content pt-4" id="calculatorTabContent">
+      <div class="tab-pane fade show active" [hidden]="activeTab !== 'period'">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="last-period-date" class="form-label fw-bold">Ngày đầu tiên của kỳ kinh cuối cùng?</label>
+            <input type="text" class="form-control" id="last-period-date" placeholder="Chọn ngày"
+              #periodDatePickerInput>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="cycle-length" class="form-label fw-bold">Độ dài chu kỳ trung bình (ngày)?</label>
+            <div class="input-group">
+              <button class="btn btn-outline-secondary btn-minus" type="button"
+                (click)="adjustCycleLength(-1)">-</button>
+              <input type="text" class="form-control text-center" [value]="cycleLength" id="cycle-length" readonly>
+              <button class="btn btn-outline-secondary btn-plus" type="button" (click)="adjustCycleLength(1)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade show active" [hidden]="activeTab !== 'conception'">
+        <div class="mb-3">
+          <label for="conception-date" class="form-label fw-bold">Ngày rụng trứng (thụ thai) của bạn là khi nào?</label>
+          <input type="text" class="form-control" id="conception-date" placeholder="Chọn ngày"
+            #conceptionDatePickerInput>
+        </div>
+      </div>
+      <button type="button" id="calculate-btn" class="btn btn-flo-primary w-100 mt-3 py-2 fw-bold"
+        (click)="calculate()">Xem kết quả</button>
+
+      <!-- Khu vực hiển thị kết quả -->
+      <div id="results-area" class="mt-4" *ngIf="results">
+        <h4 class="mb-3">Thời điểm thử thai gợi ý</h4>
+        <div class="row text-start">
+          <div class="col-md-6 mb-3">
+            <p class="mb-1"><strong>Thử thai để có kết quả đáng tin cậy:</strong></p>
+            <p class="fs-4 fw-bold" style="color: var(--brand-purple);">{{ results.reliableTestDate }}</p>
+          </div>
+          <div class="col-md-6 mb-3">
+            <p class="mb-1"><strong>Thử thai sớm nhất có thể:</strong></p>
+            <p class="fs-4 fw-bold" style="color: var(--brand-pink);">{{ results.earlyTestDate }}</p>
+          </div>
+        </div>
+        <p class="small mt-3">*Để có kết quả chính xác nhất, hãy thử thai sau khi bạn bị trễ kinh. Nồng độ hCG sẽ tăng
+          dần sau khi thụ thai.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cột phải: Thanh bên -->
+  <div class="col-lg-4">
+    <aside class="sidebar">
+      <div class="sidebar-card p-4 rounded-3 shadow-sm">
+        <h5 class="sidebar-title">TRONG BÀI VIẾT NÀY</h5>
+        <ul class="list-unstyled">
+          <li><a href="#ovulation-calculator" class="sidebar-link">Những điểm chính cần lưu ý
+              khi sử dụng máy tính thử thai </a>
+          </li>
+          <li><a href="#" class="sidebar-link">Khi nào tôi nên thử thai sau khi chậm kinh?</a>
+          </li>
+          <li><a href="#" class="sidebar-link">Khi nào tôi nên thử thai sớm?</a>
+          </li>
+          <li><a href="#faq" class="sidebar-link">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+</section>

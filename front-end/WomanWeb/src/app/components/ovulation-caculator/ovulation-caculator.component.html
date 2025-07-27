@@ -1,0 +1,64 @@
+<!-- Form máy tính -->
+<section class="calculator-card p-4 rounded-3 mt-3 shadow-sm">
+  <div class="text-muted small mb-3">
+    <p class="mb-1">Cập nhật ngày 10 tháng 2 năm 2025</p>
+    <p class="mb-1">Được đánh giá về mặt y khoa bởi <strong>Tiến sĩ Jenna Flanagan</strong> , Phó
+      giáo sư sản phụ khoa, Đại học Utah, Hoa Kỳ</p>
+    <p>Được viết bởi <strong>Natalia Hedly</strong></p>
+
+
+    <form id="cycle-form" class="mt-4" (submit)="$event.preventDefault(); calculate()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="last-period-date" class="form-label fw-medium">Ngày đầu tiên của kỳ kinh
+            cuối</label>
+          <input type="text" class="form-control" id="last-period-date" placeholder="Chọn ngày" #datePickerInput>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="cycle-length" class="form-label fw-medium">Độ dài chu kỳ (ngày)</label>
+          <div class="input-group">
+            <button class="btn btn-outline-secondary btn-minus" type="button" (click)="adjustCycleLength(-1)">-</button>
+            <input type="text" class="form-control text-center" [value]="cycleLength" id="cycle-length" readonly>
+            <button class="btn btn-outline-secondary btn-plus" type="button" (click)="adjustCycleLength(1)">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <button type="button" id="calculate-btn" class="btn btn-flo-primary w-100 mt-3 py-2 fw-bold"
+          (click)="calculate()">Xem kết quả</button>
+      </div>
+      <!-- Khu vực hiển thị kết quả -->
+      <div id="results-area" class="mt-4" *ngIf="results">
+        <h4 class="mb-3">Dự đoán kết quả của bạn</h4>
+        <div class="row text-start gy-3">
+          <div class="col-md-12">
+            <p class="mb-1"><strong>Cửa sổ thụ thai (dự kiến):</strong></p>
+            <p class="fs-5 fw-bold" style="color: #007bff;">{{ results.fertileWindow }}</p>
+          </div>
+          <div class="col-md-12">
+            <p class="mb-1"><strong>Ngày rụng trứng (dự kiến):</strong></p>
+            <p class="fs-5 fw-bold" style="color: #dc3545;">{{ results.ovulationDate }}</p>
+          </div>
+        </div>
+        <p class="small mt-4">*Các dự đoán này chỉ mang tính tham khảo và có thể thay đổi tùy thuộc vào sức khỏe và lối
+          sống của bạn.</p>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-lg-4">
+    <aside class="sidebar">
+      <div class="sidebar-card p-4 rounded-3 shadow-sm">
+        <h5 class="sidebar-title">TRONG BÀI VIẾT NÀY</h5>
+        <ul class="list-unstyled">
+          <li><a href="#ovulation-calculator" class="sidebar-link">Công cụ tính toán</a>
+          </li>
+          <li><a href="#" class="sidebar-link">Rụng trứng là gì?</a></li>
+          <li><a href="#" class="sidebar-link">Làm thế nào để biết bạn rụng trứng?</a>
+          </li>
+          <li><a href="#faq" class="sidebar-link">Câu hỏi thường gặp</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>

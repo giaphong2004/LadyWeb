@@ -6,6 +6,9 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { ToolsComponent } from './pages/tools/tools.component';
 import { MenstrualComponent } from './pages/menstrual/menstrual.component';
+import { OvulationComponent } from './pages/ovulation/ovulation.component';
+import { PregnancyComponent } from './pages/pregnancy/pregnancy.component';
+import { PregnancyTestComponent } from './pages/pregnancy-test/pregnancy-test.component';
 
 
 const routes: Routes = [
@@ -17,6 +20,15 @@ const routes: Routes = [
   },
   {
     path: 'menstrual', component: MenstrualComponent
+  },
+  {
+    path: 'ovulation', component: OvulationComponent
+  },
+  {
+    path: 'pregnancy', component: PregnancyComponent
+  },
+  {
+    path: 'pregnancy-test', component: PregnancyTestComponent
   },
   {
     path: '',
