@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service'; // Import AuthService để xử lý đăng nhập và đăng ký
+import { AuthService } from '../../../shared/services/auth.service'; // Import AuthService
 import Swal from 'sweetalert2';
 
 @Component({

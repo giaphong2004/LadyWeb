@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService, User } from '../../services/auth.service'; // Import AuthService và User
+import { AuthService, User } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-header',
