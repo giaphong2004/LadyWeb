@@ -1,0 +1,28 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <a href="#" class="logo">LadyHeath</a>
+  </div>
+
+  <nav class="sidebar-nav">
+    <ul>
+      <li *ngFor="let item of menuItems" class="nav-item" [class.has-submenu]="item.submenu"
+        [class.active]="activeItem === item.name && !item.submenu" [class.open]="item.open">
+
+        <a [routerLink]="item.path" (click)="handleMenuItemClick(item)">
+          <i [class]="item.icon"></i> {{ item.name }}
+        </a>
+
+        <ul *ngIf="item.submenu" class="submenu">
+          <li *ngFor="let subItem of item.submenu">
+            <a [routerLink]="subItem.path" routerLinkActive="active-submenu" (click)="activeItem = subItem.name">{{
+              subItem.name }}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="sidebar-footer">
+    <a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+  </div>
+</aside>

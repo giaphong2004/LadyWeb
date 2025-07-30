@@ -1,0 +1,13 @@
+.main-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.user-avatar {
+    font-size: 2rem;
+    color: var(--primary-color);
+}

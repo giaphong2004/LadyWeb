@@ -1,0 +1,14 @@
+/* Chart Container */
+.chart-container {
+background-color: white;
+padding: 1rem;
+border-radius: 8px;
+box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+margin-bottom: 2rem;
+height: 400px; /* Set a fixed height for the chart */
+}
+
+.chart-title {
+margin-top: 0;
+margin-bottom: 1.5rem;
+}

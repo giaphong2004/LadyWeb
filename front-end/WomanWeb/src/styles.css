@@ -26,9 +26,17 @@
     --brand-purple-light: #f3e5f5;
     --text-dark: #343a40;
     --text-muted: #6c757d;
+    --sidebar-bg: #2d3748;
+    --sidebar-text: #a0aec0;
+    --sidebar-text-hover: #ffffff;
+    --main-bg: #f7fafc;
+    --primary-color: #8a4d76;
+    --primary-color-dark: #6d3a5a;
+    --border-color: #e2e8f0;
   }
 body{
   font-family: 'Roboto', sans-serif;
+  margin: 0;
 }
   /* Thay thế body { ... } bằng class này */
 .login-page-background {

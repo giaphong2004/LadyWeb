@@ -1,0 +1,40 @@
+/* Quick Actions */
+.actions-title {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.action-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #475569;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: var(--primary-color);
+}
+
+.action-card i {
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    color: var(--primary-color);
+}
+
+.quick-actions {
+    padding-top: 50px;
+}
