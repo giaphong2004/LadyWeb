@@ -1,0 +1,64 @@
+/* --- Content Table --- */
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.content-table th,
+.content-table td {
+    padding: 1rem;
+    text-align: left;
+}
+
+.content-table thead {
+    background-color: #f1f5f9;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.content-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.action-icons a {
+    color: #64748b;
+    margin: 0 0.5rem;
+    text-decoration: none;
+}
+
+.action-icons a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Role Tags --- */
+.role-tag {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.role-admin {
+    background-color: #fee2e2;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.role-expert {
+    background-color: #dbeafe;
+    color: #2563eb;
+    border-color: #bfdbfe;
+}
+
+.role-member {
+    background-color: #e2e8f0;
+    color: #475569;
+    border-color: #cbd5e1;
+}

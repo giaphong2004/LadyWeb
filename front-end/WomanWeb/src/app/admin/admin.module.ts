@@ -9,6 +9,11 @@ import { DashboardActionsComponent } from './components/dashboard-actions/dashbo
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { AdminHeaderComponent } from './layout/admin-header/admin-header.component';
+import { UsersHeaderComponent } from './components/users-header/users-header.component';
+import { UsersControlsComponent } from './components/users-controls/users-controls.component';
+import { UsersTableComponent } from './components/users-table/users-table.component';
+import { UsersComponent } from './pages/users/users.component';
+import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 
 
 
@@ -20,7 +25,12 @@ import { AdminHeaderComponent } from './layout/admin-header/admin-header.compone
     DashboardActionsComponent,
     DashboardComponent,
     SidebarComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
+    UsersHeaderComponent,
+    UsersControlsComponent,
+    UsersTableComponent,
+    UsersComponent,
+    AdminLayoutComponent
   ],
   imports: [
     CommonModule,

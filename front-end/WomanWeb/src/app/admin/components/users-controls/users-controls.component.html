@@ -1,0 +1,41 @@
+<div class="table-controls">
+  <div class="search-box">
+    <i class="fas fa-search"></i>
+    <input type="text" placeholder="Tìm theo email hoặc tên...">
+  </div>
+  <a (click)="openModal()" id="add-user-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Thêm mới</a>
+</div>
+<div id="add-user-modal" class="modal-overlay" [class.active]="isModalOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Thêm Người dùng mới</h3>
+      <button class="close-btn" (click)="closeModal()">&times;</button>
+    </div>
+    <form class="modal-form">
+      <div class="form-group">
+        <label for="user-fullname">Tên đầy đủ</label>
+        <input type="text" id="user-fullname" placeholder="Nguyễn Văn A">
+      </div>
+      <div class="form-group">
+        <label for="user-email">Email</label>
+        <input type="email" id="user-email" placeholder="email@example.com">
+      </div>
+      <div class="form-group">
+        <label for="user-password">Mật khẩu</label>
+        <input type="password" id="user-password" placeholder="••••••••">
+      </div>
+      <div class="form-group">
+        <label for="user-role">Vai trò</label>
+        <select id="user-role">
+          <option value="member">Người dùng</option>
+          <option value="expert">Chuyên gia</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary cancel-btn" (click)="closeModal()">Hủy</button>
+        <button type="submit" class="btn btn-primary">Thêm người dùng</button>
+      </div>
+    </form>
+  </div>
+</div>
