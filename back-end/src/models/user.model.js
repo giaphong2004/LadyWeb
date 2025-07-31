@@ -19,8 +19,12 @@ const User = sequelize.define('User', {
   full_name: {
     type: DataTypes.STRING,
   },
+  avatar_url: { // <-- THÊM DÒNG NÀY
+    type: DataTypes.STRING,
+    allowNull: true, // Cho phép giá trị null
+  },
   role: {
-    type: DataTypes.ENUM('user', 'admin'),
+    type: DataTypes.ENUM('user', 'admin', 'expert'),
     defaultValue: 'user',
   }
 }, {

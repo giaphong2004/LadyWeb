@@ -9,12 +9,28 @@ const app = express();
 app.use(cors()); // Cho phép cross-origin requests
 app.use(express.json()); // Parse JSON bodies
 
+// Define Models & Associations
+const User = require('./models/user.model');
+const ExpertProfile = require('./models/expertProfile.model');
+const MenstrualCycle = require('./models/menstrualCycle.model');
+
+// Thiết lập mối quan hệ
+// User <-> ExpertProfile (One-to-One)
+User.hasOne(ExpertProfile, { foreignKey: 'user_id' });
+ExpertProfile.belongsTo(User, { foreignKey: 'user_id' });
+
+// User <-> MenstrualCycle (One-to-Many)
+User.hasMany(MenstrualCycle, { foreignKey: 'user_id' });
+MenstrualCycle.belongsTo(User, { foreignKey: 'user_id' });
+
 // Routes
 const authRoutes = require('./routes/auth.routes');
 const cycleRoutes = require('./routes/cycle.routes');
+const expertRoutes = require('./routes/expert.routes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/cycles', cycleRoutes);
+app.use('/api/experts', expertRoutes);
 
 // Route cơ bản để kiểm tra server
 app.get('/', (req, res) => {

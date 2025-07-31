@@ -90,7 +90,7 @@ exports.login = async (req, res) => {
     res.status(200).json({
       message: 'Đăng nhập thành công!',
       token,
-      user: { id: user.id, email: user.email, full_name: user.full_name }
+      user: { id: user.id, email: user.email, full_name: user.full_name, role: user.role }
     });
 
   } catch (error) {

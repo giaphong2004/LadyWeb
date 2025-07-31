@@ -34,11 +34,6 @@ h1 {
     background-color: var(--primary-color-dark);
 }
 
-.btn-secondary {
-    background-color: #e2e8f0;
-    color: #334155;
-}
-
 /* --- CSS CHO MODAL --- */
 .modal-overlay {
     position: fixed;

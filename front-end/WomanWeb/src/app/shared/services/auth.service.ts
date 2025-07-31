@@ -10,6 +10,7 @@ export interface User {
   id: number;
   email: string;
   full_name: string;
+  role: 'user' | 'admin' | 'expert';
   // Thêm các thuộc tính khác nếu có
 }
 
@@ -81,4 +82,29 @@ export class AuthService {
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
   }
+
+  /**
+   * Kiểm tra xem người dùng đã đăng nhập hay chưa
+   */
+  isAuthenticated(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return !!localStorage.getItem('authToken');
+    }
+    return false;
+  }
+
+  /**
+   * Lấy vai trò của người dùng hiện tại
+   */
+  getCurrentUserRole(): string | null {
+    if (isPlatformBrowser(this.platformId)) {
+      const userString = localStorage.getItem('currentUser');
+      if (userString) {
+        const user: User = JSON.parse(userString);
+        return user.role;
+      }
+    }
+    return null;
+  }
 }
+
