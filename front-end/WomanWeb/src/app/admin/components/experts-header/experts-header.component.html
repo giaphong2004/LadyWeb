@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h1>Quản lý Chuyên gia</h1>
+  <a href="#" (click)="openModal(); $event.preventDefault()" id="add-expert-btn" class="btn btn-primary"><i
+      class="fas fa-plus"></i> Thêm chuyên gia</a>
+</div>
+
+<div [ngClass]="{'active': isModalVisible}" id="add-expert-modal" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Thêm Chuyên gia mới</h3>
+      <button class="close-btn" (click)="closeModal()">&times;</button>
+    </div>
+    <form class="modal-form" (ngSubmit)="onFormSubmit()">
+      <div class="form-group">
+        <div class="form-group">
+          <label for="expert-email">Email</label>
+          <input type="text" id="expert-email" placeholder="email@example.com">
+        </div>
+        <label for="expert-name">Tên chuyên gia</label>
+        <input type="text" id="expert-name" placeholder="BS. Nguyễn Thị A">
+      </div>
+      <div class="form-group">
+        <label for="expert-title">Chức danh</label>
+        <input type="text" id="expert-title" placeholder="Bác sĩ Sản phụ khoa">
+      </div>
+      <div class="form-group">
+        <label for="expert-avatar-input">URL Ảnh đại diện (Tùy chọn)</label>
+        <input type="file" id="expert-avatar-input" accept="image/png, image/jpeg, image/gif">
+      </div>
+      <div class="form-group">
+        <label for="expert-bio">Tiểu sử/Kinh nghiệm</label>
+        <textarea id="expert-bio" rows="4" placeholder="Mô tả ngắn về chuyên gia..."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary cancel-btn" (click)="closeModal()">Hủy</button>
+        <button type="submit" class="btn btn-primary">Thêm chuyên gia</button>
+      </div>
+    </form>
+  </div>
+</div>

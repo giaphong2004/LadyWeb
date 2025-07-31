@@ -14,6 +14,15 @@ import { UsersControlsComponent } from './components/users-controls/users-contro
 import { UsersTableComponent } from './components/users-table/users-table.component';
 import { UsersComponent } from './pages/users/users.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { ExpertsHeaderComponent } from './components/experts-header/experts-header.component';
+import { ExpertsGridComponent } from './components/experts-grid/experts-grid.component';
+import { ExpertsComponent } from './pages/experts/experts.component';
+import { ToolsComponent } from './pages/tools/tools.component';
+import { ToolsHeaderComponent } from './components/tools-header/tools-header.component';
+import { ToolsMenstrualCardComponent } from './components/tools-menstrual-card/tools-menstrual-card.component';
+import { ToolsOvulationCardComponent } from './components/tools-ovulation-card/tools-ovulation-card.component';
+import { ToolsPregnancyCardComponent } from './components/tools-pregnancy-card/tools-pregnancy-card.component';
+import { ToolsPregnancyTestCardComponent } from './components/tools-pregnancy-test-card/tools-pregnancy-test-card.component';
 
 
 
@@ -30,7 +39,16 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
     UsersControlsComponent,
     UsersTableComponent,
     UsersComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    ExpertsHeaderComponent,
+    ExpertsGridComponent,
+    ExpertsComponent,
+    ToolsComponent,
+    ToolsHeaderComponent,
+    ToolsMenstrualCardComponent,
+    ToolsOvulationCardComponent,
+    ToolsPregnancyCardComponent,
+    ToolsPregnancyTestCardComponent
   ],
   imports: [
     CommonModule,

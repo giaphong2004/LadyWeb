@@ -1,0 +1,13 @@
+ .admin-container {
+    display: flex;
+    background-color: var(--main-bg);
+    color: #2d3748;
+}
+.page-content {
+    padding: 2rem;
+}
+
+.main-content {
+    flex-grow: 1;
+    margin-left: 15rem;
+}
