@@ -28,11 +28,13 @@ const authRoutes = require('./routes/auth.routes');
 const cycleRoutes = require('./routes/cycle.routes');
 const expertRoutes = require('./routes/expert.routes');
 const imagekitRoutes = require('./routes/imagekit.routes');
+const userRoutes = require('./routes/user.routes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/cycles', cycleRoutes);
 app.use('/api/experts', expertRoutes);
 app.use('/api/imagekit', imagekitRoutes);
+app.use('/api/users', userRoutes);
 
 // Route cơ bản để kiểm tra server
 app.get('/', (req, res) => {
