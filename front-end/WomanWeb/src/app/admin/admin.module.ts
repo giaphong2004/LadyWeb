@@ -23,6 +23,7 @@ import { ToolsMenstrualCardComponent } from './components/tools-menstrual-card/t
 import { ToolsOvulationCardComponent } from './components/tools-ovulation-card/tools-ovulation-card.component';
 import { ToolsPregnancyCardComponent } from './components/tools-pregnancy-card/tools-pregnancy-card.component';
 import { ToolsPregnancyTestCardComponent } from './components/tools-pregnancy-test-card/tools-pregnancy-test-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -52,7 +53,8 @@ import { ToolsPregnancyTestCardComponent } from './components/tools-pregnancy-te
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

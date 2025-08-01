@@ -11,9 +11,14 @@ router.post('/', expertController.createExpert);
 
 /*
 // Ví dụ: sau này bạn muốn có API lấy danh sách chuyên gia, bạn sẽ thêm vào đây:
-// [GET] /api/experts/
+// [GET] /api/experts/ */
 router.get('/', expertController.getAllExperts);
-*/
+
+// PUT: Cập nhật chuyên gia theo ID
+router.put('/:id', expertController.updateExpert);
+
+// DELETE: Xóa chuyên gia theo ID
+router.delete('/:id', expertController.deleteExpert);
 
 // Export router để server.js có thể sử dụng
 module.exports = router;

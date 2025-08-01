@@ -1,4 +1,5 @@
 <div class="page-content" id="page-content">
-  <app-experts-header></app-experts-header>
-  <app-experts-grid></app-experts-grid>
+  <app-experts-header (expertAdded)="loadExperts()" (expertUpdated)="loadExperts()"></app-experts-header>
+  <app-experts-grid [experts]="experts" (deleteRequest)="handleDeleteExpert($event)"
+    (editRequest)="handleEditExpert($event)"></app-experts-grid>
 </div>

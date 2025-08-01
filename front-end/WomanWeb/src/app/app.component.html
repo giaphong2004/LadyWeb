@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<div *ngIf="authService.isLoading$ | async" class="app-loader">
+</div>
+
+<router-outlet *ngIf="!(authService.isLoading$ | async)"></router-outlet>

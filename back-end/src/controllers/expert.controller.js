@@ -48,3 +48,75 @@ exports.createExpert = async (req, res) => {
         res.status(500).json({ message: 'Failed to create expert.', error: error.message });
     }
 };
+
+exports.getAllExperts = async (req, res) => {
+  try {
+    const experts = await User.findAll({
+      where: { role: 'expert' },
+      include: [{
+        model: ExpertProfile,
+        required: true // INNER JOIN: Bắt buộc phải có profile
+      }],
+      // Không trả về password_hash để bảo mật
+      attributes: { exclude: ['password_hash'] },
+      order: [['created_at', 'DESC']]
+    });
+    res.status(200).json(experts);
+  } catch (error) {
+    console.error('Failed to get experts:', error);
+    res.status(500).json({ message: 'Failed to retrieve experts.' });
+  }
+};
+
+exports.deleteExpert = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ message: 'Expert not found.' });
+    }
+
+    // Xóa user, CSDL sẽ tự động xóa profile liên quan nhờ 'ON DELETE CASCADE'
+    await user.destroy();
+    
+    res.status(200).json({ message: 'Expert deleted successfully.' });
+  } catch (error) {
+    console.error(`Failed to delete expert ${id}:`, error);
+    res.status(500).json({ message: 'Failed to delete expert.', error: error.message });
+  }
+};
+
+// Thêm hàm này vào file expert.controller.js
+exports.updateExpert = async (req, res) => {
+  const { id } = req.params;
+  const { fullName, title, bio } = req.body;
+  const t = await sequelize.transaction();
+
+  try {
+    const user = await User.findByPk(id, { transaction: t });
+    if (!user) {
+      await t.rollback();
+      return res.status(404).json({ message: 'Expert not found.' });
+    }
+
+    // Cập nhật bảng users
+    user.full_name = fullName;
+    await user.save({ transaction: t });
+
+    // Cập nhật bảng expert_profiles
+    const profile = await ExpertProfile.findOne({ where: { user_id: id }, transaction: t });
+    if (profile) {
+      profile.title = title;
+      profile.bio = bio;
+      await profile.save({ transaction: t });
+    }
+
+    await t.commit();
+    res.status(200).json({ message: 'Expert updated successfully.' });
+
+  } catch (error) {
+    await t.rollback();
+    console.error(`Failed to update expert ${id}:`, error);
+    res.status(500).json({ message: 'Failed to update expert.', error: error.message });
+  }
+};

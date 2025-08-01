@@ -1,77 +1,24 @@
-<div class="experts-grid">
-  <div class="expert-card">
+<div class="experts-grid" *ngIf="experts && experts.length > 0">
+
+  <div class="expert-card" *ngFor="let expert of experts">
     <div class="expert-avatar">
-      <img src="https://i.pravatar.cc/100?img=1" alt="Bác sĩ Trần Thị B">
+      <img [src]="expert.avatar_url || 'https://i.pravatar.cc/100'" [alt]="expert.full_name">
     </div>
     <div class="expert-info">
-      <h4 class="expert-name">Bác sĩ Trần Thị B</h4>
-      <p class="expert-specialty">Bác sĩ sản phụ khoa</p>
-      <p class="expert-desc">Hơn 15 năm kinh nghiệm trong lĩnh vực sản phụ khoa tại Bệnh viện Từ Dũ.</p>
+      <h4 class="expert-name">{{ expert.full_name }}</h4>
+      <p class="expert-specialty">{{ expert.ExpertProfile?.title }}</p>
+      <p class="expert-desc">{{ expert.ExpertProfile?.bio }}</p>
     </div>
     <div class="expert-actions">
-      <a href="#" title="Sửa"><i class="fas fa-edit"></i></a>
-      <a href="#" title="Xóa"><i class="fas fa-trash"></i></a>
+      <a href="#" (click)="editRequest.emit(expert); $event.preventDefault()" title="Sửa"><i
+          class="fas fa-edit"></i></a>
+      <a href="#" (click)="deleteRequest.emit(expert); $event.preventDefault()" title="Xóa"><i
+          class="fas fa-trash"></i></a>
     </div>
   </div>
 
-  <div class="expert-card">
-    <div class="expert-avatar">
-      <img src="https://i.pravatar.cc/100?img=5" alt="Bác sĩ Hoàng Văn E">
-    </div>
-    <div class="expert-info">
-      <h4 class="expert-name">Bác sĩ Hoàng Văn E</h4>
-      <p class="expert-specialty">Chuyên gia dinh dưỡng</p>
-      <p class="expert-desc">Chuyên gia hàng đầu về dinh dưỡng cho mẹ và bé.</p>
-    </div>
-    <div class="expert-actions">
-      <a href="#" title="Sửa"><i class="fas fa-edit"></i></a>
-      <a href="#" title="Xóa"><i class="fas fa-trash"></i></a>
-    </div>
-  </div>
-
-  <div class="expert-card">
-    <div class="expert-avatar">
-      <img src="https://i.pravatar.cc/100?img=32" alt="Nữ hộ sinh Mai P">
-    </div>
-    <div class="expert-info">
-      <h4 class="expert-name">Nữ hộ sinh Mai P.</h4>
-      <p class="expert-specialty">Chăm sóc sau sinh</p>
-      <p class="expert-desc">Kinh nghiệm chăm sóc và tư vấn cho các bà mẹ sau sinh.</p>
-    </div>
-    <div class="expert-actions">
-      <a href="#" title="Sửa"><i class="fas fa-edit"></i></a>
-      <a href="#" title="Xóa"><i class="fas fa-trash"></i></a>
-    </div>
-  </div>
 </div>
 
-<div id="add-expert-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3>Thêm Chuyên gia mới</h3>
-      <button class="close-btn">&times;</button>
-    </div>
-    <form class="modal-form">
-      <div class="form-group">
-        <label for="expert-name">Tên chuyên gia</label>
-        <input type="text" id="expert-name" placeholder="BS. Nguyễn Thị A">
-      </div>
-      <div class="form-group">
-        <label for="expert-title">Chức danh</label>
-        <input type="text" id="expert-title" placeholder="Bác sĩ Sản phụ khoa">
-      </div>
-      <div class="form-group">
-        <label for="expert-avatar">URL Ảnh đại diện (Tùy chọn)</label>
-        <input type="file" id="expert-avatar-input" accept="image/png, image/jpeg, image/gif">
-      </div>
-      <div class="form-group">
-        <label for="expert-bio">Tiểu sử/Kinh nghiệm</label>
-        <textarea id="expert-bio" rows="4" placeholder="Mô tả ngắn về chuyên gia..."></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary cancel-btn">Hủy</button>
-        <button type="submit" class="btn btn-primary">Thêm chuyên gia</button>
-      </div>
-    </form>
-  </div>
+<div *ngIf="!experts || experts.length === 0">
+  <p>Chưa có chuyên gia nào trong hệ thống.</p>
 </div>

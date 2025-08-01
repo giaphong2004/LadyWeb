@@ -28,6 +28,10 @@ export class AuthService {
   private _currentUser$ = new BehaviorSubject<User | null>(null);
   public currentUser$ = this._currentUser$.asObservable();
 
+  // --- THÊM MỚI: Subject để quản lý trạng thái loading ban đầu ---
+  private _isLoading$ = new BehaviorSubject<boolean>(true);
+  public isLoading$ = this._isLoading$.asObservable();
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -47,7 +51,10 @@ export class AuthService {
       this._isLoggedIn$.next(true);
       this._currentUser$.next(JSON.parse(user));
     }
+    // --- THÊM MỚI: Dù có user hay không, việc kiểm tra đã hoàn tất ---
+    this._isLoading$.next(false);
   }
+
 
   // Cập nhật hàm login
   login(credentials: any): Observable<any> {

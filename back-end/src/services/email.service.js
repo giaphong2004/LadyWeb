@@ -19,19 +19,19 @@ const transporter = nodemailer.createTransport({
  */
 const sendInvitationEmail = async (expertEmail, expertName, temporaryPassword) => {
     const mailOptions = {
-        from: `"Lady Care App" <${process.env.GMAIL_USER}>`,
+        from: `"LadyHeath Web" <${process.env.GMAIL_USER}>`,
         to: expertEmail,
-        subject: 'Thư mời trở thành Chuyên gia trên Lady Care App',
+        subject: 'Thư mời trở thành Chuyên gia trên LadyHeath Web',
         html: `
             <h1>Chào mừng ${expertName},</h1>
-            <p>Bạn đã được mời tham gia hệ thống Lady Care với vai trò là một chuyên gia tư vấn.</p>
+            <p>Bạn đã được mời tham gia hệ thống LadyHeath Web với vai trò là một chuyên gia tư vấn.</p>
             <p>Dưới đây là thông tin đăng nhập tạm thời của bạn:</p>
             <ul>
                 <li><strong>Email:</strong> ${expertEmail}</li>
                 <li><strong>Mật khẩu:</strong> ${temporaryPassword}</li>
             </ul>
             <p>Vui lòng đăng nhập và đổi mật khẩu sớm nhất có thể để đảm bảo an toàn cho tài khoản.</p>
-            <p>Trân trọng,<br>Đội ngũ Lady Care</p>
+            <p>Trân trọng,<br>Đội ngũ LadyHeath Web</p>
         `
     };
 
