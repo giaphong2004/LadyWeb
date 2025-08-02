@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-dashboard-stats-grid',
   standalone: false,
@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard-stats-grid.component.css'
 })
 export class DashboardStatsGridComponent {
-
+  @Input() stats: any = {};
 }

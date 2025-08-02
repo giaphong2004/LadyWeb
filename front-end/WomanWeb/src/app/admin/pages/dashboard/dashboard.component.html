@@ -1,6 +1,10 @@
 <div class="page-content" id="page-content">
   <app-dashboard-header></app-dashboard-header>
-  <app-dashboard-stats-grid></app-dashboard-stats-grid>
-  <app-dashboard-chart></app-dashboard-chart>
+
+  <app-dashboard-stats-grid [stats]="stats"></app-dashboard-stats-grid>
+
+  <app-dashboard-chart [labels]="chartLabels" [datasets]="chartData">
+  </app-dashboard-chart>
+
   <app-dashboard-actions></app-dashboard-actions>
 </div>

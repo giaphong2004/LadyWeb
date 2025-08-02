@@ -24,7 +24,7 @@ import { ToolsOvulationCardComponent } from './components/tools-ovulation-card/t
 import { ToolsPregnancyCardComponent } from './components/tools-pregnancy-card/tools-pregnancy-card.component';
 import { ToolsPregnancyTestCardComponent } from './components/tools-pregnancy-test-card/tools-pregnancy-test-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { BaseChartDirective } from 'ng2-charts';
 
 
 @NgModule({
@@ -54,7 +54,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BaseChartDirective
   ]
 })
 export class AdminModule { }

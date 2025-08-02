@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './shared/services/auth.service';
+import Chart, { registerables } from 'chart.js/auto';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,7 @@ import { AuthService } from './shared/services/auth.service';
 })
 export class AppComponent {
   title = 'WomanWeb';
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService) {
+    Chart.register(...registerables);
+  }
 }

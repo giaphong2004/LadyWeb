@@ -5,7 +5,7 @@
     </div>
     <div class="stat-info">
       <span class="stat-title">Tổng số người dùng</span>
-      <span class="stat-value">1,250</span>
+      <span class="stat-value">{{ stats.totalUsers || 0 }}</span>
     </div>
   </div>
   <div class="stat-card">
@@ -14,7 +14,7 @@
     </div>
     <div class="stat-info">
       <span class="stat-title">Người dùng mới (Tháng)</span>
-      <span class="stat-value">76</span>
+      <span class="stat-value">{{ stats.newUsersThisMonth || 0 }}</span>
     </div>
   </div>
   <div class="stat-card">
