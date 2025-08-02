@@ -25,7 +25,7 @@ export class SidebarComponent {
       icon: 'fas fa-file-alt',
       open: false, // Thêm thuộc tính 'open' để quản lý trạng thái đóng/mở
       submenu: [
-        { name: 'Sức khỏe A-Z', path: '/admin/posts' },
+        { name: 'Sức khỏe A-Z', path: '/admin/library' },
         { name: 'Chuyên gia', path: '/admin/experts' }
       ]
     },

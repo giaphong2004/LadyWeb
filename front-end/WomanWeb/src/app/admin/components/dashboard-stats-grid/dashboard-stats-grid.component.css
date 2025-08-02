@@ -1,7 +1,7 @@
 /* Stats Grid */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
@@ -31,6 +31,8 @@
 .icon-green { background-color: #22c55e; }
 .icon-purple { background-color: #8b5cf6; }
 .icon-yellow { background-color: #f59e0b; }
+.icon-success { background-color: #10b981; }
+.icon-teal { background-color: #14b8a6; }
 
 .stat-info {
     display: flex;

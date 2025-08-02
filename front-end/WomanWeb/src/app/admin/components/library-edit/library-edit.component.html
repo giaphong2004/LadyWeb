@@ -1,0 +1,54 @@
+<div id="post-edit-view">
+  <form [formGroup]="postForm">
+    <div class="page-header edit-header">
+      <h3>{{ post ? 'Chỉnh sửa bài viết' : 'Viết bài mới' }}</h3>
+      <div class="header-actions">
+        <button type="button" (click)="backToList.emit()" class="btn btn-secondary">Quay lại</button>
+        <button type="button" (click)="onSave('draft')" class="btn btn-tertiary">Lưu nháp</button>
+        <button type="button" (click)="onSave('published')" class="btn btn-primary">Xuất bản</button>
+      </div>
+    </div>
+
+    <div class="edit-layout">
+      <div class="main-column">
+        <div class="card">
+          <div class="form-group">
+            <label for="post-title">Tiêu đề bài viết</label>
+            <input type="text" id="post-title" class="form-control-dark" formControlName="title">
+          </div>
+          <div class="form-group">
+            <label for="post-content">Nội dung bài viết</label>
+            <textarea id="post-content" class="form-control-editor" rows="20" formControlName="content"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-column">
+        <div class="card">
+          <h5 class="card-title">Ảnh bìa</h5>
+          <div class="image-upload">
+            <div class="image-preview">
+              <img [src]="postForm.get('cover_image_url')?.value || 'https://ik.imagekit.io/ikmedia/placeholder.png'"
+                alt="Preview ảnh bìa">
+            </div>
+            <input type="file" (change)="onFileSelected($event)" #fileInput hidden>
+            <button type="button" class="btn btn-secondary btn-full-width" (click)="fileInput.click()"
+              [disabled]="isUploading">
+              {{ isUploading ? 'Đang tải...' : 'Thay đổi ảnh' }}
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h5 class="card-title">Tags / Chuyên mục</h5>
+          <div class="form-group">
+            <select multiple class="form-control-dark" formControlName="tags" style="height: 150px;">
+              <option *ngFor="let tag of allTags" [value]="tag.id">{{ tag.name }}</option>
+            </select>
+            <p class="editor-hint">Giữ Ctrl/Command để chọn nhiều tag.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

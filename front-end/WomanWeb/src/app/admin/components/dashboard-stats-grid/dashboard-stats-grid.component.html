@@ -23,16 +23,25 @@
     </div>
     <div class="stat-info">
       <span class="stat-title">Tổng số bài viết</span>
-      <span class="stat-value">89</span>
+      <span class="stat-value">{{ stats.totalPosts || 0 }}</span>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon-wrapper icon-yellow">
-      <i class="fas fa-comments"></i>
+      <i class="fas fa-edit"></i>
     </div>
     <div class="stat-info">
-      <span class="stat-title">Câu hỏi chờ duyệt</span>
-      <span class="stat-value">12</span>
+      <span class="stat-title">Bài viết nháp</span>
+      <span class="stat-value">{{ stats.draftPosts || 0 }}</span>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon-wrapper icon-success">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <div class="stat-info">
+      <span class="stat-title">Bài viết đã xuất bản</span>
+      <span class="stat-value">{{ stats.publishedPosts || 0 }}</span>
     </div>
   </div>
 </div>

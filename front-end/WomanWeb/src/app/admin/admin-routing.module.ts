@@ -5,6 +5,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 import { ExpertsComponent } from './pages/experts/experts.component';
 import { ToolsComponent } from './pages/tools/tools.component';
+import { LibraryComponent } from './pages/library/library.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'users', component: UsersComponent },
       { path: 'experts', component: ExpertsComponent },
       { path: 'tools', component: ToolsComponent },
+      { path: 'library', component: LibraryComponent }
     ]
   },
 ];

@@ -1,0 +1,137 @@
+/* Bố cục chính 2 cột */
+.edit-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Cột chính rộng gấp đôi cột phụ */
+    gap: 2rem; /* Khoảng cách giữa 2 cột */
+}
+
+/* Style chung cho các thẻ card */
+.card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Header của trang */
+.edit-header {
+    margin: -2rem -2rem 2rem -2rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Các loại nút */
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: var(--text-dark);
+}
+
+.btn-tertiary {
+    background-color: #f1f5f9;
+    color: var(--text-dark);
+}
+
+.btn-full-width {
+    width: 100%;
+    justify-content: center;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Các ô input */
+.form-control-dark {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #f8fafc;
+    box-sizing: border-box;
+}
+
+.form-control-dark:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(194, 24, 91, 0.2);
+}
+
+.form-control-editor {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: white;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.editor-hint {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin-top: 0.5rem;
+}
+
+/* Phần tải ảnh */
+.image-upload {
+    margin-top: 0.5rem;
+}
+
+.image-preview {
+    margin-bottom: 1rem;
+}
+
+.image-preview img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+#post-edit-view{
+  padding: 2rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+}

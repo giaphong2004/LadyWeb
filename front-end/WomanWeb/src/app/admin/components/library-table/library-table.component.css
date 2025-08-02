@@ -1,0 +1,119 @@
+/* Thẻ tags trong bảng */
+.tag {
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-right: 0.25rem;
+    display: inline-block; /* Giúp tag không bị vỡ dòng */
+    margin-bottom: 0.25rem; /* Thêm khoảng cách nếu có nhiều tag */
+}
+
+.tag-pink {
+    background-color: #fce4ec;
+    color: #c2185b;
+}
+
+.tag-purple {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+
+/* --- THÊM CÁC MÀU MỚI CHO TAG --- */
+.tag-blue {
+    background-color: #e0f7fa;
+    color: #00838f;
+}
+
+.tag-green {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.tag-orange {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+.tag-teal {
+    background-color: #e0f2f1;
+    color: #00695c;
+}
+/* Header của trang edit */
+.edit-header {
+    background-color: white;
+    padding: 1rem 2rem;
+    margin: -2rem -2rem 2rem -2rem; /* Mở rộng header ra sát lề */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: var(--text-dark);
+}
+
+.btn-tertiary {
+    background-color: #f1f5f9;
+    color: var(--text-dark);
+}
+
+/* --- Content Table --- */
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.content-table th,
+.content-table td {
+    padding: 1rem;
+    text-align: left;
+}
+
+.content-table thead {
+    background-color: #f1f5f9;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.content-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.action-icons a {
+    color: #64748b;
+    margin: 0 0.5rem;
+    text-decoration: none;
+}
+
+.action-icons a:hover {
+    color: var(--primary-color);
+}
+
+.status-tag {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.status-published {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-draft {
+    background-color: #fee2e2;
+    color: #991b1b;
+}

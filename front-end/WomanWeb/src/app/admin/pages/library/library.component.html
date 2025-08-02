@@ -1,0 +1,10 @@
+<div class="page-content" id="page-content">
+  <div *ngIf="!isEditMode" id="post-list-view">
+    <app-library-header></app-library-header>
+    <app-library-controls (addPostClick)="showEditView()" (searchTermChange)="loadPosts($event)"></app-library-controls>
+    <app-library-table [posts]="posts" (deleteRequest)="handleDeletePost($event)"
+      (editRequest)="handleEditPost($event)"></app-library-table>
+  </div>
+
+  <app-library-edit *ngIf="isEditMode" [post]="selectedPost" (backToList)="showListView()"></app-library-edit>
+</div>

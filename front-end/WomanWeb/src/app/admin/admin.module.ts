@@ -25,6 +25,11 @@ import { ToolsPregnancyCardComponent } from './components/tools-pregnancy-card/t
 import { ToolsPregnancyTestCardComponent } from './components/tools-pregnancy-test-card/tools-pregnancy-test-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BaseChartDirective } from 'ng2-charts';
+import { LibraryHeaderComponent } from './components/library-header/library-header.component';
+import { LibraryControlsComponent } from './components/library-controls/library-controls.component';
+import { LibraryTableComponent } from './components/library-table/library-table.component';
+import { LibraryComponent } from './pages/library/library.component';
+import { LibraryEditComponent } from './components/library-edit/library-edit.component';
 
 
 @NgModule({
@@ -49,7 +54,12 @@ import { BaseChartDirective } from 'ng2-charts';
     ToolsMenstrualCardComponent,
     ToolsOvulationCardComponent,
     ToolsPregnancyCardComponent,
-    ToolsPregnancyTestCardComponent
+    ToolsPregnancyTestCardComponent,
+    LibraryHeaderComponent,
+    LibraryControlsComponent,
+    LibraryTableComponent,
+    LibraryComponent,
+    LibraryEditComponent
   ],
   imports: [
     CommonModule,

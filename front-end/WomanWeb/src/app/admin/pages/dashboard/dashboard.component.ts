@@ -29,6 +29,13 @@ export class DashboardComponent {
     this.dashboardService.getStats().subscribe({
       next: (data) => {
         this.stats = data;
+        console.log('📊 Dashboard stats loaded:', data);
+        console.log('📝 Posts stats:', {
+          total: data.totalPosts,
+          draft: data.draftPosts,
+          published: data.publishedPosts,
+          newThisMonth: data.newPostsThisMonth
+        });
 
         // Xử lý dữ liệu cho biểu đồ
         if (data.dailyRegistrations) {
@@ -39,7 +46,7 @@ export class DashboardComponent {
         }
       },
       error: (err) => {
-        console.error("Failed to load dashboard stats", err);
+        console.error("❌ Failed to load dashboard stats:", err);
       }
     });
   }

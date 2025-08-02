@@ -1,5 +1,6 @@
 const { Op, fn, col, literal } = require('sequelize');
 const User = require('../models/user.model');
+const Post = require('../models/post.model'); // Nếu cần sử dụng Post model
 // Bạn có thể import thêm các model khác như Post, Question nếu cần
 
 exports.getStats = async (req, res) => {
@@ -17,7 +18,9 @@ exports.getStats = async (req, res) => {
         const [
             totalUsers,
             newUsersThisMonth,
-            dailyRegistrations
+            dailyRegistrations,
+            totalPosts,
+            draftPosts
         ] = await Promise.all([
             // 1. Đếm tổng số người dùng
             User.count(),
@@ -44,15 +47,28 @@ exports.getStats = async (req, res) => {
                 },
                 group: [fn('DATE', col('created_at'))],
                 order: [[fn('DATE', col('created_at')), 'ASC']]
-            })
+            }),
+
+            // 4. Đếm tổng số bài viết
+            Post.count(),
+
+            // 5. Đếm số bài viết nháp
+            Post.count({
+                where: {
+                    status: 'draft'
+                }
+            }),
+
         ]);
 
         // Gửi tất cả dữ liệu về trong một object
         res.status(200).json({
             totalUsers,
             newUsersThisMonth,
-            dailyRegistrations // Dữ liệu cho biểu đồ
-            // Thêm các số liệu khác ở đây, ví dụ: totalPosts
+            dailyRegistrations, // Dữ liệu cho biểu đồ
+            totalPosts,
+            draftPosts,
+            publishedPosts: totalPosts - draftPosts // Tính số bài viết đã xuất bản
         });
 
     } catch (error) {

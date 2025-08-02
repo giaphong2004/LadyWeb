@@ -1,0 +1,38 @@
+<table class="content-table">
+  <thead>
+    <tr>
+      <th>TIÊU ĐỀ</th>
+      <th>TÁC GIẢ</th>
+      <th>TAGS</th>
+      <th>TRẠNG THÁI</th>
+      <th>NGÀY XUẤT BẢN</th>
+      <th>HÀNH ĐỘNG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts">
+      <td>{{ post.title }}</td>
+      <td>{{ post.author?.full_name }}</td>
+      <td>
+        <span *ngFor="let tag of post.Tags" class="tag" [ngClass]="getTagColor(tag.id)">
+          {{ tag.name }}
+        </span>
+      </td>
+      <td>
+        <span class="status-tag" [ngClass]="{
+    'status-published': post.status === 'published',
+    'status-draft': post.status === 'draft'
+  }">
+          {{ post.status === 'published' ? 'Đã xuất bản' : 'Bản nháp' }}
+        </span>
+      </td>
+      <td>{{ post.published_at | date: 'dd/MM/yyyy' }}</td>
+      <td class="action-icons">
+        <a href="#" (click)="editRequest.emit(post); $event.preventDefault()" title="Sửa"><i
+            class="fas fa-edit"></i></a>
+        <a href="#" (click)="deleteRequest.emit(post); $event.preventDefault()" title="Xóa"><i
+            class="fas fa-trash"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
