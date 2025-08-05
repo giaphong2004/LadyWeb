@@ -43,6 +43,7 @@ const userRoutes = require('./routes/user.routes');
 const dashboardRoutes = require('./routes/dashboard.routes'); 
 const postRoutes = require('./routes/post.routes');
 const tagRoutes = require('./routes/tag.routes');
+const publicRoutes = require('./routes/public.routes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/cycles', cycleRoutes);
@@ -52,6 +53,7 @@ app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/tags', tagRoutes);
+app.use('/api/public', publicRoutes); 
 
 
 // Route cơ bản để kiểm tra server

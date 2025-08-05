@@ -43,6 +43,13 @@ import { PregnancyTestCaculatorComponent } from './components/pregnancy-test-cac
 import { PregnancyTestDescribeComponent } from './components/pregnancy-test-describe/pregnancy-test-describe.component';
 import { PregnancyTestComponent } from './pages/pregnancy-test/pregnancy-test.component';
 
+import { LibraryCategoryComponent } from './components/library-category/library-category.component';
+import { LibrarySectionComponent } from './components/library-hero-section/library-section.component';
+import { LibrarySectionHeaderComponent } from './components/library-section-header/library-section-header.component';
+import { LibraryCardsComponent } from './components/library-cards/library-cards.component';
+import { LibraryComponent } from './pages/library/library.component';
+
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -79,7 +86,13 @@ import { PregnancyTestComponent } from './pages/pregnancy-test/pregnancy-test.co
     PregnancyTestHeroSectionComponent,
     PregnancyTestCaculatorComponent,
     PregnancyTestDescribeComponent,
-    PregnancyTestComponent,],
+    PregnancyTestComponent,
+    LibraryCategoryComponent,
+    LibrarySectionComponent,
+    LibrarySectionHeaderComponent,
+    LibraryCardsComponent,
+    LibraryComponent,
+  ],
   imports: [
     CommonModule,
     WebRoutingModule,

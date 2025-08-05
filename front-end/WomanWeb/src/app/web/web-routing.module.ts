@@ -9,6 +9,7 @@ import { MenstrualComponent } from './pages/menstrual/menstrual.component';
 import { OvulationComponent } from './pages/ovulation/ovulation.component';
 import { PregnancyComponent } from './pages/pregnancy/pregnancy.component';
 import { PregnancyTestComponent } from './pages/pregnancy-test/pregnancy-test.component';
+import { LibraryComponent } from './pages/library/library.component';
 
 const routes: Routes = [{
   path: 'login', component: LoginSignupComponent
@@ -27,6 +28,9 @@ const routes: Routes = [{
 },
 {
   path: 'pregnancy-test', component: PregnancyTestComponent
+},
+{
+  path: 'library', component: LibraryComponent
 },
 {
   path: '',

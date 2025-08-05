@@ -1,0 +1,15 @@
+<app-header></app-header>
+
+<app-library-section (search)="onSearch($event)"></app-library-section>
+
+<main class="container">
+  <app-library-category [tags]="tags$ | async" (tagSelected)="onTagSelected($event)">
+  </app-library-category>
+
+  <section class="mt-4">
+    <app-library-section-header></app-library-section-header>
+    <app-library-cards [posts]="posts"></app-library-cards>
+  </section>
+</main>
+
+<app-footer></app-footer>

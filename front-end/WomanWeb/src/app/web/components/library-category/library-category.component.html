@@ -1,0 +1,10 @@
+<ul class="nav nav-pills justify-content-center category-pills">
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="activeTagSlug === ''" (click)="selectTag(''); $event.preventDefault()">Tất
+      cả</a>
+  </li>
+  <li class="nav-item" *ngFor="let tag of tags">
+    <a class="nav-link" [class.active]="activeTagSlug === tag.slug"
+      (click)="selectTag(tag.slug); $event.preventDefault()">{{ tag.name }}</a>
+  </li>
+</ul>
