@@ -10,6 +10,7 @@ import { OvulationComponent } from './pages/ovulation/ovulation.component';
 import { PregnancyComponent } from './pages/pregnancy/pregnancy.component';
 import { PregnancyTestComponent } from './pages/pregnancy-test/pregnancy-test.component';
 import { LibraryComponent } from './pages/library/library.component';
+import { DetailsComponent } from './pages/details/details.component';
 
 const routes: Routes = [{
   path: 'login', component: LoginSignupComponent
@@ -32,6 +33,10 @@ const routes: Routes = [{
 {
   path: 'library', component: LibraryComponent
 },
+{
+  path: 'details', component: DetailsComponent
+},
+{ path: 'posts/:slug', component: DetailsComponent },
 {
   path: '',
   component: MainLayoutComponent, // Layout này có header và footer

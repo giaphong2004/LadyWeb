@@ -6,7 +6,7 @@ const Tag = require('../models/tag.model');
 // Lấy danh sách bài viết (có tìm kiếm, lọc theo tag, và phân trang)
 exports.getPublicPosts = async (req, res) => {
     try {
-        const { search, tag, page = 1, limit = 9 } = req.query;
+        const { search, tag, page = 1, limit = 9, exclude } = req.query;
         const offset = (page - 1) * limit;
 
         let whereCondition = { status: 'published' }; // Luôn chỉ lấy bài đã xuất bản
@@ -29,6 +29,10 @@ exports.getPublicPosts = async (req, res) => {
             });
         }
         
+        if (exclude) {
+            whereCondition.id = { [Op.ne]: exclude }; // [Op.ne] = Not Equal (Không bằng)
+        }
+
         const { count, rows } = await Post.findAndCountAll({
             where: whereCondition,
             include: [

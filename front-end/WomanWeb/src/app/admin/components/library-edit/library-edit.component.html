@@ -18,7 +18,21 @@
           </div>
           <div class="form-group">
             <label for="post-content">Nội dung bài viết</label>
-            <textarea id="post-content" class="form-control-editor" rows="20" formControlName="content"></textarea>
+
+            <editor apiKey="pjclx1w8kaufuogl0bkot8v8kjzzckbm70wp1ytjswskuy9k" formControlName="content" [init]="{
+              height: 500,
+              menubar: false,
+              plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+                'preview', 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount'
+              ],
+              toolbar: 'undo redo | blocks | ' +
+              'bold italic forecolor | alignleft aligncenter ' +
+              'alignright alignjustify | bullist numlist outdent indent | ' +
+              'removeformat | help'
+            }"></editor>
+
           </div>
         </div>
       </div>

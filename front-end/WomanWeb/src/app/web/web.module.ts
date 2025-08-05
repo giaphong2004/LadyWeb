@@ -48,6 +48,12 @@ import { LibrarySectionComponent } from './components/library-hero-section/libra
 import { LibrarySectionHeaderComponent } from './components/library-section-header/library-section-header.component';
 import { LibraryCardsComponent } from './components/library-cards/library-cards.component';
 import { LibraryComponent } from './pages/library/library.component';
+import { DetailsHeaderComponent } from './components/details-header/details-header.component';
+import { DetailsImgComponent } from './components/details-img/details-img.component';
+import { DetailsDescriptionComponent } from './components/details-description/details-description.component';
+import { DetailsComponent } from './pages/details/details.component';
+import { DetailsSidebarComponent } from './components/details-sidebar/details-sidebar.component';
+
 
 
 @NgModule({
@@ -92,6 +98,11 @@ import { LibraryComponent } from './pages/library/library.component';
     LibrarySectionHeaderComponent,
     LibraryCardsComponent,
     LibraryComponent,
+    DetailsHeaderComponent,
+    DetailsImgComponent,
+    DetailsDescriptionComponent,
+    DetailsComponent,
+    DetailsSidebarComponent,
   ],
   imports: [
     CommonModule,

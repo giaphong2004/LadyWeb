@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<main class="container py-5" *ngIf="post">
+  <div class="article-layout">
+    <div class="article-content-wrapper">
+      <app-details-header [post]="post"></app-details-header>
+      <app-details-img [post]="post"></app-details-img>
+      <app-details-description [post]="post"></app-details-description>
+    </div>
+
+    <aside class="sidebar-column">
+      <app-details-sidebar [relatedPosts]="relatedPosts"></app-details-sidebar>
+    </aside>
+  </div>
+</main>
+
+<app-footer></app-footer>

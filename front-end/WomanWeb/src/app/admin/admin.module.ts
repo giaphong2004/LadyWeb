@@ -30,7 +30,7 @@ import { LibraryControlsComponent } from './components/library-controls/library-
 import { LibraryTableComponent } from './components/library-table/library-table.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { LibraryEditComponent } from './components/library-edit/library-edit.component';
-
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -65,7 +65,8 @@ import { LibraryEditComponent } from './components/library-edit/library-edit.com
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    BaseChartDirective
+    BaseChartDirective,
+    EditorModule
   ]
 })
 export class AdminModule { }

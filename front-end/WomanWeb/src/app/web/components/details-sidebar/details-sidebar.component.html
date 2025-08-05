@@ -1,0 +1,13 @@
+<div class="sidebar-widget">
+  <h4 class="widget-title">Bài viết liên quan</h4>
+
+  <div class="related-post-card" *ngFor="let post of relatedPosts">
+    <img [src]="post.cover_image_url" [alt]="post.title">
+    <div class="post-info">
+      <h5><a [routerLink]="['/library', post.id]">{{ post.title }}</a></h5>
+      <span>{{ post.category }}</span>
+    </div>
+  </div>
+
+
+</div>

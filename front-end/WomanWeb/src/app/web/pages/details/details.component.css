@@ -1,0 +1,22 @@
+.article-content-wrapper {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.article-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Mặc định 1 cột trên mobile */
+    gap: 2.5rem;
+}
+
+@media (min-width: 992px) {
+    .article-layout {
+        grid-template-columns: 2.5fr 1fr;
+        /* Bố cục 2 cột trên desktop */
+    }
+}
+
+

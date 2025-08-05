@@ -1,0 +1,52 @@
+/* --- Cột phụ (Sidebar) --- */
+        .sidebar-widget {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        .widget-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Related Post Card */
+        .related-post-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .related-post-card img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+
+        .related-post-card .post-info h5 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .related-post-card .post-info h5 a {
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: color 0.3s;
+        }
+
+        .related-post-card .post-info h5 a:hover {
+            color: var(--brand-pink);
+        }
+
+        .related-post-card .post-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }

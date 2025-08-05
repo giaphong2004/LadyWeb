@@ -9,7 +9,6 @@ import { WebModule } from './web/web.module';
 import { BrowserModule } from '@angular/platform-browser';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

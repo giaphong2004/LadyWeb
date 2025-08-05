@@ -1,0 +1,10 @@
+<div class="article-body" [innerHTML]="post?.content"></div>
+
+<div class="social-share">
+  <strong>Chia sẻ bài viết:</strong>
+  <a href="#" class="social-share-btn"><i class="fab fa-facebook-f me-2"></i>Facebook</a>
+  <a href="#" class="social-share-btn"><i class="fab fa-twitter me-2"></i>Twitter</a>
+  <a href="#" class="social-share-btn"><i class="fas fa-link me-2"></i>Sao chép</a>
+  <span *ngFor="let tag of post?.Tags" [routerLink]="['/library']" [queryParams]="{ tag: tag.slug }"
+    class="category-tag">{{ tag.name }}</span>
+</div>
