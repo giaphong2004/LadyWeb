@@ -25,5 +25,10 @@ export class UserService {
   deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+  updateProfile(profileData: any): Observable<any> {
+    // Gọi đến API endpoint mới mà chúng ta vừa tạo
+    return this.http.put(`${this.apiUrl}/profile`, profileData);
+  }
 }
 

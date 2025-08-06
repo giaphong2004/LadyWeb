@@ -1,0 +1,24 @@
+<app-header></app-header>
+<main>
+  <div class="container profile-layout">
+    <form [formGroup]="profileForm" (ngSubmit)="onSave()">
+
+      <app-user-profile-form [parentForm]="profileForm" [currentUser]="currentUser" [isUploading]="isUploading"
+        (fileSelected)="onFileSelected($event)">
+
+        <app-experts-profile-form *ngIf="isExpert" [parentForm]="profileForm" expert-form>
+        </app-experts-profile-form>
+
+        <div actions class="text-end">
+          <button type="submit" (ngSubmit)="onSave()" class="btn btn-pink"
+            [disabled]="profileForm.invalid || isUploading">
+            {{ isUploading ? 'Đang tải lên...' : 'Lưu thay đổi' }}
+          </button>
+        </div>
+
+      </app-user-profile-form>
+
+    </form>
+  </div>
+</main>
+<app-footer></app-footer>

@@ -1,0 +1,56 @@
+<main class="profile-page">
+  <div class="page-header">
+    <div class="container">
+      <h1 class="page-title">Cập nhật tài khoản</h1>
+    </div>
+  </div>
+
+  <div class="container profile-layout">
+    <div class="row g-4 pb-5">
+
+      <div class="col-lg-4">
+        <div class="card profile-sidebar-card">
+          <div class="avatar-upload-container">
+            <div class="avatar-preview">
+              <img id="avatar-preview-img"
+                [src]="parentForm.get('avatarUrl')?.value || currentUser?.avatar_url || 'https://via.placeholder.com/150'"
+                alt="Avatar Preview">
+            </div>
+            <label for="avatar-input" class="btn btn-sm btn-outline-dark btn-upload">
+              <i class="fas fa-camera me-2"></i>{{ isUploading ? 'Đang tải...' : 'Tải ảnh mới' }}
+            </label>
+            <input type="file" id="avatar-input" accept="image/*" (change)="onFileSelected($event)">
+            <div class="mt-3">
+              <h4 class="profile-name">{{ currentUser?.full_name }}</h4>
+              <p class="profile-email">{{ currentUser?.email }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="card profile-form-card">
+          <form [formGroup]="parentForm">
+            <h5 class="form-section-title">Chỉnh sửa thông tin</h5>
+            <div class="form-group">
+              <label for="full-name">Tên hiển thị</label>
+              <input type="text" id="full-name" class="form-control" formControlName="fullName"
+                [value]="currentUser?.full_name">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" [value]="currentUser?.email" disabled>
+              <small class="text-muted">Email không thể thay đổi.</small>
+            </div>
+
+            <ng-content></ng-content>
+            <hr class="my-4">
+
+          </form>
+        </div>
+      </div>
+      <ng-content select="[actions]"></ng-content>
+    </div>
+  </div>
+</main>

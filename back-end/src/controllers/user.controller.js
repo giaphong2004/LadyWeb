@@ -3,7 +3,8 @@ const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 // Thêm import cho service gửi email
 const { sendInvitationEmail } = require('../services/email.service');
-
+const sequelize = require('../config/database'); 
+const ExpertProfile = require('../models/expertProfile.model');
 // READ: Lấy danh sách tất cả người dùng (có tìm kiếm)
 exports.getAllUsers = async (req, res) => {
     try {
@@ -114,4 +115,56 @@ exports.deleteUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Không thể xóa người dùng.', error: error.message });
     }
+};
+
+// Hàm cập nhật profile
+exports.updateProfile = async (req, res) => {
+    console.log('User data from token:', req.user);
+  // Lấy id của user đã được xác thực từ middleware
+  const userId = req.user.id; 
+  
+  // Tách dữ liệu cho bảng users và expert_profiles từ req.body
+  const { fullName, avatarUrl, title, bio, qualifications } = req.body;
+
+  const t = await sequelize.transaction(); // Bắt đầu một transaction
+
+  try {
+    // 1. Cập nhật bảng 'users'
+    const user = await User.findByPk(userId, { transaction: t });
+    if (!user) {
+      await t.rollback();
+      return res.status(404).json({ message: 'Không tìm thấy người dùng.' });
+    }
+
+    user.full_name = fullName;
+    user.avatar_url = avatarUrl;
+    await user.save({ transaction: t });
+
+    // 2. Nếu là expert, cập nhật bảng 'expert_profiles'
+    if (user.role === 'expert') {
+      await ExpertProfile.update(
+        { title, bio, qualifications },
+        { where: { user_id: userId }, transaction: t }
+      );
+    }
+
+    // Nếu mọi thứ thành công, commit transaction
+    await t.commit();
+    
+    // Trả về thông tin user đã cập nhật để frontend có thể đồng bộ
+    const updatedUser = await User.findByPk(userId, {
+        include: { model: ExpertProfile, as: 'ExpertProfile' }
+    });
+
+    res.status(200).json({ 
+        message: 'Cập nhật hồ sơ thành công!',
+        user: updatedUser 
+    });
+
+  } catch (error) {
+    // Nếu có lỗi, rollback tất cả thay đổi
+    await t.rollback();
+    console.error('Update profile error:', error);
+    res.status(500).json({ message: 'Lỗi server khi cập nhật hồ sơ.' });
+  }
 };

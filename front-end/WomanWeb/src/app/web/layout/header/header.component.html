@@ -52,7 +52,7 @@
               <h6 class="dropdown-item">Chào, {{ user.full_name }}</h6>
               <hr>
             </li>
-            <li><a class="dropdown-item" routerLink="/settings">Hồ sơ</a></li>
+            <li><a class="dropdown-item" routerLink="/profile">Hồ sơ</a></li>
             <li *ngIf="user.role === 'admin'">
               <a class="dropdown-item" routerLink="/admin">
                 <i class="bi bi-shield-lock"></i> Trang Quản Trị

@@ -113,5 +113,14 @@ export class AuthService {
     }
     return null;
   }
+
+  setCurrentUser(user: User): void {
+    // Cập nhật lại thông tin trong localStorage
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+    }
+    // Phát tín hiệu thông tin người dùng mới cho các component khác
+    this._currentUser$.next(user);
+  }
 }
 

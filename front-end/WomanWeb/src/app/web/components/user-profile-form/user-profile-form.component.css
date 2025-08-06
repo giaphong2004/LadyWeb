@@ -1,0 +1,100 @@
+
+        /* --- Page Layout --- */
+        .page-header {
+            padding-bottom: 8rem;
+            /* Tạo không gian cho card nổi lên */
+            background-color: var(--brand-pink-light);
+        }
+
+        .page-title {
+            color: var(--brand-pink-dark);
+            padding-top: 4rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .profile-layout {
+            margin-top: -6rem;
+            /* Kéo card lên trên */
+        }
+
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Sidebar Card */
+        .profile-sidebar-card {
+            padding: 2rem;
+        }
+
+        .avatar-upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .avatar-preview img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        #avatar-input {
+            display: none;
+        }
+
+        .btn-upload {
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .profile-email {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Form Card */
+        .profile-form-card {
+            padding: 2.5rem;
+        }
+
+        .form-section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--brand-pink);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.15);
+        }
+
+        .form-control:disabled {
+            background-color: #e9ecef;
+        }
+

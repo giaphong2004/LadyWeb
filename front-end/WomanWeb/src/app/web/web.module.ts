@@ -53,6 +53,9 @@ import { DetailsImgComponent } from './components/details-img/details-img.compon
 import { DetailsDescriptionComponent } from './components/details-description/details-description.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { DetailsSidebarComponent } from './components/details-sidebar/details-sidebar.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { UserProfileFormComponent } from './components/user-profile-form/user-profile-form.component';
+import { ExpertsProfileFormComponent } from './components/experts-profile-form/experts-profile-form.component';
 
 
 
@@ -103,6 +106,9 @@ import { DetailsSidebarComponent } from './components/details-sidebar/details-si
     DetailsDescriptionComponent,
     DetailsComponent,
     DetailsSidebarComponent,
+    ProfileComponent,
+    UserProfileFormComponent,
+    ExpertsProfileFormComponent,
   ],
   imports: [
     CommonModule,
