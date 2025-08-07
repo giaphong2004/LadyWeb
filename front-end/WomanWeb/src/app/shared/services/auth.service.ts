@@ -5,12 +5,23 @@ import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
 
+// Interface cho ExpertProfile
+export interface ExpertProfile {
+  id?: number;
+  user_id: number;
+  title: string;
+  bio: string;
+  qualifications: string;
+}
+
 // (Tùy chọn) Tạo một interface để định nghĩa cấu trúc User
 export interface User {
   id: number;
   email: string;
   full_name: string;
   role: 'user' | 'admin' | 'expert';
+  avatar_url?: string;
+  ExpertProfile?: ExpertProfile;
   // Thêm các thuộc tính khác nếu có
 }
 
@@ -88,6 +99,16 @@ export class AuthService {
   // hàm register không thay đổi
   register(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, userData);
+  }
+
+  /**
+   * Cập nhật thông tin user hiện tại
+   */
+  updateCurrentUser(userData: User): void {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('currentUser', JSON.stringify(userData));
+    }
+    this._currentUser$.next(userData);
   }
 
   /**

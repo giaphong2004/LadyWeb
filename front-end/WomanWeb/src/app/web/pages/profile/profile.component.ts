@@ -45,19 +45,33 @@ export class ProfileComponent implements OnInit {
       if (user) {
         // 2. Nếu là expert, thêm các control của expert vào form
         if (this.isExpert) {
-          this.profileForm.addControl('title', this.fb.control((user as any).ExpertProfile?.title || ''));
-          this.profileForm.addControl('bio', this.fb.control((user as any).ExpertProfile?.bio || ''));
-          this.profileForm.addControl('qualifications', this.fb.control((user as any).ExpertProfile?.qualifications || ''));
+          console.log('Adding expert controls...');
+          // Chỉ add control nếu chưa có
+          if (!this.profileForm.get('title')) {
+            this.profileForm.addControl('title', this.fb.control(user.ExpertProfile?.title || ''));
+          }
+          if (!this.profileForm.get('bio')) {
+            this.profileForm.addControl('bio', this.fb.control(user.ExpertProfile?.bio || ''));
+          }
+          if (!this.profileForm.get('qualifications')) {
+            this.profileForm.addControl('qualifications', this.fb.control(user.ExpertProfile?.qualifications || ''));
+          }
         }
 
         // 3. Cập nhật giá trị cho toàn bộ form
-        this.profileForm.patchValue({
-          fullName: (user as any).fullName || (user as any).full_name,
-          avatarUrl: (user as any).avatar_url || (user as any).avatarUrl,
-          title: (user as any).ExpertProfile?.title,
-          bio: (user as any).ExpertProfile?.bio,
-          qualifications: (user as any).ExpertProfile?.qualifications,
-        });
+        const formData = {
+          fullName: user.full_name,
+          avatarUrl: user.avatar_url || '',
+          ...(this.isExpert && {
+            title: user.ExpertProfile?.title || '',
+            bio: user.ExpertProfile?.bio || '',
+            qualifications: user.ExpertProfile?.qualifications || ''
+          })
+        };
+
+        console.log('Patching form with data:', formData);
+        this.profileForm.patchValue(formData);
+        console.log('Form after patch:', this.profileForm.value);
       }
     });
   }
@@ -98,6 +112,22 @@ export class ProfileComponent implements OnInit {
 
   // 4. Hàm Lưu thay đổi
   onSave(): void {
+    console.log('=== DEBUG FORM BEFORE SAVE ===');
+    console.log('Form valid:', this.profileForm.valid);
+    console.log('Form errors:', this.profileForm.errors);
+    console.log('All form controls:');
+    Object.keys(this.profileForm.controls).forEach(key => {
+      const control = this.profileForm.get(key);
+      console.log(`  ${key}:`, {
+        value: control?.value,
+        valid: control?.valid,
+        errors: control?.errors
+      });
+    });
+    console.log('Raw form value:', this.profileForm.value);
+    console.log('Current user role:', this.currentUser?.role);
+    console.log('Is expert:', this.isExpert);
+
     if (this.profileForm.invalid) {
       Swal.fire('Thông tin chưa hợp lệ', 'Vui lòng kiểm tra lại các trường đã nhập.', 'warning');
       return;
@@ -107,9 +137,9 @@ export class ProfileComponent implements OnInit {
 
     this.userService.updateProfile(profileData).subscribe({
       next: (response: any) => {
-        if (this.authService.setCurrentUser) {
-          this.authService.setCurrentUser(response.user);
-        }
+        console.log('Update response:', response);
+        // Cập nhật currentUser với data mới từ server
+        this.authService.updateCurrentUser(response.user);
         Swal.fire('Thành công', 'Đã cập nhật hồ sơ.', 'success');
       },
       error: (error: any) => {

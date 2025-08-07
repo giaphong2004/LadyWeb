@@ -2,6 +2,7 @@ const User = require('../models/user.model');
 const bcrypt = require('bcryptjs'); // Thư viện bcryptjs để mã hóa mật khẩu
 const jwt = require('jsonwebtoken');
 const Joi = require('joi'); // Thư viện Joi để validate dữ liệu đầu vào
+const ExpertProfile = require('../models/expertProfile.model'); // Import ExpertProfile model
 
 
 // Logic đăng ký
@@ -62,8 +63,17 @@ exports.login = async (req, res) => {
     
     const { email, password } = req.body;
 
-    // 2. Tìm user trong DB
-    const user = await User.findOne({ where: { email } });
+    // 2. Tìm user trong DB kèm theo ExpertProfile nếu có
+    const user = await User.findOne({ 
+      where: { email },
+      include: [
+        {
+          model: ExpertProfile,
+          as: 'ExpertProfile',
+          required: false // LEFT JOIN - không bắt buộc phải có ExpertProfile
+        }
+      ]
+    });
     if (!user) {
       return res.status(401).json({ message: 'Email hoặc mật khẩu không đúng.' });
     }
@@ -90,7 +100,14 @@ exports.login = async (req, res) => {
     res.status(200).json({
       message: 'Đăng nhập thành công!',
       token,
-      user: { id: user.id, email: user.email, full_name: user.full_name, role: user.role }
+      user: { 
+        id: user.id, 
+        email: user.email, 
+        full_name: user.full_name, 
+        role: user.role,
+        avatar_url: user.avatar_url,
+        ExpertProfile: user.ExpertProfile // Include ExpertProfile data
+      }
     });
 
   } catch (error) {

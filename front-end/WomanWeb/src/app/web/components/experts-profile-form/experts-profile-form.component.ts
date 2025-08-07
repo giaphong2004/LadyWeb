@@ -8,4 +8,5 @@ import { FormGroup } from '@angular/forms';
 })
 export class ExpertsProfileFormComponent {
   @Input() parentForm!: FormGroup;
+  //Nhận thông tin để hiện profile expert
 }

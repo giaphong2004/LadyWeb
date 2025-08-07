@@ -23,6 +23,10 @@ const ExpertProfile = sequelize.define('ExpertProfile', {
         type: DataTypes.TEXT,
         allowNull: true
     },
+    qualifications: { // Bằng cấp & Chuyên môn
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
     status: {
         type: DataTypes.ENUM('pending', 'approved', 'rejected'),
         defaultValue: 'approved'

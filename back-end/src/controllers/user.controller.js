@@ -139,13 +139,33 @@ exports.updateProfile = async (req, res) => {
     user.full_name = fullName;
     user.avatar_url = avatarUrl;
     await user.save({ transaction: t });
+    console.log('User updated successfully');
 
     // 2. Nếu là expert, cập nhật bảng 'expert_profiles'
     if (user.role === 'expert') {
-      await ExpertProfile.update(
-        { title, bio, qualifications },
-        { where: { user_id: userId }, transaction: t }
-      );
+      console.log('Updating expert profile with data:', { title, bio, qualifications });
+      
+      // Kiểm tra xem có record ExpertProfile không
+      const existingExpert = await ExpertProfile.findOne({ where: { user_id: userId }, transaction: t });
+      console.log('Existing expert profile:', existingExpert);
+      
+      if (existingExpert) {
+        // Update existing record
+        const [updatedRowsCount] = await ExpertProfile.update(
+          { title, bio, qualifications },
+          { where: { user_id: userId }, transaction: t }
+        );
+        console.log('Updated rows count:', updatedRowsCount);
+      } else {
+        // Create new record
+        await ExpertProfile.create({
+          user_id: userId,
+          title: title || '',
+          bio: bio || '',
+          qualifications: qualifications || ''
+        }, { transaction: t });
+        console.log('Created new expert profile');
+      }
     }
 
     // Nếu mọi thứ thành công, commit transaction
