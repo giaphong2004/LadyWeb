@@ -1,0 +1,14 @@
+.profile-container {
+            margin-top: -80px;
+            /* Kéo nội dung lên trên header */
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-sidebar,
+        .profile-main {
+            background-color: var(--white);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }

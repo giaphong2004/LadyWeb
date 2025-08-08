@@ -1,0 +1,79 @@
+/* --- Expert Cards --- */
+        .expert-card {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .expert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .expert-avatar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid var(--white);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .expert-info {
+            flex-grow: 1;
+        }
+
+        .expert-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .expert-specialty {
+            color: var(--brand-pink);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .expert-bio {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .expert-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .expert-actions .btn {
+            flex-grow: 1;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .btn-outline-pink {
+            color: var(--brand-pink);
+            border-color: var(--brand-pink);
+        }
+
+        .btn-outline-pink:hover {
+            background-color: var(--brand-pink);
+            color: white;
+        }
+
+        .btn-pink {
+            background-color: var(--brand-pink);
+            color: white;
+        }

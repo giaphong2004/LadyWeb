@@ -55,6 +55,7 @@ exports.getAllExperts = async (req, res) => {
       where: { role: 'expert' },
       include: [{
         model: ExpertProfile,
+        as: 'ExpertProfile', // Thêm alias để khớp với server.js
         required: true // INNER JOIN: Bắt buộc phải có profile
       }],
       // Không trả về password_hash để bảo mật

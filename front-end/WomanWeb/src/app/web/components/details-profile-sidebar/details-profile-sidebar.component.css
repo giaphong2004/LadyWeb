@@ -1,0 +1,88 @@
+/* --- Sidebar (Thông tin cá nhân) --- */
+        .profile-sidebar {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: -100px;
+            /* Nâng avatar lên cao hơn */
+            margin-bottom: 1rem;
+        }
+
+        .profile-name {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-title {
+            color: var(--brand-pink);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .contact-info li {
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-info i {
+            width: 25px;
+            color: var(--brand-pink);
+        }
+
+        .profile-actions .btn {
+            width: 100%;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            border-radius: 8px;
+        }
+
+        .btn-outline-pink {
+            color: var(--brand-pink);
+            border-color: var(--brand-pink);
+        }
+
+        .btn-outline-pink:hover {
+            background-color: var(--brand-pink);
+            color: white;
+        }
+
+        .profile-container {
+            margin-top: -80px;
+            /* Kéo nội dung lên trên header */
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-sidebar,
+        .profile-main {
+            background-color: var(--white);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-pink {
+            background-color: var(--brand-pink);
+            color: white;
+            border-color: var(--brand-pink);
+        }
+
+        .btn-pink:hover {
+            background-color: var(--brand-pink-dark);
+        }

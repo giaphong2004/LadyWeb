@@ -1,0 +1,17 @@
+<div>
+  <aside class="profile-sidebar">
+    <img [src]="getExpertImage()" [alt]="getExpertName()" class="profile-avatar">
+    <h2 class="profile-name">{{ getExpertName() }}</h2>
+    <p class="profile-title">{{ getExpertTitle() }}</p>
+
+    <div class="profile-actions my-4">
+      <a href="#" class="btn btn-pink">Nhắn tin</a>
+    </div>
+
+    <ul class="contact-info">
+      <li><i class="fas fa-envelope"></i> {{ getExpertEmail() }}</li>
+      <li><i class="fas fa-phone"></i> (028) 3839-4567</li>
+      <li><i class="fas fa-map-marker-alt"></i> Bệnh viện Từ Dũ, TPHCM</li>
+    </ul>
+  </aside>
+</div>

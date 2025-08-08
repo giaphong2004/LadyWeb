@@ -1,0 +1,11 @@
+<app-header></app-header>
+<app-details-profile-header></app-details-profile-header>
+
+<div class="container profile-container" *ngIf="expert">
+  <div class="row g-4 pb-5">
+    <app-details-profile-sidebar class="col-lg-4" [expert]="expert"></app-details-profile-sidebar>
+    <app-details-profile-title class="col-lg-8" [expert]="expert"></app-details-profile-title>
+  </div>
+</div>
+
+<app-footer></app-footer>

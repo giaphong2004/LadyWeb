@@ -1,0 +1,19 @@
+<section class="hero-section">
+  <div class="container">
+    <h1 class="page-title">Đội ngũ Chuyên gia</h1>
+    <p class="page-subtitle">Kết nối với các chuyên gia y tế đáng tin cậy, sẵn sàng lắng nghe và tư vấn cho
+      hành trình sức khỏe của bạn.</p>
+    <div class="search-bar">
+      <input 
+        type="text" 
+        class="search-input" 
+        placeholder="Tìm kiếm chuyên gia theo tên hoặc chuyên khoa..."
+        [(ngModel)]="searchTerm"
+        (input)="onSearchInput($event)"
+        (keyup.enter)="onSearchSubmit()">
+      <button class="search-btn" (click)="onSearchSubmit()">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+</section>

@@ -2,6 +2,7 @@ const { Op } = require('sequelize');
 const Post = require('../models/post.model');
 const User = require('../models/user.model');
 const Tag = require('../models/tag.model');
+const ExpertProfile = require('../models/expertProfile.model'); // Sửa: bỏ destructuring
 
 // Lấy danh sách bài viết (có tìm kiếm, lọc theo tag, và phân trang)
 exports.getPublicPosts = async (req, res) => {
@@ -83,5 +84,80 @@ exports.getAllTags = async (req, res) => {
         res.status(200).json(tags);
     } catch (error) {
         res.status(500).json({ message: 'Lỗi khi lấy danh sách tags.' });
+    }
+};
+
+exports.getPublicExperts = async (req, res) => {
+    try {
+        const { search, specialty, page = 1, limit = 9 } = req.query;
+        const offset = (page - 1) * limit;
+
+        let whereCondition = { role: 'expert' }; // Luôn lọc user có vai trò là expert
+        let expertProfileWhere = { status: 'approved' }; // Luôn chỉ lấy profile đã được duyệt
+
+        // Xử lý tìm kiếm
+        if (search) {
+            whereCondition.full_name = { [Op.like]: `%${search}%` };
+        }
+
+        // Xử lý lọc theo chuyên khoa
+        if (specialty) {
+            // Giả sử chuyên khoa được lưu trong trường 'title' của ExpertProfile
+            expertProfileWhere.title = { [Op.like]: `%${specialty}%` };
+        }
+
+        const { count, rows } = await User.findAndCountAll({
+            where: whereCondition,
+            include: [{
+                model: ExpertProfile,
+                as: 'ExpertProfile',
+                where: expertProfileWhere,
+                required: true // Bắt buộc user phải có expert profile tương ứng
+            }],
+            attributes: ['id', 'full_name', 'avatar_url'],
+            limit: parseInt(limit),
+            offset: parseInt(offset),
+            order: [['created_at', 'DESC']],
+            distinct: true
+        });
+
+        res.status(200).json({
+            totalItems: count,
+            totalPages: Math.ceil(count / limit),
+            currentPage: parseInt(page),
+            experts: rows
+        });
+    } catch (error) {
+        console.error("Failed to get public experts:", error);
+        res.status(500).json({ message: 'Lỗi khi lấy danh sách chuyên gia.' });
+    }
+};
+
+// Lấy thông tin chi tiết của một chuyên gia theo ID
+exports.getExpertById = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const expert = await User.findOne({
+            where: { 
+                id: id,
+                role: 'expert' // Đảm bảo người dùng có vai trò là expert
+            },
+            include: [{
+                model: ExpertProfile,
+                as: 'ExpertProfile',
+                required: true // Bắt buộc phải có expert profile
+            }],
+            attributes: ['id', 'full_name', 'email', 'avatar_url', 'created_at']
+        });
+
+        if (!expert) {
+            return res.status(404).json({ message: 'Không tìm thấy chuyên gia.' });
+        }
+
+        res.status(200).json(expert);
+    } catch (error) {
+        console.error("Failed to get expert details:", error);
+        res.status(500).json({ message: 'Lỗi khi lấy thông tin chi tiết chuyên gia.' });
     }
 };

@@ -1,0 +1,23 @@
+<div>
+  <section class="profile-main">
+    <div class="profile-section">
+      <h4 class="section-title">Tiểu sử</h4>
+      <div class="section-content">
+        <p *ngIf="hasBio()" [innerHTML]="getExpertBio()"></p>
+        <div *ngIf="!hasBio()">
+          <p>Chưa có thông tin tiểu sử.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h4 class="section-title">Chuyên môn và Bằng cấp</h4>
+      <div class="section-content">
+        <div *ngIf="hasQualifications()" [innerHTML]="getExpertQualifications()"></div>
+        <div *ngIf="!hasQualifications()">
+          <p>Chưa có thông tin chuyên môn và bằng cấp.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

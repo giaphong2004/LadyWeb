@@ -11,4 +11,10 @@ router.get('/posts/:slug', publicController.getPostBySlug);
 // GET /api/public/tags - Lấy danh sách các tag
 router.get('/tags', publicController.getAllTags);
 
+// GET /api/public/experts - Lấy danh sách chuyên gia công khai
+router.get('/experts', publicController.getPublicExperts);
+
+// GET /api/public/experts/:id - Lấy chi tiết một chuyên gia
+router.get('/experts/:id', publicController.getExpertById);
+
 module.exports = router;

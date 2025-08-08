@@ -56,7 +56,15 @@ import { DetailsSidebarComponent } from './components/details-sidebar/details-si
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserProfileFormComponent } from './components/user-profile-form/user-profile-form.component';
 import { ExpertsProfileFormComponent } from './components/experts-profile-form/experts-profile-form.component';
-
+import { ExpertHeroSectionComponent } from './components/expert-hero-section/expert-hero-section.component';
+import { ExpertCategoryComponent } from './components/expert-category/expert-category.component';
+import { ExpertCardsComponent } from './components/expert-cards/expert-cards.component';
+import { ExpertComponent } from './pages/expert/expert.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { DetailsProfileHeaderComponent } from './components/details-profile-header/details-profile-header.component';
+import { DetailsProfileSidebarComponent } from './components/details-profile-sidebar/details-profile-sidebar.component';
+import { DetailsProfileTitleComponent } from './components/details-profile-title/details-profile-title.component';
+import { DetailsProfileComponent } from './pages/details-profile/details-profile.component';
 
 
 @NgModule({
@@ -109,12 +117,21 @@ import { ExpertsProfileFormComponent } from './components/experts-profile-form/e
     ProfileComponent,
     UserProfileFormComponent,
     ExpertsProfileFormComponent,
+    ExpertHeroSectionComponent,
+    ExpertCategoryComponent,
+    ExpertCardsComponent,
+    ExpertComponent,
+    DetailsProfileHeaderComponent,
+    DetailsProfileSidebarComponent,
+    DetailsProfileTitleComponent,
+    DetailsProfileComponent
   ],
   imports: [
     CommonModule,
     WebRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    EditorModule
   ]
 
 })

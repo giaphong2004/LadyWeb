@@ -9,14 +9,38 @@
 
       <div class="form-group">
         <label for="expert-bio">Tiểu sử</label>
-        <textarea id="expert-bio" class="form-control" rows="8" formControlName="bio"></textarea>
+
+        <editor apiKey="pjclx1w8kaufuogl0bkot8v8kjzzckbm70wp1ytjswskuy9k" formControlName="bio" [init]="{
+      height: 300,
+      menubar: false,
+      plugins: [
+        'advlist', 'autolink', 'lists', 'link', 'charmap',
+        'preview', 'anchor', 'searchreplace', 'visualblocks', 'code',
+        'help', 'wordcount'
+      ],
+      toolbar: 'undo redo | blocks | ' +
+      'bold italic forecolor | bullist numlist | ' +
+      'removeformat | help'
+    }">
+        </editor>
+
       </div>
 
       <div class="form-group">
         <label for="expert-qualifications">Bằng cấp & Chuyên môn</label>
-        <textarea id="expert-qualifications" class="form-control" rows="5"
-          placeholder="Liệt kê các bằng cấp, chứng chỉ, mỗi mục một dòng..."
-          formControlName="qualifications"></textarea>
+        <editor apiKey="pjclx1w8kaufuogl0bkot8v8kjzzckbm70wp1ytjswskuy9k" formControlName="qualifications" [init]="{
+      height: 300,
+      menubar: false,
+      plugins: [
+        'advlist', 'autolink', 'lists', 'link', 'charmap',
+        'preview', 'anchor', 'searchreplace', 'visualblocks', 'code',
+        'help', 'wordcount'
+      ],
+      toolbar: 'undo redo | blocks | ' +
+      'bold italic forecolor | bullist numlist | ' +
+      'removeformat | help'
+    }">
+        </editor>
       </div>
     </div>
   </div>

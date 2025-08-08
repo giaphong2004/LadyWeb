@@ -12,6 +12,9 @@ import { PregnancyTestComponent } from './pages/pregnancy-test/pregnancy-test.co
 import { LibraryComponent } from './pages/library/library.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ExpertComponent } from './pages/expert/expert.component';
+
+import { DetailsProfileComponent } from './pages/details-profile/details-profile.component';
 
 const routes: Routes = [{
   path: 'login', component: LoginSignupComponent
@@ -41,6 +44,12 @@ const routes: Routes = [{
 {
   path: 'profile',
   component: ProfileComponent
+},
+{
+  path: 'expert', component: ExpertComponent
+},
+{
+  path: 'expert/:id', component: DetailsProfileComponent
 },
 {
   path: '',

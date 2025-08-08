@@ -1,0 +1,40 @@
+/* --- Main Content (Tiểu sử, chuyên môn) --- */
+        .profile-main {
+            padding: 2.5rem;
+        }
+
+        .profile-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--brand-pink-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content {
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .section-content ul {
+            padding-left: 1.5rem;
+        }
+
+        .profile-container {
+            margin-top: -80px;
+            /* Kéo nội dung lên trên header */
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-sidebar,
+        .profile-main {
+            background-color: var(--white);
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }

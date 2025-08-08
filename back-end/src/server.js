@@ -19,7 +19,7 @@ const PostTag = require('./models/postTag.model');
 
 // Thiết lập mối quan hệ
 // User <-> ExpertProfile (One-to-One)
-User.hasOne(ExpertProfile, { foreignKey: 'user_id' });
+User.hasOne(ExpertProfile, { foreignKey: 'user_id', as: 'ExpertProfile' });
 ExpertProfile.belongsTo(User, { foreignKey: 'user_id' });
 
 // User <-> MenstrualCycle (One-to-Many)

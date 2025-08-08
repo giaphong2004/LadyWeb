@@ -1,0 +1,9 @@
+<app-header></app-header>
+<app-expert-hero-section (search)="onSearch($event)"></app-expert-hero-section>
+
+<div class="container">
+  <app-expert-category (specialtySelected)="onSpecialtySelected($event)"></app-expert-category>
+  <app-expert-cards [experts]="experts"></app-expert-cards>
+</div>
+
+<app-footer></app-footer>

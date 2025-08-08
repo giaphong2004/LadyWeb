@@ -1,0 +1,51 @@
+<div class="row g-5 pb-5">
+  <!-- Loading state -->
+  <div class="col-12 text-center" *ngIf="!experts || experts.length === 0">
+    <div class="alert alert-info">
+      <i class="fas fa-info-circle me-2"></i>
+      Không tìm thấy chuyên gia phù hợp.
+    </div>
+  </div>
+
+  <!-- Expert Cards -->
+  <div class="col-md-6 col-lg-4" *ngFor="let expert of experts">
+    <div class="expert-card">
+      <div class="expert-avatar">
+        <img [src]="getExpertImage(expert)" [alt]="getExpertName(expert)"
+          style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+      </div>
+      <div class="expert-info">
+        <h4 class="expert-name">{{ getExpertName(expert) }}</h4>
+        <p class="expert-specialty">
+          <i class="fas fa-user-md me-2"></i>
+          {{ getExpertSpecialization(expert) }}
+        </p>
+        <div class="expert-bio truncate-bio" [innerHTML]="getExpertBio(expert) | slice:0:200">...</div>
+
+        <div class="expert-qualifications text-muted d-flex" *ngIf="getExpertQualifications(expert) ">
+          <i class="fas fa-graduation-cap me-1 pt-1"></i>
+          <div class="truncate-qualifications" [innerHTML]="getExpertQualifications(expert) | slice:0:90"></div>
+        </div>
+
+        <!-- Thông tin bổ sung -->
+        <div class="expert-extra-info mt-2" *ngIf="expert.email">
+          <small class="text-muted d-block">
+            <i class="fas fa-envelope me-1"></i>
+            {{ expert.email }}
+          </small>
+        </div>
+
+        <div class="expert-verification mt-1" *ngIf="expert.role === 'expert'">
+          <small class="text-success">
+            <i class="fas fa-check-circle me-1"></i>
+            Chuyên gia đã xác thực
+          </small>
+        </div>
+      </div>
+      <div class="expert-actions">
+        <a [routerLink]="['/expert', expert.id]" class="btn btn-outline-pink">Xem hồ sơ</a>
+        <a href="#" class="btn btn-pink">Nhắn tin</a>
+      </div>
+    </div>
+  </div>
+</div>

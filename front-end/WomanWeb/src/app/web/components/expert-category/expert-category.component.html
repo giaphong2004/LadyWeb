@@ -1,0 +1,12 @@
+<ul class="nav nav-pills justify-content-center filter-pills mb-5">
+  <li class="nav-item" *ngFor="let specialty of specialties">
+    <a 
+      class="nav-link" 
+      [class.active]="selectedSpecialty === specialty.id"
+      (click)="onSpecialtyClick(specialty.id)"
+      style="cursor: pointer;">
+      <i [class]="specialty.icon + ' me-2'"></i>
+      {{ specialty.name }}
+    </a>
+  </li>
+</ul>
