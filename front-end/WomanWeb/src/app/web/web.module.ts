@@ -65,6 +65,11 @@ import { DetailsProfileHeaderComponent } from './components/details-profile-head
 import { DetailsProfileSidebarComponent } from './components/details-profile-sidebar/details-profile-sidebar.component';
 import { DetailsProfileTitleComponent } from './components/details-profile-title/details-profile-title.component';
 import { DetailsProfileComponent } from './pages/details-profile/details-profile.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { ChatSidebarComponent } from './components/chat-sidebar/chat-sidebar.component';
+import { ChatHeaderComponent } from './components/chat-header/chat-header.component';
+import { ChatMessageAreaComponent } from './components/chat-message-area/chat-message-area.component';
+import { ChatInputAreaComponent } from './components/chat-input-area/chat-input-area.component';
 
 
 @NgModule({
@@ -124,7 +129,12 @@ import { DetailsProfileComponent } from './pages/details-profile/details-profile
     DetailsProfileHeaderComponent,
     DetailsProfileSidebarComponent,
     DetailsProfileTitleComponent,
-    DetailsProfileComponent
+    DetailsProfileComponent,
+    ChatComponent,
+    ChatSidebarComponent,
+    ChatHeaderComponent,
+    ChatMessageAreaComponent,
+    ChatInputAreaComponent
   ],
   imports: [
     CommonModule,

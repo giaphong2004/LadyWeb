@@ -121,7 +121,7 @@ export class ExpertsHeaderComponent {
     if (this.editingExpertId) {
       // --- LOGIC CẬP NHẬT ---
       this.expertService.updateExpert(this.editingExpertId, formData).subscribe({
-        next: () => {
+        next: (response) => {
           this.closeEditPanel(); // Đóng modal sửa thay vì closeModal()
           Swal.fire({
             title: 'Thành công!',
@@ -133,7 +133,9 @@ export class ExpertsHeaderComponent {
 
           this.expertUpdated.emit();
         },
-        error: (err) => Swal.fire('Lỗi!', 'Không thể cập nhật.', 'error')
+        error: (err) => {
+          Swal.fire('Lỗi!', 'Không thể cập nhật.', 'error');
+        }
       });
     } else {
       // --- LOGIC THÊM MỚI (giữ nguyên) ---

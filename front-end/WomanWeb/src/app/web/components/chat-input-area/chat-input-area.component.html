@@ -1,0 +1,11 @@
+<!-- chat-input-area.component.html -->
+<div class="message-input-area">
+  <!-- Sử dụng form để có thể gửi bằng phím Enter -->
+  <form class="message-input-form" (ngSubmit)="sendMessage()">
+    <input type="text" placeholder="Nhập tin nhắn..." [(ngModel)]="messageContent" name="messageContent"
+      autocomplete="off">
+    <button type="submit" class="send-btn" [disabled]="!messageContent.trim()">
+      <i class="fas fa-paper-plane"></i>
+    </button>
+  </form>
+</div>

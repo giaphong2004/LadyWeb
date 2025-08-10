@@ -1,0 +1,33 @@
+<app-header></app-header>
+<main class="container py-5">
+  <main class="chat-layout">
+    <!-- Sidebar: Truyền vào danh sách chuyên gia và cuộc trò chuyện -->
+    <!-- Lắng nghe sự kiện khi người dùng chọn -->
+    <app-chat-sidebar [experts]="experts$ | async" [conversations]="conversations$ | async"
+      [selectedConversationId]="selectedConversation?.id" (expertSelected)="onExpertSelected($event)"
+      (conversationSelected)="onConversationSelected($event)">
+    </app-chat-sidebar>
+
+    <main class="chat-main" *ngIf="selectedConversation; else noChatSelected">
+      <!-- Header: Truyền vào thông tin người đang chat cùng -->
+      <app-chat-header [chatPartner]="getChatPartner()"></app-chat-header>
+
+      <!-- Message Area: Truyền vào danh sách tin nhắn -->
+      <app-chat-message-area [messages]="messages" [currentUserId]="currentUserId">
+      </app-chat-message-area>
+
+      <!-- Input Area: Lắng nghe sự kiện gửi tin nhắn -->
+      <app-chat-input-area (messageSent)="onMessageSent($event)"></app-chat-input-area>
+    </main>
+
+    <!-- Hiển thị khi chưa có cuộc trò chuyện nào được chọn -->
+    <ng-template #noChatSelected>
+      <div class="no-chat-selected">
+        <h2>Chào mừng bạn đến với WomenCare Chat</h2>
+        <p>Chọn một chuyên gia hoặc một cuộc trò chuyện để bắt đầu.</p>
+      </div>
+    </ng-template>
+
+  </main>
+</main>
+<app-footer></app-footer>

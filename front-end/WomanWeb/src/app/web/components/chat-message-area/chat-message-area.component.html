@@ -1,0 +1,17 @@
+<!-- chat-message-area.component.html -->
+<div class="message-area" #messageContainer>
+  <!-- Lặp qua danh sách tin nhắn với trackBy -->
+  <div *ngFor="let msg of messages; trackBy: trackByMessageId" class="message-group"
+    [ngClass]="{ 'sent': msg.sender_id === currentUserId, 'received': msg.sender_id !== currentUserId }">
+
+    <!-- Avatar cho tin nhắn nhận -->
+    <img *ngIf="msg.sender_id !== currentUserId"
+      [src]="msg.sender.avatar_url || '[https://placehold.co/40x40/EFEFEF/333333?text=A](https://placehold.co/40x40/EFEFEF/333333?text=A)'"
+      alt="Avatar" class="avatar">
+
+    <div>
+      <div class="message-bubble">{{ msg.content }}</div>
+      <div class="message-time">{{ msg.createdAt | date:'shortTime' }}</div>
+    </div>
+  </div>
+</div>

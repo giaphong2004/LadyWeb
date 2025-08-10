@@ -1,9 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const http = require('http');
 const sequelize = require('./config/database');
+const chatService = require('./services/chat.service');
 
 const app = express();
+const server = http.createServer(app);
 
 // Middlewares
 app.use(cors()); // Cho phép cross-origin requests
@@ -16,6 +19,11 @@ const MenstrualCycle = require('./models/menstrualCycle.model');
 const Post = require('./models/post.model');
 const Tag = require('./models/tag.model');
 const PostTag = require('./models/postTag.model');
+
+// Chat Models - load from separate files
+const Conversation = require('./models/conversation.model');
+const Message = require('./models/message.model');
+
 
 // Thiết lập mối quan hệ
 // User <-> ExpertProfile (One-to-One)
@@ -34,6 +42,17 @@ Post.belongsTo(User, { foreignKey: 'author_id', as: 'author' });
 Post.belongsToMany(Tag, { through: PostTag, foreignKey: 'post_id' });
 Tag.belongsToMany(Post, { through: PostTag, foreignKey: 'tag_id' });
 
+// ---- mối quan hệ cho Chat ----
+Conversation.belongsTo(User, { as: 'user', foreignKey: 'user_id' });
+Conversation.belongsTo(User, { as: 'expert', foreignKey: 'expert_id' });
+Conversation.hasMany(Message, { as: 'messages', foreignKey: 'conversation_id' });
+Message.belongsTo(Conversation, { foreignKey: 'conversation_id' });
+Message.belongsTo(User, { as: 'sender', foreignKey: 'sender_id' });
+
+// làm cho các model có sẵn trong routes và chat service
+app.locals.models = { Conversation, Message, User };
+global.models = { Conversation, Message, User, ExpertProfile };
+
 // Routes
 const authRoutes = require('./routes/auth.routes');
 const cycleRoutes = require('./routes/cycle.routes');
@@ -44,6 +63,8 @@ const dashboardRoutes = require('./routes/dashboard.routes');
 const postRoutes = require('./routes/post.routes');
 const tagRoutes = require('./routes/tag.routes');
 const publicRoutes = require('./routes/public.routes');
+const chatRoutes = require('./routes/chat.routes');
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/cycles', cycleRoutes);
@@ -54,6 +75,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/tags', tagRoutes);
 app.use('/api/public', publicRoutes); 
+app.use('/api/chat', chatRoutes);
 
 
 // Route cơ bản để kiểm tra server
@@ -63,11 +85,17 @@ app.get('/', (req, res) => {
 
 // Kết nối database và khởi động server
 const PORT = process.env.PORT || 3000;
+
 sequelize.authenticate()
   .then(() => {
     console.log('Database connected successfully.');
-    app.listen(PORT, () => {
+    
+    // Initialize Chat Service with Socket.IO
+    chatService.initialize(server);
+    
+    server.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
+      console.log(`Chat Service is ready`);
     });
   })
   .catch(err => {

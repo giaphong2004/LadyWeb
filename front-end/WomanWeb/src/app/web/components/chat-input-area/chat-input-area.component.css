@@ -1,0 +1,48 @@
+/* src/app/features/chat/chat-input-area/chat-input-area.component.css */
+
+.message-input-area {
+  padding: 16px 20px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fff;
+}
+
+.message-input-form {
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f5;
+  border-radius: 24px;
+  padding: 4px;
+}
+
+.message-input-form input {
+  flex-grow: 1;
+  border: none;
+  background-color: transparent;
+  padding: 12px 20px;
+  font-size: 1rem;
+  outline: none;
+  color: #333;
+}
+
+.send-btn {
+  background-color: #8a4dff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send-btn:hover {
+  background-color: #702de6;
+}
+
+.send-btn:disabled {
+  background-color: #c5a9ff;
+  cursor: not-allowed;
+}

@@ -90,7 +90,7 @@ exports.deleteExpert = async (req, res) => {
 // Thêm hàm này vào file expert.controller.js
 exports.updateExpert = async (req, res) => {
   const { id } = req.params;
-  const { fullName, title, bio } = req.body;
+  const { fullName, title, bio, avatarUrl } = req.body;
   const t = await sequelize.transaction();
 
   try {
@@ -102,6 +102,9 @@ exports.updateExpert = async (req, res) => {
 
     // Cập nhật bảng users
     user.full_name = fullName;
+    if (avatarUrl) { // Chỉ cập nhật avatar nếu có giá trị mới
+      user.avatar_url = avatarUrl;
+    }
     await user.save({ transaction: t });
 
     // Cập nhật bảng expert_profiles

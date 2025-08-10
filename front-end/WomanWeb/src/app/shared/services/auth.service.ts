@@ -143,5 +143,27 @@ export class AuthService {
     // Phát tín hiệu thông tin người dùng mới cho các component khác
     this._currentUser$.next(user);
   }
-}
 
+  // ==========================================================
+  // HÀM MỚI ĐƯỢC THÊM VÀO
+  // ==========================================================
+
+  /**
+   * Lấy thông tin người dùng hiện tại một cách đồng bộ.
+   * @returns User object or null.
+   */
+  public getCurrentUser(): User | null {
+    return this._currentUser$.getValue();
+  }
+
+  /**
+   * Lấy auth token từ localStorage.
+   * @returns string or null.
+   */
+  public getToken(): string | null {
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('authToken');
+    }
+    return null;
+  }
+}

@@ -1,0 +1,45 @@
+<!-- chat-sidebar.component.html -->
+<aside class="chat-sidebar">
+  <!-- Tab переключатель - chỉ hiển thị nếu user là 'user' -->
+  <div class="sidebar-tabs" *ngIf="shouldShowExpertsTab">
+    <button [class.active]="activeTab === 'conversations'" (click)="activeTab = 'conversations'">
+      Trò chuyện
+    </button>
+    <button [class.active]="activeTab === 'experts'" (click)="activeTab = 'experts'">
+      Chuyên gia
+    </button>
+  </div>
+
+  <!-- Header cho expert - chỉ hiển thị nếu user là 'expert' -->
+  <div class="sidebar-header" *ngIf="!shouldShowExpertsTab">
+    <h3>Tin nhắn từ người dùng</h3>
+  </div>
+
+  <!-- Danh sách các cuộc trò chuyện -->
+  <div class="contact-list" *ngIf="activeTab === 'conversations' || !shouldShowExpertsTab">
+    <div *ngFor="let convo of conversations" class="contact-item" [class.active]="convo.id === selectedConversationId"
+      (click)="selectConversation(convo)">
+      <!-- Hiển thị avatar và thông tin khác nhau tùy theo role -->
+      <img [src]="getConversationAvatar(convo) || 'https://placehold.co/40x40/EFEFEF/333333?text=A'" alt="Avatar"
+        class="contact-avatar">
+      <div class="contact-info">
+        <div class="contact-name">{{ getConversationName(convo) }}</div>
+        <!-- Thêm tin nhắn cuối cùng nếu có -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Danh sách chuyên gia - chỉ hiển thị nếu user là 'user' -->
+  <div class="contact-list" *ngIf="activeTab === 'experts' && shouldShowExpertsTab">
+    <div *ngFor="let expert of experts" class="contact-item" (click)="selectExpert(expert)">
+      <img [src]="expert.avatar_url || 'https://placehold.co/40x40/EFEFEF/333333?text=E'" alt="Avatar"
+        class="contact-avatar">
+      <div class="contact-info">
+        <div class="contact-name">{{ expert.full_name }}</div>
+        <div class="contact-status" [class.online]="expert.isOnline">
+          {{ expert.isOnline ? 'Online' : 'Offline' }}
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

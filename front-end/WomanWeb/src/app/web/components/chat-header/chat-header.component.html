@@ -1,0 +1,9 @@
+<!-- chat-header.component.html -->
+<header class="chat-header" *ngIf="chatPartner">
+  <img [src]="chatPartner.avatar_url || 'https://placehold.co/48x48/EFEFEF/333333?text=A'" alt="Avatar" class="avatar">
+  <div class="user-info">
+    <div class="name">{{ chatPartner.full_name }}</div>
+    <!-- Cần logic để cập nhật trạng thái online real-time -->
+    <div class="status">Online</div>
+  </div>
+</header>

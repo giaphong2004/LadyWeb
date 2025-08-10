@@ -7,7 +7,7 @@
     <div class="expert-info">
       <h4 class="expert-name">{{ expert.full_name }}</h4>
       <p class="expert-specialty">{{ expert.ExpertProfile?.title }}</p>
-      <p class="expert-desc">{{ expert.ExpertProfile?.bio }}</p>
+      <p class="expert-desc" [innerHTML]="expert.ExpertProfile?.bio | slice:0:100"></p>
     </div>
     <div class="expert-actions">
       <a href="#" (click)="editRequest.emit(expert); $event.preventDefault()" title="Sửa"><i

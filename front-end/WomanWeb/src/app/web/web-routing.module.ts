@@ -15,6 +15,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ExpertComponent } from './pages/expert/expert.component';
 
 import { DetailsProfileComponent } from './pages/details-profile/details-profile.component';
+import { ChatComponent } from './pages/chat/chat.component';
 
 const routes: Routes = [{
   path: 'login', component: LoginSignupComponent
@@ -50,6 +51,9 @@ const routes: Routes = [{
 },
 {
   path: 'expert/:id', component: DetailsProfileComponent
+},
+{
+  path: 'chat', component: ChatComponent
 },
 {
   path: '',
