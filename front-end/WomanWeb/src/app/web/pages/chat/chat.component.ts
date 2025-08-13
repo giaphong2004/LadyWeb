@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef } from '@angular/core';
 // SỬA LỖI: Import từ các đường dẫn gốc của RxJS
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { takeUntil, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject, combineLatest } from 'rxjs';
+import { takeUntil, switchMap, filter, take } from 'rxjs/operators';
 import { Conversation, Expert, Message, User } from '../../../shared/models/chat.models';
 import { ChatApiService } from '../../../shared/services/chat-api.service';
 import { ChatSocketService } from '../../../shared/services/chat-socket.service';
 import { AuthService } from '../../../shared/services/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -34,7 +35,8 @@ export class ChatComponent implements OnInit, OnDestroy {
     private chatSocket: ChatSocketService,
     private authService: AuthService,
     private zone: NgZone,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +47,47 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.loadInitialData();
     this.listenForNewMessages();
     this.listenForMessageErrors();
+
+    // LOGIC MỚI: Xử lý route khi component được khởi tạo
+    this.handleRouteParameters();
   }
+
+  // --- HÀM ĐÃ SỬA LỖI ---
+  private handleRouteParameters(): void {
+    const expertIdParam = this.route.snapshot.paramMap.get('expertId');
+    if (!expertIdParam) {
+      return; // Không có ID, không làm gì cả.
+    }
+    const expertId = +expertIdParam;
+
+    // Sử dụng combineLatest để đợi cả 2 stream có dữ liệu
+    combineLatest([this.experts$, this.conversations$]).pipe(
+      // Lọc để đảm bảo cả 2 danh sách đều đã được tải (không rỗng)
+      filter(([experts, conversations]) => experts.length > 0 && conversations.length > 0),
+      // Chỉ lấy 1 lần rồi hủy
+      take(1),
+      takeUntil(this.destroy$)
+    ).subscribe(([experts, conversations]) => {
+      // Bây giờ chúng ta chắc chắn đã có cả danh sách chuyên gia và cuộc trò chuyện
+      const existingConvo = conversations.find(c => c.expert_id === expertId);
+
+      if (existingConvo) {
+        // TÌM THẤY: Mở cuộc trò chuyện cũ
+        this.zone.run(() => {
+          this.onConversationSelected(existingConvo);
+        });
+      } else {
+        // KHÔNG TÌM THẤY: Tìm chuyên gia để tạo cuộc trò chuyện mới
+        const selectedExpert = experts.find(e => e.id === expertId);
+        if (selectedExpert) {
+          this.zone.run(() => {
+            this.onExpertSelected(selectedExpert);
+          });
+        }
+      }
+    });
+  }
+
 
   ngOnDestroy(): void {
     this.chatSocket.disconnect();

@@ -56,6 +56,10 @@ const routes: Routes = [{
   path: 'chat', component: ChatComponent
 },
 {
+  path: 'chat/:expertId',
+  component: ChatComponent
+},
+{
   path: '',
   component: MainLayoutComponent, // Layout này có header và footer
   children: [
