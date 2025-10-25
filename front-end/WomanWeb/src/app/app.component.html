@@ -2,3 +2,6 @@
 </div>
 
 <router-outlet *ngIf="!(authService.isLoading$ | async)"></router-outlet>
+
+<!-- AI Assistant - Hiển thị trên mọi trang (trừ admin) -->
+<app-ai-assistant *ngIf="!(authService.isLoading$ | async) && !isAdminRoute"></app-ai-assistant>

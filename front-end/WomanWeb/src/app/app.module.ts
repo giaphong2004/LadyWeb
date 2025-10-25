@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { withInterceptorsFromDi, withFetch } from '@angular/common/http';
 import { WebModule } from './web/web.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { AiAssistantComponent } from './web/components/ai-assistant/ai-assistant.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
     AppRoutingModule,
     BrowserModule,
     WebModule,
+    AiAssistantComponent,
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi(), withFetch()),

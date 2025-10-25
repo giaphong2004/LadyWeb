@@ -1,0 +1,189 @@
+<!-- AI Assistant Floating Button & Chat Window -->
+<div class="ai-assistant-wrapper">
+
+  <!-- Floating Button (hiện khi đóng chat) -->
+  <button *ngIf="!isOpen" class="ai-floating-button" (click)="toggleChat()" aria-label="Mở trợ lý ảo">
+    <div class="ai-avatar-wrapper">
+      <div class="ai-avatar-image">
+        <!-- Avatar của Lisa - trợ lý ảo -->
+        <svg viewBox="0 0 100 100" class="avatar-svg">
+          <!-- Khuôn mặt -->
+          <circle cx="50" cy="45" r="35" fill="#FFE0BD" />
+          <!-- Tóc -->
+          <path d="M50,10 Q20,10 15,40 L15,50 Q15,25 35,15 Q50,10 65,15 Q85,25 85,50 L85,40 Q80,10 50,10"
+            fill="#2C1810" />
+          <!-- Mắt trái -->
+          <circle cx="40" cy="42" r="3" fill="#2C1810" />
+          <!-- Mắt phải -->
+          <circle cx="60" cy="42" r="3" fill="#2C1810" />
+          <!-- Lông mày trái -->
+          <path d="M35,37 Q40,35 45,37" stroke="#2C1810" stroke-width="1.5" fill="none" />
+          <!-- Lông mày phải -->
+          <path d="M55,37 Q60,35 65,37" stroke="#2C1810" stroke-width="1.5" fill="none" />
+          <!-- Má hồng trái -->
+          <circle cx="32" cy="50" r="4" fill="#FFB6B6" opacity="0.4" />
+          <!-- Má hồng phải -->
+          <circle cx="68" cy="50" r="4" fill="#FFB6B6" opacity="0.4" />
+          <!-- Miệng -->
+          <path d="M42,55 Q50,60 58,55" stroke="#FF6B9D" stroke-width="2" fill="none" stroke-linecap="round" />
+          <!-- Mũi nhỏ -->
+          <path d="M50,47 L48,52 L52,52" stroke="#D4A574" stroke-width="0.5" fill="none" />
+        </svg>
+        <span class="status-indicator"></span>
+      </div>
+    </div>
+    <div class="ai-button-content">
+      <span class="ai-button-title">Lisa</span>
+      <span class="ai-button-subtitle">Trợ lý ảo</span>
+    </div>
+  </button>
+
+  <!-- Chat Window -->
+  <div class="ai-chat-window" [class.open]="isOpen" [class.minimized]="isMinimized">
+
+    <!-- Header -->
+    <div class="ai-chat-header">
+      <div class="ai-header-left">
+        <div class="ai-avatar-small">
+          <svg viewBox="0 0 100 100" class="avatar-svg">
+            <circle cx="50" cy="45" r="35" fill="#FFE0BD" />
+            <path d="M50,10 Q20,10 15,40 L15,50 Q15,25 35,15 Q50,10 65,15 Q85,25 85,50 L85,40 Q80,10 50,10"
+              fill="#2C1810" />
+            <circle cx="40" cy="42" r="3" fill="#2C1810" />
+            <circle cx="60" cy="42" r="3" fill="#2C1810" />
+            <path d="M35,37 Q40,35 45,37" stroke="#2C1810" stroke-width="1.5" fill="none" />
+            <path d="M55,37 Q60,35 65,37" stroke="#2C1810" stroke-width="1.5" fill="none" />
+            <circle cx="32" cy="50" r="4" fill="#FFB6B6" opacity="0.4" />
+            <circle cx="68" cy="50" r="4" fill="#FFB6B6" opacity="0.4" />
+            <path d="M42,55 Q50,60 58,55" stroke="#FF6B9D" stroke-width="2" fill="none" stroke-linecap="round" />
+            <path d="M50,47 L48,52 L52,52" stroke="#D4A574" stroke-width="0.5" fill="none" />
+          </svg>
+          <span class="status-indicator"></span>
+        </div>
+        <div class="ai-header-info">
+          <h3>Lisa - Trợ lý ảo</h3>
+          <p><span class="status-dot"></span> Đang online</p>
+        </div>
+      </div>
+      <div class="ai-header-actions">
+        <button class="header-btn" (click)="toggleMinimize()" [attr.aria-label]="isMinimized ? 'Mở rộng' : 'Thu nhỏ'"
+          title="Thu nhỏ/Mở rộng">
+          <i [class]="isMinimized ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"></i>
+        </button>
+        <button class="header-btn" (click)="clearChat()" aria-label="Xóa cuộc trò chuyện" title="Xóa lịch sử">
+          <i class="bi bi-trash"></i>
+        </button>
+        <button class="header-btn close-btn" (click)="toggleChat()" aria-label="Đóng" title="Đóng chat">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Body -->
+    <div class="ai-chat-body" #chatContainer *ngIf="!isMinimized">
+
+      <!-- Messages List -->
+      <div class="ai-messages-list">
+        <div *ngFor="let message of messages" class="message-wrapper" [class.user-message]="message.sender === 'user'"
+          [class.ai-message]="message.sender === 'ai'">
+
+          <!-- AI Avatar -->
+          <div class="message-avatar" *ngIf="message.sender === 'ai'">
+            <svg viewBox="0 0 100 100" class="avatar-svg">
+              <circle cx="50" cy="45" r="35" fill="#FFE0BD" />
+              <path d="M50,10 Q20,10 15,40 L15,50 Q15,25 35,15 Q50,10 65,15 Q85,25 85,50 L85,40 Q80,10 50,10"
+                fill="#2C1810" />
+              <circle cx="40" cy="42" r="3" fill="#2C1810" />
+              <circle cx="60" cy="42" r="3" fill="#2C1810" />
+              <circle cx="32" cy="50" r="4" fill="#FFB6B6" opacity="0.4" />
+              <circle cx="68" cy="50" r="4" fill="#FFB6B6" opacity="0.4" />
+              <path d="M42,55 Q50,60 58,55" stroke="#FF6B9D" stroke-width="2" fill="none" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <!-- Message Content -->
+          <div class="message-content">
+            <div class="message-bubble">
+              <p style="white-space: pre-wrap;">{{ message.text }}</p>
+            </div>
+            <span class="message-time">{{ message.timestamp | date: 'HH:mm' }}</span>
+
+            <!-- Quick Action Suggestions -->
+            <div class="message-actions" *ngIf="message.suggestions && message.suggestions.length">
+              <button *ngFor="let suggestion of message.suggestions" class="action-chip"
+                (click)="sendMessage(suggestion)">
+                {{ suggestion }}
+              </button>
+            </div>
+          </div>
+
+          <!-- User Avatar -->
+          <div class="message-avatar user-avatar mt-2" *ngIf="message.sender === 'user'">
+            <!-- Nếu đã đăng nhập và có avatar_url -->
+            <img *ngIf="isLoggedIn && currentUser?.avatar_url" [src]="currentUser.avatar_url"
+              [alt]="currentUser.full_name" class="user-avatar-img">
+            <!-- Nếu đã đăng nhập nhưng không có avatar_url -->
+            <div *ngIf="isLoggedIn && !currentUser?.avatar_url" class="user-avatar-initials">
+              {{ getUserInitials() }}
+            </div>
+            <!-- Nếu chưa đăng nhập -->
+            <i *ngIf="!isLoggedIn" class="bi bi-person-circle"></i>
+          </div>
+        </div>
+
+        <!-- Typing Indicator -->
+        <div class="message-wrapper ai-message" *ngIf="isTyping">
+          <div class="message-avatar">
+            <svg viewBox="0 0 100 100" class="avatar-svg">
+              <circle cx="50" cy="45" r="35" fill="#FFE0BD" />
+              <path d="M50,10 Q20,10 15,40 L15,50 Q15,25 35,15 Q50,10 65,15 Q85,25 85,50 L85,40 Q80,10 50,10"
+                fill="#2C1810" />
+              <circle cx="40" cy="42" r="3" fill="#2C1810" />
+              <circle cx="60" cy="42" r="3" fill="#2C1810" />
+            </svg>
+          </div>
+          <div class="message-content">
+            <div class="message-bubble typing-bubble">
+              <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <span class="typing-text">Lisa đang gõ...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Questions (hiển thị khi mới mở) -->
+      <div class="quick-questions-section" *ngIf="showWelcome && messages.length <= 1">
+        <p class="section-title">💬 Câu hỏi thường gặp</p>
+        <div class="quick-questions-grid">
+          <button *ngFor="let question of quickQuestions" class="quick-question-card"
+            (click)="selectQuickQuestion(question)">
+            <span class="question-icon">{{ question.icon }}</span>
+            <span class="question-text">{{ question.text }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="ai-chat-footer" *ngIf="!isMinimized">
+      <div class="input-container">
+        <textarea #messageInput [(ngModel)]="currentMessage" (keypress)="onKeyPress($event)"
+          placeholder="Nhập câu hỏi của bạn..." rows="1" [disabled]="isTyping" class="message-input"
+          maxlength="500"></textarea>
+        <button class="send-button" (click)="sendMessage()" [disabled]="!currentMessage.trim() || isTyping"
+          aria-label="Gửi tin nhắn" title="Gửi">
+          <i class="bi bi-send-fill"></i>
+        </button>
+      </div>
+      <p class="footer-disclaimer">
+        <i class="bi bi-info-circle"></i>
+        <span>Lisa cung cấp thông tin tham khảo. Hãy tham khảo bác sĩ khi cần.</span>
+      </p>
+    </div>
+
+  </div>
+</div>
