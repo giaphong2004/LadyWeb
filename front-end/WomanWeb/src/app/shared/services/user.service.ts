@@ -14,7 +14,6 @@ export class UserService {
     return this.http.get<any[]>(`${this.apiUrl}?search=${searchTerm}`);
   }
 
-  // --- THÊM CÁC HÀM MỚI ---
   createUser(userData: any): Observable<any> {
     return this.http.post(this.apiUrl, userData);
   }

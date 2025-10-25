@@ -1,7 +1,7 @@
 const { Op, fn, col, literal } = require('sequelize');
 const User = require('../models/user.model');
-const Post = require('../models/post.model'); // Nếu cần sử dụng Post model
-// Bạn có thể import thêm các model khác như Post, Question nếu cần
+const Post = require('../models/post.model'); 
+
 
 exports.getStats = async (req, res) => {
     try {
@@ -10,9 +10,9 @@ exports.getStats = async (req, res) => {
         const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
         const lastDayOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);
 
-        // Lấy ngày của 30 ngày trước
+        // Lấy ngày của 90 ngày trước
         const thirtyDaysAgo = new Date();
-        thirtyDaysAgo.setDate(now.getDate() - 30);
+        thirtyDaysAgo.setDate(now.getDate() - 90);
 
         // Chạy các câu lệnh truy vấn song song để tăng tốc độ
         const [

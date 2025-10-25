@@ -50,7 +50,7 @@
 }
 
 .message-group.sent .message-bubble {
-  background-color: #8a4dff;
+  background-color: var(--brand-pink);
   color: white;
   border-top-right-radius: 4px;
 }

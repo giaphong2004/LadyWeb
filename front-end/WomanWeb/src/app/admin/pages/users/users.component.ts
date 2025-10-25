@@ -18,7 +18,6 @@ export class UsersComponent {
     this.loadUsers();
   }
 
-  // SỬA LẠI HÀM NÀY để nhận từ khóa
   loadUsers(searchTerm: string = ''): void {
     this.userService.getUsers(searchTerm).subscribe({
       next: (data) => {
@@ -28,7 +27,6 @@ export class UsersComponent {
     });
   }
 
-  // --- THÊM HÀM NÀY ---
   handleEditUser(user: any): void {
     this.userControls.openModalForEdit(user);
   }

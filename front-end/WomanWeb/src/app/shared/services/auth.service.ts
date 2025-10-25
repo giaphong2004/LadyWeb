@@ -46,7 +46,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object // 👈 Inject PLATFORM_ID để biết môi trường chạy
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     // Chỉ chạy code này nếu đang ở trên trình duyệt
     if (isPlatformBrowser(this.platformId)) {
@@ -93,7 +93,7 @@ export class AuthService {
     }
     this._isLoggedIn$.next(false);
     this._currentUser$.next(null);
-    this.router.navigate(['/login']); // Điều hướng về trang đăng nhập
+    this.router.navigate(['/login']);
   }
 
   // hàm register không thay đổi

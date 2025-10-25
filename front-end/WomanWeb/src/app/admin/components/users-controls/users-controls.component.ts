@@ -44,8 +44,6 @@ export class UsersControlsComponent {
     this.searchTermChange.emit(input.value);
   }
 
-
-
   openModalForEdit(user: any): void {
     this.editingUserId = user.id;
     this.userForm.patchValue({
@@ -63,7 +61,6 @@ export class UsersControlsComponent {
     const formData = this.userForm.getRawValue();
 
     if (this.editingUserId) {
-      // Logic cập nhật
       this.userService.updateUser(this.editingUserId, formData).subscribe({
         next: () => {
           this.closeModal();
@@ -73,7 +70,6 @@ export class UsersControlsComponent {
         error: (err) => Swal.fire('Lỗi', err.error.message, 'error')
       });
     } else {
-      // Logic thêm mới
       this.userService.createUser(formData).subscribe({
         next: () => {
           this.closeModal();

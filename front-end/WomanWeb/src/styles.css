@@ -25,26 +25,26 @@
     --primary-color: #8a4d76;
     --primary-color-dark: #6d3a5a;
     --pink-primary: #e91e63;
-            --pink-light: #fce4ec;
-            --text-dark: #333;
-            --text-light: #6c757d;
-            --border-color: #e8e8e8;
-            --white: #ffffff;
-            --body-bg: #fdfcff;
-            --brand-pink: #e91e63;
-            --brand-pink-dark: #c2185b;
-            --brand-pink-light: #fce4ec;
-            --brand-purple: #9c27b0;
-            --brand-purple-light: #f3e5f5;
-            --text-dark: #343a40;
-            --text-muted: #6c757d;
-            --body-bg: #f8f9fa;
-            /* Nền xám rất nhạt */
-            --white: #ffffff;
-            --text-online: #28a745;
-            --message-sent-bg: linear-gradient(135deg, #e91e63, #c2185b);
-            /* Thêm gradient cho nổi bật */
-            --message-received-bg: #e9ecef;
+    --pink-light: #fce4ec;
+    --text-dark: #333;
+    --text-light: #6c757d;
+    --border-color: #e8e8e8;
+    --white: #ffffff;
+    --body-bg: #fdfcff;
+    --brand-pink: #e91e63;
+    --brand-pink-dark: #c2185b;
+    --brand-pink-light: #fce4ec;
+    --brand-purple: #9c27b0;
+    --brand-purple-light: #FCE4EC;
+    --text-dark: #343a40;
+    --text-muted: #6c757d;
+    --body-bg: #f8f9fa;
+    /* Nền xám rất nhạt */
+    --white: #ffffff;
+    --text-online: #28a745;
+    --message-sent-bg: linear-gradient(135deg, #e91e63, #c2185b);
+    /* Thêm gradient cho nổi bật */
+    --message-received-bg: #e9ecef;
   }
 body{
   font-family: 'Roboto', sans-serif;
