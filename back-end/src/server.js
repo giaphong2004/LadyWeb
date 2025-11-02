@@ -64,6 +64,7 @@ const postRoutes = require('./routes/post.routes');
 const tagRoutes = require('./routes/tag.routes');
 const publicRoutes = require('./routes/public.routes');
 const chatRoutes = require('./routes/chat.routes');
+const aiRoutes = require('./routes/ai.routes');
 
 
 app.use('/api/auth', authRoutes);
@@ -76,6 +77,7 @@ app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/tags', tagRoutes);
 app.use('/api/public', publicRoutes); 
 app.use('/api/chat', chatRoutes);
+app.use('/api/ai', aiRoutes);
 
 
 // Route cơ bản để kiểm tra server

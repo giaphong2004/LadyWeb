@@ -9,7 +9,7 @@ import { LibraryComponent } from './pages/library/library.component';
 
 const routes: Routes = [
   {
-    path: '', // Tất cả các đường dẫn trong admin module (vd: /admin, /admin/users)
+    path: '',
     component: AdminLayoutComponent, // Sẽ render layout chung trước tiên
     children: [
       // Các route con sẽ được render vào trong <router-outlet> của AdminLayoutComponent

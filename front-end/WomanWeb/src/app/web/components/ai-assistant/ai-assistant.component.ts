@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@ang
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService, User } from '../../../shared/services/auth.service';
+import { AiService, ChatHistory } from '../../../shared/services/ai.service';
 
 interface Message {
   id: string;
@@ -49,7 +50,10 @@ export class AiAssistantComponent implements OnInit, AfterViewChecked {
 
   private shouldScrollToBottom = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private aiService: AiService
+  ) { }
 
   ngOnInit(): void {
     // Lấy thông tin user hiện tại
@@ -115,22 +119,45 @@ export class AiAssistantComponent implements OnInit, AfterViewChecked {
     this.showWelcome = false;
     this.shouldScrollToBottom = true;
 
-    // Simulate AI typing
+    // Call real AI API
     this.isTyping = true;
 
-    setTimeout(() => {
-      // Add AI response (mock - sẽ connect API sau)
-      const aiMessage: Message = {
-        id: this.generateId(),
-        text: this.getMockResponse(messageText),
-        sender: 'ai',
-        timestamp: new Date(),
-        suggestions: ['Tìm hiểu thêm', 'Xem công cụ', 'Hỏi chuyên gia']
-      };
-      this.messages.push(aiMessage);
-      this.isTyping = false;
-      this.shouldScrollToBottom = true;
-    }, 1500 + Math.random() * 1000); // Random delay 1.5-2.5s
+    // Prepare chat history for context
+    const history: ChatHistory[] = this.messages
+      .slice(-10) // Lấy 10 tin nhắn gần nhất
+      .map(msg => ({
+        sender: msg.sender === 'user' ? 'user' : 'lisa',
+        text: msg.text
+      }));
+
+    // Call AI Service
+    this.aiService.chat(messageText, history).subscribe({
+      next: (response) => {
+        const aiMessage: Message = {
+          id: this.generateId(),
+          text: response,
+          sender: 'ai',
+          timestamp: new Date(),
+          suggestions: ['Tìm hiểu thêm', 'Xem công cụ', 'Hỏi chuyên gia']
+        };
+        this.messages.push(aiMessage);
+        this.isTyping = false;
+        this.shouldScrollToBottom = true;
+      },
+      error: (error) => {
+        console.error('AI Error:', error);
+        // Fallback nếu API lỗi
+        const errorMessage: Message = {
+          id: this.generateId(),
+          text: 'Xin lỗi, tôi đang gặp chút vấn đề. Vui lòng thử lại sau nhé! 🙏',
+          sender: 'ai',
+          timestamp: new Date()
+        };
+        this.messages.push(errorMessage);
+        this.isTyping = false;
+        this.shouldScrollToBottom = true;
+      }
+    });
   }
 
   selectQuickQuestion(question: QuickQuestion): void {
@@ -154,26 +181,18 @@ export class AiAssistantComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  private getMockResponse(message: string): string {
-    const lowerMessage = message.toLowerCase();
+  /**
+   * Lấy chữ cái đầu của tên user để làm avatar placeholder
+   */
+  getUserInitials(): string {
+    if (!this.currentUser?.full_name) return 'U';
 
-    const responses: { [key: string]: string } = {
-      'chu kỳ': 'Chu kỳ kinh nguyệt bình thường kéo dài từ 21-35 ngày. Bạn có thể sử dụng công cụ theo dõi chu kỳ của chúng tôi để ghi lại và dự đoán chu kỳ tiếp theo một cách chính xác nhất.\n\n💡 Mẹo: Ghi chú thường xuyên sẽ giúp bạn hiểu rõ hơn về cơ thể mình!',
-      'kinh nguyệt': 'Kỳ kinh thường kéo dài từ 3-7 ngày. Nếu bạn gặp các triệu chứng bất thường như đau quá mức, chảy máu nhiều hoặc kéo dài, hãy tham khảo ý kiến bác sĩ chuyên khoa nhé!\n\n📊 Sử dụng công cụ theo dõi để monitor tình trạng của bạn.',
-      'rụng trứng': 'Ngày rụng trứng thường xảy ra vào giữa chu kỳ, khoảng 14 ngày trước kỳ kinh tiếp theo. Công cụ dự đoán rụng trứng của chúng tôi sẽ giúp bạn tính toán chính xác dựa trên chu kỳ riêng của bạn.\n\n🎯 Khả năng thụ thai cao nhất trong khoảng 5 ngày trước và 1 ngày sau khi rụng trứng.',
-      'thai': 'Các dấu hiệu mang thai sớm bao gồm:\n• Trễ kinh\n• Buồn nôn, đặc biệt vào buổi sáng\n• Mệt mỏi\n• Ngực căng, đau\n• Tiểu nhiều hơn bình thường\n\n🧪 Hãy làm test thử thai để chắc chắn và tham khảo bác sĩ sản khoa.',
-      'đau': 'Để giảm đau bụng kinh tự nhiên, bạn có thể:\n• Chườm nóng vùng bụng dưới\n• Massage nhẹ nhàng\n• Uống nước ấm, trà gừng\n• Nghỉ ngơi đầy đủ\n• Tập thể dục nhẹ như yoga\n\n⚠️ Nếu đau quá mức, hãy gặp bác sĩ để kiểm tra.',
-      'dinh dưỡng': 'Chế độ dinh dưỡng cân bằng cho phụ nữ nên bao gồm:\n• Rau xanh, trái cây đa dạng\n• Protein chất lượng (cá, thịt nạc, đậu)\n• Canxi từ sữa, phô mai\n• Sắt từ rau xanh, thịt đỏ\n• Uống đủ 2-2.5L nước/ngày\n\n🥗 Mỗi bữa ăn nên có đủ 4 nhóm thực phẩm!',
-      'tập': 'Các bài tập phù hợp cho phụ nữ:\n• Yoga - Tăng sự dẻo dai\n• Đi bộ - 30 phút/ngày\n• Bơi lội - Toàn thân\n• Pilates - Tăng cường core\n• Cardio nhẹ\n\n💪 Nên tập 3-5 lần/tuần, mỗi lần 30-45 phút!'
-    };
-
-    for (const [key, value] of Object.entries(responses)) {
-      if (lowerMessage.includes(key)) {
-        return value;
-      }
+    const names = this.currentUser.full_name.trim().split(' ');
+    if (names.length === 1) {
+      return names[0].charAt(0).toUpperCase();
     }
-
-    return `Cảm ơn bạn đã hỏi! 😊\n\nTôi là Lisa, trợ lý ảo chuyên về sức khỏe phụ nữ. Tôi có thể giúp bạn về nhiều vấn đề như chu kỳ kinh nguyệt, rụng trứng, mang thai, chăm sóc sức khỏe...\n\nBạn có thể đặt câu hỏi cụ thể hơn hoặc chọn một trong các câu hỏi gợi ý bên dưới nhé! 💕`;
+    // Lấy chữ cái đầu của tên đầu và tên cuối
+    return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
   }
 
   private scrollToBottom(): void {
@@ -199,19 +218,5 @@ export class AiAssistantComponent implements OnInit, AfterViewChecked {
 
   private generateId(): string {
     return Date.now().toString() + Math.random().toString(36).substr(2, 9);
-  }
-
-  /**
-   * Lấy chữ cái đầu của tên user để làm avatar placeholder
-   */
-  getUserInitials(): string {
-    if (!this.currentUser?.full_name) return 'U';
-
-    const names = this.currentUser.full_name.trim().split(' ');
-    if (names.length === 1) {
-      return names[0].charAt(0).toUpperCase();
-    }
-    // Lấy chữ cái đầu của tên đầu và tên cuối
-    return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
   }
 }
