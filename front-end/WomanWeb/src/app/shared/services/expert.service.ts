@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ExpertService {
   // URL trỏ đến API backend của bạn
-  private apiUrl = 'https://ladyweb-api.onrender.com/api/experts';
+  private apiUrl = 'https://ladyweb-production.up.railway.app/api/experts';
 
   constructor(private http: HttpClient) { }
 

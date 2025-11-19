@@ -113,7 +113,7 @@ export class LibraryEditComponent implements OnInit {
 
     this.isUploading = true;
     try {
-      const authParams = await firstValueFrom(this.http.get<any>('https://ladyweb-api.onrender.com/api/imagekit/auth'));
+      const authParams = await firstValueFrom(this.http.get<any>('https://ladyweb-production.up.railway.app/api/imagekit/auth'));
 
       const result = await this.imagekit.upload({
         file: file,

@@ -13,7 +13,7 @@ export interface PostQuery {
   providedIn: 'root'
 })
 export class PublicService {
-  private apiUrl = 'https://ladyweb-api.onrender.com/api/public';
+  private apiUrl = 'https://ladyweb-production.up.railway.app/api/public';
 
 
   constructor(private http: HttpClient) { }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'https://ladyweb-api.onrender.com/api/users';
+  private apiUrl = 'https://ladyweb-production.up.railway.app/api/users';
 
   constructor(private http: HttpClient) { }
 
