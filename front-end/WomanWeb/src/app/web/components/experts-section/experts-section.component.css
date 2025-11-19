@@ -6,3 +6,59 @@
       border: 4px solid white;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+
+/* Mobile Responsive - 2 cards per row */
+@media (max-width: 767.98px) {
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem !important;
+    }
+
+    /* Force 2 columns on mobile */
+    .col-lg-4 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+
+    .expert-card {
+        padding: 1rem !important;
+    }
+
+    .expert-card img {
+        width: 80px;
+        height: 80px;
+        border: 3px solid white;
+    }
+
+    .card-title {
+        font-size: 0.85rem;
+    }
+
+    .card-text {
+        font-size: 0.75rem;
+    }
+
+    .g-4 {
+        --bs-gutter-x: 1rem;
+        --bs-gutter-y: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .expert-card img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .card-title {
+        font-size: 0.8rem;
+    }
+
+    .card-text {
+        font-size: 0.7rem;
+    }
+
+    .expert-card {
+        padding: 0.75rem !important;
+    }
+}

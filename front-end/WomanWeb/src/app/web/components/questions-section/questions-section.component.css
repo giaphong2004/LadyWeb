@@ -13,3 +13,45 @@
     color: white;
     border-color: var(--brand-pink);
 }
+
+/* Mobile Responsive */
+@media (max-width: 767.98px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .lead {
+        font-size: 0.95rem;
+    }
+
+    .accordion-button {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .accordion-body {
+        font-size: 0.85rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .btn-pink {
+        font-size: 0.9rem;
+        padding: 0.5rem 1.5rem;
+    }
+
+    .col-lg-8 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .accordion-button {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.75rem;
+    }
+
+    .accordion-body {
+        font-size: 0.8rem;
+    }
+}

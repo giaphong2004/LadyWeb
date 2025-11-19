@@ -10,3 +10,72 @@
 .text-pink-dark {
     color: var(--brand-pink-dark) !important;
 }
+
+/* Fixed height for card images */
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Mobile Responsive - 2 cards per row */
+@media (max-width: 767.98px) {
+    .row-cols-1 {
+        --bs-gutter-x: 1rem;
+    }
+
+    /* Force 2 columns on mobile */
+    .row-cols-md-2 > * {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+
+    .card {
+        font-size: 0.85rem;
+    }
+
+    .card-img-top {
+        height: 140px;
+    }
+
+    .card-title {
+        font-size: 0.95rem;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+    }
+
+    .badge {
+        font-size: 0.7rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem !important;
+    }
+
+    .btn-sm {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-img-top {
+        height: 120px;
+    }
+
+    .card-body {
+        padding: 0.75rem;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+    }
+
+    .card-text {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+}

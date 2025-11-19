@@ -1,4 +1,135 @@
-/* Footer */
-    .footer-brand {
-      color: var(--brand-pink);
-    }
+/* Footer - Giữ nguyên giao diện gốc */
+.footer-brand {
+  color: var(--brand-pink);
+}
+
+/* Social Links */
+.footer-social {
+  margin-top: 0;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background-color: var(--brand-pink);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Newsletter Form cho mobile */
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.newsletter-form .form-control {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Heart animation */
+.heart-icon {
+  color: #ff6b9d;
+  display: inline-block;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(1.1);
+  }
+  20%, 40% {
+    transform: scale(1);
+  }
+}
+
+.bot-ft {
+  text-align: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 767.98px) {
+  /* Social icons ở trên, căn giữa */
+  .footer-social {
+    justify-content: center !important;
+    order: -1;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* LadyHeath brand - căn trái, tăng size và font-weight */
+  .footer-brand {
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    text-align: left !important;
+  }
+  
+  /* Ẩn text mô tả trên mobile */
+  .footer-description {
+    display: none;
+  }
+  
+  /* Newsletter căn giữa */
+  .newsletter-section {
+    text-align: center;
+  }
+  
+  .newsletter-section h5 {
+    text-align: center;
+  }
+  
+  .newsletter-section p {
+    text-align: center;
+  }
+
+  /* Footer text alignment */
+  .bg-dark p {
+    font-size: 0.9rem;
+  }
+
+  /* Newsletter form stack vertically on mobile */
+  .newsletter-form {
+    flex-direction: column;
+    margin: 0 auto;
+    max-width: 400px;
+  }
+
+  .newsletter-form .form-control {
+    min-width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-form .btn {
+    width: 100%;
+  }
+
+  /* Adjust spacing */
+  .bg-dark .row > div {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Even smaller screens */
+  .bg-dark h5 {
+    font-size: 1rem;
+  }
+
+  .bg-dark p {
+    font-size: 0.85rem;
+  }
+}

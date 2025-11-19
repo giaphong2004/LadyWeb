@@ -2,7 +2,7 @@
 <header>
   <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center" href="/">
+      <a class="navbar-brand d-flex align-items-center" routerLink="/">
         <svg class="text-pink me-2" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
           fill="currentColor">
           <path
@@ -11,11 +11,14 @@
         </svg>
         <span class="fs-4 fw-bold text-pink-dark">LadyHeath</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+
+      <!-- Mobile Toggle Button -->
+      <button class="navbar-toggler d-lg-none" (click)="toggleSidebar()" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="mainNavbar">
+
+      <!-- Desktop Navigation -->
+      <div class="collapse navbar-collapse d-none d-lg-block" id="mainNavbar">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" routerLink="/tools" id="navbarDropdown" role="button"
@@ -42,12 +45,10 @@
         </div>
 
         <div *ngIf="currentUser$ | async as user" class="nav-item dropdown user-profile">
-
           <a class="nav-link dropdown-toggle user-display">
             {{ user.full_name }}
           </a>
-
-          <ul class="dropdown-menu ">
+          <ul class="dropdown-menu">
             <li>
               <h6 class="dropdown-item">Chào, {{ user.full_name }}</h6>
               <hr>
@@ -64,4 +65,104 @@
       </div>
     </div>
   </nav>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" [class.show]="isSidebarOpen" (click)="closeSidebar()"></div>
+
+  <!-- Mobile Sidebar -->
+  <aside class="mobile-sidebar" [class.show]="isSidebarOpen">
+    <div class="sidebar-header">
+      <h5 class="text-pink-dark fw-bold mb-0">Menu</h5>
+      <button class="btn-close-sidebar" (click)="closeSidebar()" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="sidebar-content">
+      <!-- Search -->
+      <div class="sidebar-search mb-3">
+        <input class="form-control" type="search" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
+      </div>
+
+      <!-- Navigation Menu -->
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-item">
+          <a class="sidebar-nav-link" (click)="toggleSubmenu('tools')">
+            <span>Công cụ tính toán</span>
+            <svg class="submenu-arrow" [class.rotate]="activeSubmenu === 'tools'" xmlns="http://www.w3.org/2000/svg"
+              width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+          <ul class="sidebar-submenu" [class.show]="activeSubmenu === 'tools'">
+            <li><a class="sidebar-submenu-link" routerLink="/menstrual" (click)="closeSidebar()">Tính ngày kinh
+                nguyệt</a></li>
+            <li><a class="sidebar-submenu-link" routerLink="/ovulation" (click)="closeSidebar()">Tính ngày rụng
+                trứng</a></li>
+            <li><a class="sidebar-submenu-link" routerLink="/pregnancy" (click)="closeSidebar()">Tính ngày dự sinh</a>
+            </li>
+            <li><a class="sidebar-submenu-link" routerLink="/pregnancy-test" (click)="closeSidebar()">Tính ngày thử
+                thai</a></li>
+          </ul>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="sidebar-nav-link" routerLink="/library" (click)="closeSidebar()">
+            <span>Sức khỏe A-Z</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="sidebar-nav-link" routerLink="/expert" (click)="closeSidebar()">
+            <span>Chuyên gia</span>
+          </a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a class="sidebar-nav-link" routerLink="/chat" (click)="closeSidebar()">
+            <span>Hỏi & Đáp</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- User Section -->
+      <div class="sidebar-user mt-4 pt-4 border-top">
+        <div *ngIf="!(isLoggedIn$ | async)" class="d-grid gap-2">
+          <a routerLink="/login" class="btn btn-outline-pink" (click)="closeSidebar()">Đăng nhập</a>
+          <a routerLink="/login" [queryParams]="{ view: 'signup' }" class="btn btn-pink" (click)="closeSidebar()">Đăng
+            ký</a>
+        </div>
+
+        <div *ngIf="currentUser$ | async as user">
+          <div class="user-info mb-3">
+            <div class="user-avatar">
+              {{ user.full_name.charAt(0).toUpperCase() }}
+            </div>
+            <div class="user-details">
+              <div class="user-name">{{ user.full_name }}</div>
+              <div class="user-email">{{ user.email }}</div>
+            </div>
+          </div>
+          <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+              <a class="sidebar-nav-link" routerLink="/profile" (click)="closeSidebar()">
+                <span>Hồ sơ</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item" *ngIf="user.role === 'admin'">
+              <a class="sidebar-nav-link" routerLink="/admin" (click)="closeSidebar()">
+                <span>Trang Quản Trị</span>
+              </a>
+            </li>
+            <li class="sidebar-nav-item">
+              <a class="sidebar-nav-link" (click)="onLogout(); closeSidebar()" style="cursor: pointer;">
+                <span>Đăng xuất</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </aside>
 </header>

@@ -1,54 +1,55 @@
 /* --- Custom Styles for Components --- */
-    .text-pink {
-      color: var(--brand-pink) !important;
-    }
+.text-pink {
+  color: var(--brand-pink) !important;
+}
 
-    .text-pink-dark {
-      color: var(--brand-pink-dark) !important;
-    }
+.text-pink-dark {
+  color: var(--brand-pink-dark) !important;
+}
 
-    .text-purple-dark {
-      color: var(--brand-purple) !important;
-    }
+.text-purple-dark {
+  color: var(--brand-purple) !important;
+}
 
-    .btn-pink {
-      background-color: var(--brand-pink);
-      color: white;
-      border-color: var(--brand-pink);
-    }
+.btn-pink {
+  background-color: var(--brand-pink);
+  color: white;
+  border-color: var(--brand-pink);
+}
 
-    .btn-pink:hover {
-      background-color: var(--brand-pink-dark);
-      border-color: var(--brand-pink-dark);
-      color: white;
-    }
+.btn-pink:hover {
+  background-color: var(--brand-pink-dark);
+  border-color: var(--brand-pink-dark);
+  color: white;
+}
 
-    .btn-outline-pink {
-      color: var(--brand-pink);
-      border-color: var(--brand-pink);
-    }
+.btn-outline-pink {
+  color: var(--brand-pink);
+  border-color: var(--brand-pink);
+}
 
-    .btn-outline-pink:hover {
-      background-color: var(--brand-pink);
-      color: white;
-    }
+.btn-outline-pink:hover {
+  background-color: var(--brand-pink);
+  color: white;
+}
 
-    .bg-pink-light {
-      background-color: var(--brand-pink-light);
-    }
+.bg-pink-light {
+  background-color: var(--brand-pink-light);
+}
 
-    /* Hover vào .nav-item.dropdown thì hiện menu */
-    .nav-item.dropdown:hover .dropdown-menu {
-      display: block;
-      opacity: 1;
-      visibility: visible;
-    }
+/* --- Desktop Navigation (giữ nguyên giao diện gốc) --- */
+/* Hover vào .nav-item.dropdown thì hiện menu */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
 
-    .nav-item :hover {
-      color: var(--brand-pink);
-      font-weight: 600;
-      background-color: white;
-    }
+.nav-item:hover .nav-link {
+  color: var(--brand-pink);
+  font-weight: 600;
+  background-color: white;
+}
 
 /* --- CSS CHO MENU NGƯỜI DÙNG (PHIÊN BẢN SỬA LỖI) --- */
 
@@ -82,7 +83,228 @@
   transform: translateY(0); /* ...ĐƯA MENU VỀ VỊ TRÍ GỐC */
 }
 
-.dropdown-menu h6:hover{
+.dropdown-menu h6:hover {
   margin: 0;
   color: var(--text-dark);
+}
+
+/* =========================== */
+/* MOBILE RESPONSIVE STYLES */
+/* =========================== */
+
+/* --- Sidebar Overlay --- */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1040;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- Mobile Sidebar --- */
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 320px;
+  max-width: 85%;
+  height: 100%;
+  background-color: white;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: left 0.3s ease;
+  z-index: 1050;
+  overflow-y: auto;
+}
+
+.mobile-sidebar.show {
+  left: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.btn-close-sidebar {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  cursor: pointer;
+  color: #6c757d;
+  transition: color 0.2s ease;
+}
+
+.btn-close-sidebar:hover {
+  color: var(--brand-pink);
+}
+
+/* Sidebar Content */
+.sidebar-content {
+  padding: 1.5rem;
+}
+
+.sidebar-search input {
+  border-radius: 0.5rem;
+  border: 1px solid #e9ecef;
+  padding: 0.625rem 1rem;
+}
+
+.sidebar-search input:focus {
+  border-color: var(--brand-pink);
+  box-shadow: 0 0 0 0.2rem rgba(236, 72, 153, 0.15);
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav-item {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  color: #495057;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.sidebar-nav-link:hover {
+  background-color: #f8f9fa;
+  color: var(--brand-pink);
+}
+
+.sidebar-nav-link span {
+  flex: 1;
+}
+
+.submenu-arrow {
+  transition: transform 0.3s ease;
+  color: #6c757d;
+}
+
+.submenu-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* Sidebar Submenu */
+.sidebar-submenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.sidebar-submenu.show {
+  max-height: 500px;
+  margin-top: 0.25rem;
+}
+
+.sidebar-submenu li {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-submenu-link {
+  display: block;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  color: #6c757d;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  font-size: 0.9375rem;
+}
+
+.sidebar-submenu-link:hover {
+  background-color: #f8f9fa;
+  color: var(--brand-pink);
+  padding-left: 2.75rem;
+}
+
+/* Sidebar User Section */
+.sidebar-user {
+  padding-top: 1.5rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-pink-dark) 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.user-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #212529;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-email {
+  font-size: 0.875rem;
+  color: #6c757d;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- Responsive: Ẩn/hiện các phần tử --- */
+@media (min-width: 992px) {
+  /* Desktop: ẩn mobile sidebar */
+  .mobile-sidebar,
+  .sidebar-overlay {
+    display: none !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  /* Mobile: sidebar sẽ hiển thị khi có class .show */
 }

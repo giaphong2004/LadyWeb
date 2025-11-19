@@ -659,9 +659,10 @@
 }
 
 /* ========================================
-   RESPONSIVE
+   RESPONSIVE - IMPROVED
    ======================================== */
 
+/* Tablet và nhỏ hơn - GIỮ HÌNH VIÊN THUỐC */
 @media (max-width: 768px) {
   .ai-assistant-wrapper {
     bottom: 16px;
@@ -669,62 +670,321 @@
   }
 
   .ai-floating-button {
-    padding: 12px 18px;
-    gap: 10px;
+    padding: 10px 16px;
+    gap: 8px;
+    border-radius: 50px; /* Giữ hình viên thuốc */
+  }
+
+  .ai-avatar-image {
+    width: 38px;
+    height: 38px;
   }
 
   .ai-button-title {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .ai-button-subtitle {
-    font-size: 11px;
+    font-size: 10px;
   }
 
+  /* Chat window full width trên tablet */
   .ai-chat-window {
     width: calc(100vw - 32px);
-    height: calc(100vh - 100px);
+    height: calc(100vh - 120px);
+    max-height: calc(100vh - 120px);
     right: 16px;
     bottom: 16px;
     border-radius: 20px;
   }
 
-  .quick-questions-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .message-bubble {
-    max-width: 90%;
-  }
-}
-
-@media (max-width: 480px) {
-  .ai-button-content {
-    display: none;
-  }
-
-  .ai-floating-button {
-    width: 64px;
-    height: 64px;
-    padding: 8px;
-    justify-content: center;
-  }
-
-  .ai-avatar-image {
-    width: 44px;
-    height: 44px;
-  }
-
   .ai-chat-header {
-    padding: 14px 16px;
+    padding: 16px;
+  }
+
+  .ai-header-info h3 {
+    font-size: 16px;
+  }
+
+  .ai-header-info p {
+    font-size: 12px;
   }
 
   .ai-chat-body {
     padding: 16px;
   }
 
-  .ai-chat-footer {
+  /* Quick questions 1 cột trên tablet */
+  .quick-questions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .message-content {
+    max-width: 75%;
+  }
+
+  .message-bubble {
     padding: 12px 16px;
+  }
+
+  .message-bubble p {
+    font-size: 14px;
+  }
+
+  .ai-chat-footer {
+    padding: 14px 16px;
+  }
+
+  .message-input {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .send-button {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+/* Mobile nhỏ */
+@media (max-width: 480px) {
+  .ai-assistant-wrapper {
+    bottom: 12px;
+    right: 12px;
+  }
+
+  /* Giảm size text và giữ hình viên thuốc */
+  .ai-floating-button {
+    padding: 8px 12px;
+    border-radius: 50px; /* Hình viên thuốc */
+  }
+
+  .ai-avatar-image {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ai-button-title {
+    font-size: 11px;
+  }
+
+  .ai-button-subtitle {
+    font-size: 8px;
+  }
+
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid white;
+    bottom: 1px;
+    right: 1px;
+  }
+
+  /* Chat window gần full screen với khoảng trống xung quanh */
+  .ai-chat-window {
+    position: fixed;
+    top: 16px;
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+    width: calc(100% - 24px);
+    height: calc(100vh - 32px);
+    max-width: calc(100% - 24px);
+    max-height: calc(100vh - 32px);
+    border-radius: 16px;
+  }
+
+  .ai-chat-header {
+    padding: 12px 14px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .ai-avatar-small {
+    width: 38px;
+    height: 38px;
+  }
+
+  .ai-header-info h3 {
+    font-size: 15px;
+  }
+
+  .ai-header-info p {
+    font-size: 11px;
+  }
+
+  .header-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .header-btn i {
+    font-size: 14px;
+  }
+
+  .ai-chat-body {
+    padding: 12px;
+  }
+
+  .ai-chat-footer {
+    padding: 10px 12px;
+  }
+
+  .message-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .message-content {
+    max-width: 80%;
+  }
+
+  .message-bubble {
+    padding: 10px 14px;
+    border-radius: 16px;
+  }
+
+  .message-bubble p {
+    font-size: 13.5px;
+  }
+
+  .message-time {
+    font-size: 10px;
+  }
+
+  /* Quick questions section */
+  .quick-questions-section {
+    padding: 14px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .quick-question-card {
+    padding: 12px;
+  }
+
+  .question-icon {
+    font-size: 20px;
+  }
+
+  .question-text {
+    font-size: 11.5px;
+  }
+
+  /* Action chips */
+  .action-chip {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  /* Input area */
+  .input-container {
+    gap: 8px;
+  }
+
+  .message-input {
+    padding: 10px 12px;
+    font-size: 16px; /* 16px để tránh auto-zoom trên iOS */
+    border-radius: 14px;
+  }
+
+  .send-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .send-button i {
+    font-size: 16px;
+  }
+
+  .footer-disclaimer {
+    font-size: 10.5px;
+  }
+
+  /* Typing indicator */
+  .typing-bubble {
+    padding: 10px 14px !important;
+  }
+
+  .typing-indicator span {
+    width: 7px;
+    height: 7px;
+  }
+
+  .typing-text {
+    font-size: 12px;
+  }
+
+  /* User avatar initials */
+  .user-avatar-initials {
+    font-size: 12px;
+  }
+
+  .message-avatar.user-avatar i {
+    font-size: 20px;
+  }
+}
+
+/* Mobile rất nhỏ */
+@media (max-width: 360px) {
+  .ai-floating-button {
+    padding: 6px 10px;
+    border-radius: 50px; /* Giữ hình viên thuốc */
+  }
+
+  .ai-avatar-image {
+    width: 28px;
+    height: 28px;
+  }
+
+  .ai-button-title {
+    font-size: 10px;
+  }
+
+  .ai-button-subtitle {
+    font-size: 7px;
+  }
+
+  .status-indicator {
+    width: 7px;
+    height: 7px;
+    border: 1px solid white;
+  }
+
+  .ai-chat-header {
+    padding: 10px 12px;
+  }
+
+  .ai-header-info h3 {
+    font-size: 14px;
+  }
+
+  .ai-chat-body {
+    padding: 10px;
+  }
+
+  .ai-chat-footer {
+    padding: 8px 10px;
+  }
+
+  .message-bubble p {
+    font-size: 13px;
+  }
+
+  .quick-question-card {
+    padding: 10px;
+  }
+
+  .question-icon {
+    font-size: 18px;
+  }
+
+  .question-text {
+    font-size: 11px;
   }
 }
 
