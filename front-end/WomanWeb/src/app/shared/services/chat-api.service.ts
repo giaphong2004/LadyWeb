@@ -9,7 +9,7 @@ import { Conversation, Expert, Message } from '../models/chat.models';
   providedIn: 'root'
 })
 export class ChatApiService {
-  private apiUrl = 'http://localhost:3000/api'; // Ví dụ: 'http://localhost:3000/api'
+  private apiUrl = 'https://ladyweb-api.onrender.com/api'; // Ví dụ: 'https://ladyweb-api.onrender.com/api'
 
   constructor(private http: HttpClient) { }
 

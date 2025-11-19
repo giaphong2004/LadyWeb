@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DashboardService {
-  private apiUrl = 'http://localhost:3000/api/dashboard';
+  private apiUrl = 'https://ladyweb-api.onrender.com/api/dashboard';
 
   constructor(private http: HttpClient) { }
 

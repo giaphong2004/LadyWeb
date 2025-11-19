@@ -29,7 +29,7 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/auth';
+  private apiUrl = 'https://ladyweb-api.onrender.com/api/auth';
 
   // Subject cho trạng thái đăng nhập
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);

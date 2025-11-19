@@ -14,7 +14,7 @@ export class ChatSocketService {
 
   constructor(private authService: AuthService) {
     // Khởi tạo socket nhưng chưa kết nối
-    this.socket = io('http://localhost:3000', {
+    this.socket = io('https://ladyweb-api.onrender.com', {
       autoConnect: false
     });
   }

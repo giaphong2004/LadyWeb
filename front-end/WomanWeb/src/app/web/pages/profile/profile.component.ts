@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit {
     try {
       // Gọi API để lấy authentication parameters
       const authParams = await firstValueFrom(
-        this.http.get<{ token: string, signature: string, expire: number }>('http://localhost:3000/api/imagekit/auth')
+        this.http.get<{ token: string, signature: string, expire: number }>('https://ladyweb-api.onrender.com/api/imagekit/auth')
       );
 
       // Upload với authentication parameters
