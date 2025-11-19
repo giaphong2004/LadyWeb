@@ -10,37 +10,53 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'experts',
+    path: 'expert',
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'tools/menstrual',
+    path: 'tools',
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'tools/ovulation',
+    path: 'menstrual',
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'tools/pregnancy',
+    path: 'ovulation',
     renderMode: RenderMode.Prerender
   },
   {
-    path: 'tools/pregnancy-test',
+    path: 'pregnancy',
     renderMode: RenderMode.Prerender
   },
-  // Dynamic routes - Tắt prerender, dùng Server
+  {
+    path: 'pregnancy-test',
+    renderMode: RenderMode.Prerender
+  },
+  {
+    path: 'login',
+    renderMode: RenderMode.Prerender
+  },
+  // Dynamic routes - Server-side rendering
   {
     path: 'posts/:slug',
-    renderMode: RenderMode.Server // Thay vì Prerender
+    renderMode: RenderMode.Server
   },
   {
     path: 'expert/:id',
-    renderMode: RenderMode.Server // Thay vì Prerender
+    renderMode: RenderMode.Server
+  },
+  {
+    path: 'chat',
+    renderMode: RenderMode.Server
   },
   {
     path: 'chat/:expertId',
-    renderMode: RenderMode.Server // Thay vì Prerender
+    renderMode: RenderMode.Server
+  },
+  {
+    path: 'profile',
+    renderMode: RenderMode.Server
   },
   {
     path: '**',
