@@ -6,7 +6,7 @@
       <div class="card-body">
         <span class="category-tag">{{ post.Tags[0]?.name }}</span>
         <h5 class="card-title"><a [routerLink]="['/posts', post.slug]">{{ post.title }}</a></h5>
-        <p class="card-text">{{ post.content | slice:0:12 }}...</p>
+
       </div>
       <div class="card-footer">
         <span>Bởi <strong>{{ post.author?.full_name }}</strong></span>

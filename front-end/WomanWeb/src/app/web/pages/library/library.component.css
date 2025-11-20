@@ -1,3 +1,28 @@
 .mt-4{
   padding-bottom: 3rem;
 }
+
+/* Mobile Responsive */
+@media (max-width: 767.98px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .mt-4 {
+        padding-bottom: 2rem;
+        margin-top: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .mt-4 {
+        padding-bottom: 1.5rem;
+        margin-top: 1rem !important;
+    }
+}

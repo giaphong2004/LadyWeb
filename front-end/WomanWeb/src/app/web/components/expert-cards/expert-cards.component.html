@@ -1,4 +1,4 @@
-<div class="row g-5 pb-5">
+<div class="row">
   <!-- Loading state -->
   <div class="col-12 text-center" *ngIf="!experts || experts.length === 0">
     <div class="alert alert-info">
@@ -11,8 +11,7 @@
   <div class="col-md-6 col-lg-4" *ngFor="let expert of experts">
     <div class="expert-card">
       <div class="expert-avatar">
-        <img [src]="getExpertImage(expert)" [alt]="getExpertName(expert)"
-          style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;">
+        <img [src]="getExpertImage(expert)" [alt]="getExpertName(expert)">
       </div>
       <div class="expert-info">
         <h4 class="expert-name">{{ getExpertName(expert) }}</h4>

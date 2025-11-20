@@ -1,4 +1,12 @@
 /* Category Pills */
+        .category-wrapper {
+            position: relative;
+        }
+
+        .category-toggle {
+            display: none;
+        }
+
         .category-pills {
             padding: 2rem 0;
             cursor: pointer;
@@ -20,3 +28,96 @@
         .category-pills .nav-link:hover {
             color: var(--brand-pink-dark);
         }
+
+/* Mobile Responsive */
+@media (max-width: 767.98px) {
+    .category-wrapper {
+        padding: 0 1rem;
+    }
+
+    /* Toggle Button */
+    .category-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: white;
+        border: 1.5px solid var(--brand-pink);
+        border-radius: 50px;
+        color: var(--brand-pink);
+        font-weight: 600;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    .category-toggle:hover {
+        background: var(--brand-pink-light);
+    }
+
+    .category-toggle i:first-child {
+        font-size: 0.9rem;
+    }
+
+    .category-toggle i:last-child {
+        font-size: 0.75rem;
+        margin-left: auto;
+    }
+
+    /* Category Pills - Default collapsed */
+    .category-pills {
+        padding: 0;
+        flex-wrap: wrap;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.4s ease;
+        margin-bottom: 1rem;
+    }
+
+    .category-pills.expanded {
+        max-height: 500px;
+        opacity: 1;
+        padding: 1rem 0;
+    }
+
+    .category-pills .nav-link {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+        margin: 0.25rem;
+        white-space: nowrap;
+    }
+
+    .nav-item {
+        flex-shrink: 0;
+    }
+
+    /* Hide items beyond first 3 when collapsed */
+    .nav-item.hidden-mobile {
+        display: none;
+    }
+
+    .category-pills.expanded .nav-item.hidden-mobile {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-wrapper {
+        padding: 0 0.75rem;
+    }
+
+    .category-toggle {
+        padding: 0.65rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .category-pills .nav-link {
+        font-size: 0.8rem;
+        padding: 0.45rem 0.875rem;
+        margin: 0.2rem;
+    }
+}

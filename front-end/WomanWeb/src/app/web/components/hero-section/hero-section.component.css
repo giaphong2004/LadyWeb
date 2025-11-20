@@ -54,8 +54,8 @@
 @media (max-width: 767.98px) {
     .bg-white section,
     section.bg-white {
-        padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
     }
 
     .container {
@@ -64,56 +64,94 @@
     }
 
     .row.py-5 {
-        padding-top: 1rem !important;
+        padding-top: 1.5rem !important;
         padding-bottom: 1rem !important;
     }
 
     .row.g-5 {
-        --bs-gutter-y: 1.5rem;
+        --bs-gutter-y: 2rem;
     }
 
-    /* Image */
+    /* Image - Align left with slight overflow */
     .col-10, .col-sm-8 {
         width: 100% !important;
         max-width: 100%;
-        margin: 0 auto;
+        margin: 0;
+        padding-right: 0.5rem !important;
     }
 
     img.img-fluid {
-        width: 100%;
+        width: calc(100% + 1rem);
+        margin-left: -0.5rem;
         margin-bottom: 0;
-        border-radius: 1rem !important;
+        border-radius: 1.25rem !important;
+        box-shadow: 0 10px 30px rgba(236, 72, 153, 0.15);
+        transform: rotate(-1deg);
+        transition: transform 0.3s ease;
     }
 
-    /* Text Content */
+    /* Text Content - Left aligned with creative spacing */
+    .col-lg-6 {
+        padding-left: 0.5rem !important;
+    }
+
     .display-5 {
-        font-size: 1.75rem !important;
-        line-height: 1.2;
+        font-size: 1.85rem !important;
+        line-height: 1.15;
         margin-bottom: 1rem !important;
-        text-align: center;
+        text-align: left;
+        font-weight: 800 !important;
     }
 
-    .display-5 span {
+    .display-5 span:first-child {
         display: block;
+        margin-bottom: 0.25rem;
+        background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-purple) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .display-5 span:last-child {
+        display: block;
+        color: #5a5a5a !important;
+        font-weight: 600 !important;
     }
 
     .lead {
-        font-size: 0.95rem !important;
-        line-height: 1.5;
-        margin-bottom: 1.5rem !important;
-        text-align: center;
+        font-size: 0.925rem !important;
+        line-height: 1.6;
+        margin-bottom: 1.75rem !important;
+        text-align: left;
+        color: #666;
+        padding-right: 0.5rem;
     }
 
-    /* Buttons */
+    /* Buttons - Stacked with modern style */
     .d-grid {
-        margin-top: 1.5rem;
+        margin-top: 1.75rem;
     }
 
     .btn-lg {
         width: 100%;
-        padding: 0.875rem 1rem !important;
+        padding: 0.95rem 1.25rem !important;
         font-size: 0.95rem !important;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.875rem;
+        border-radius: 0.75rem !important;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .btn-pink {
+        transform: translateY(0);
+    }
+
+    .btn-outline-secondary {
+        border: 2px solid #e0e0e0 !important;
+        color: #555 !important;
+        box-shadow: none !important;
     }
 
     .btn-lg.me-md-2 {
@@ -125,25 +163,33 @@
     }
 
     .gap-2 {
-        gap: 0.75rem !important;
+        gap: 0.875rem !important;
     }
 }
 
 @media (max-width: 480px) {
+    .row.g-5 {
+        --bs-gutter-y: 1.5rem;
+    }
+
+    img.img-fluid {
+        transform: rotate(-0.5deg);
+        border-radius: 1rem !important;
+    }
+
     .display-5 {
-        font-size: 1.5rem !important;
+        font-size: 1.6rem !important;
+        line-height: 1.2;
     }
 
     .lead {
         font-size: 0.875rem !important;
+        line-height: 1.55;
     }
 
     .btn-lg {
         font-size: 0.9rem !important;
-        padding: 0.75rem 1rem !important;
-    }
-
-    img.img-fluid {
-        border-radius: 0.75rem !important;
+        padding: 0.85rem 1rem !important;
+        border-radius: 0.65rem !important;
     }
 }

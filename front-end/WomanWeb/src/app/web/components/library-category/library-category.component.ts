@@ -14,9 +14,14 @@ export class LibraryCategoryComponent {
   @Output() tagSelected = new EventEmitter<string>();
 
   activeTagSlug: string = ''; // Biến để theo dõi tag nào đang được chọn
+  showAllCategories: boolean = false; // Toggle state for mobile
 
   selectTag(slug: string): void {
     this.activeTagSlug = slug;
     this.tagSelected.emit(slug);
+  }
+
+  toggleCategories(): void {
+    this.showAllCategories = !this.showAllCategories;
   }
 }

@@ -10,3 +10,25 @@
             font-size: 1.75rem;
             font-weight: 600;
         }
+
+/* Mobile Responsive */
+@media (max-width: 767.98px) {
+    .section-header {
+        margin-bottom: 1rem;
+        padding: 0 0.5rem;
+    }
+
+    .section-title {
+        font-size: 1.35rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-header {
+        margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+    }
+}

@@ -11,3 +11,38 @@
             line-height: 28.8px;
         }
 
+/* Mobile Responsive */
+@media (max-width: 767.98px) {
+    .content-section {
+        padding: 1.25rem;
+        margin-top: 1rem !important;
+    }
+
+    .content-section h3 {
+        font-size: 1.35rem;
+        margin-top: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .content-section p {
+        font-size: 0.925rem;
+        line-height: 1.6;
+        text-align: justify;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-section {
+        padding: 1rem;
+    }
+
+    .content-section h3 {
+        font-size: 1.2rem;
+    }
+
+    .content-section p {
+        font-size: 0.875rem;
+        line-height: 1.55;
+    }
+}
+

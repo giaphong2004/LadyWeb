@@ -1,10 +1,20 @@
-<ul class="nav nav-pills justify-content-center category-pills">
-  <li class="nav-item">
-    <a class="nav-link" [class.active]="activeTagSlug === ''" (click)="selectTag(''); $event.preventDefault()">Tất
-      cả</a>
-  </li>
-  <li class="nav-item" *ngFor="let tag of tags">
-    <a class="nav-link" [class.active]="activeTagSlug === tag.slug"
-      (click)="selectTag(tag.slug); $event.preventDefault()">{{ tag.name }}</a>
-  </li>
-</ul>
+<div class="category-wrapper">
+  <!-- Toggle button for mobile -->
+  <button class="category-toggle mt-4" (click)="toggleCategories()" type="button">
+    <i class="fas fa-filter"></i>
+    <span>{{ showAllCategories ? 'Thu gọn' : 'Bộ lọc' }}</span>
+    <i class="fas" [ngClass]="showAllCategories ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+  </button>
+
+  <!-- Categories list -->
+  <ul class="nav nav-pills justify-content-center category-pills" [class.expanded]="showAllCategories">
+    <li class="nav-item">
+      <a class="nav-link" [class.active]="activeTagSlug === ''" (click)="selectTag(''); $event.preventDefault()">Tất
+        cả</a>
+    </li>
+    <li class="nav-item" *ngFor="let tag of tags; let i = index" [class.hidden-mobile]="!showAllCategories && i >= 3">
+      <a class="nav-link" [class.active]="activeTagSlug === tag.slug"
+        (click)="selectTag(tag.slug); $event.preventDefault()">{{ tag.name }}</a>
+    </li>
+  </ul>
+</div>

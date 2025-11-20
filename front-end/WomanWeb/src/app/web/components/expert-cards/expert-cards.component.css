@@ -77,3 +77,185 @@
             background-color: var(--brand-pink);
             color: white;
         }
+
+        .expert-qualifications {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .truncate-bio,
+        .truncate-qualifications {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        .expert-extra-info {
+            font-size: 0.875rem;
+        }
+
+        .expert-verification {
+            font-size: 0.875rem;
+        }
+
+/* Desktop/Tablet Responsive */
+@media (min-width: 768px) {
+    .col-md-6,
+    .col-lg-4 {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 767.98px) {
+    .row {
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    /* 2 cards per row on mobile */
+    .col-md-6 {
+        flex: 0 0 auto;
+        width: 47%;
+        margin-bottom: 1rem;
+    }
+
+    .expert-card {
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .expert-avatar img {
+        width: 70px;
+        height: 70px;
+        border-width: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    .expert-name {
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .expert-specialty {
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .expert-bio {
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+
+    .truncate-bio {
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+
+    .expert-qualifications {
+        font-size: 0.7rem;
+        margin-top: 0.25rem;
+    }
+
+    .truncate-qualifications {
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+
+    .expert-extra-info {
+        display: none;
+    }
+
+    .expert-verification small {
+        font-size: 0.7rem;
+    }
+
+    .expert-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .expert-actions .btn {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+    }
+
+    .row{
+        --bs-gutter-x: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .row {
+        gap: 0.5rem !important;
+    }
+
+    .col-md-6 {
+        margin-bottom: 0.75rem;
+    }
+
+    .expert-card {
+        padding: 0.75rem;
+    }
+
+    .expert-avatar img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0.4rem;
+    }
+
+    .expert-name {
+        font-size: 0.85rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .expert-specialty {
+        font-size: 0.7rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .expert-specialty i {
+        font-size: 0.65rem;
+    }
+
+    .expert-bio {
+        font-size: 0.65rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .expert-qualifications {
+        font-size: 0.65rem;
+    }
+
+    .expert-qualifications i {
+        font-size: 0.6rem;
+    }
+
+    .expert-verification small {
+        font-size: 0.65rem;
+    }
+
+    .expert-verification i {
+        font-size: 0.6rem;
+    }
+
+    .expert-actions {
+        gap: 0.4rem;
+        margin-top: 0.4rem;
+    }
+
+    .expert-actions .btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .row{
+        --bs-gutter-x: 0.5rem;
+    }
+}

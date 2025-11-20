@@ -49,11 +49,25 @@
 
 .form-control {
     border: 1px solid var(--flo-border-color);
+    padding: 0.5rem 0.75rem;
+    min-height: 45px;
 }
 
 .form-control:focus {
     box-shadow: 0 0 0 0.25rem rgba(233, 64, 121, 0.25);
     border-color: var(--flo-pink);
+}
+
+/* Date input specific styling */
+input[type="text"].form-control {
+    background-color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+input[type="text"].form-control::placeholder {
+    color: #999;
+    opacity: 1;
 }
 
 /* Ô nhập liệu với nút +/- */
@@ -116,4 +130,122 @@
 }
 .mt-4{
   margin-top: 2.5rem !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 991.98px) {
+    .calculator-card {
+        flex-direction: column;
+        padding: 1.5rem !important;
+    }
+
+    .text-muted {
+        width: 100%;
+    }
+
+    .col-lg-4 {
+        margin-top: 2rem;
+    }
+
+    .sidebar-card {
+        position: relative;
+        top: 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .calculator-card {
+        padding: 1.25rem !important;
+        margin-top: 1rem !important;
+    }
+
+    .small {
+        font-size: 0.8rem;
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-control {
+        font-size: 16px;
+        height: 45px;
+    }
+
+    .input-group .btn {
+        padding: 0.5rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    .input-group .form-control {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .row .col-6 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .btn-flo-primary {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+        margin-top: 1rem !important;
+    }
+
+    #results-area {
+        padding: 1.25rem;
+        margin-top: 1.5rem !important;
+    }
+
+    #results-area h4 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem !important;
+    }
+
+    #results-area .fs-5 {
+        font-size: 1.15rem !important;
+    }
+
+    .sidebar-card {
+        padding: 1.25rem !important;
+    }
+
+    .sidebar-title {
+        font-size: 0.9rem;
+    }
+
+    .sidebar-link {
+        font-size: 0.875rem;
+        padding: 0.4rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-card {
+        padding: 1rem !important;
+    }
+
+    .form-control {
+        height: 42px;
+    }
+
+    .input-group .btn {
+        padding: 0.4rem 0.85rem;
+    }
+
+    .btn-flo-primary {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+    }
+
+    #results-area {
+        padding: 1rem;
+    }
+
+    .sidebar-card {
+        padding: 1rem !important;
+    }
 }

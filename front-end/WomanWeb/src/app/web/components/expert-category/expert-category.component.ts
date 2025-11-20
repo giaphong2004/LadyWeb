@@ -19,6 +19,7 @@ export class ExpertCategoryComponent {
   ];
 
   selectedSpecialty: string = 'all';
+  showAllCategories: boolean = false;
 
   onSpecialtyClick(specialtyId: string): void {
     this.selectedSpecialty = specialtyId;
@@ -26,5 +27,9 @@ export class ExpertCategoryComponent {
     // Emit specialty ID hoặc empty string cho "all"
     const emitValue = specialtyId === 'all' ? '' : specialtyId;
     this.specialtySelected.emit(emitValue);
+  }
+
+  toggleCategories(): void {
+    this.showAllCategories = !this.showAllCategories;
   }
 }

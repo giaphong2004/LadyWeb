@@ -1,12 +1,20 @@
-<ul class="nav nav-pills justify-content-center filter-pills mb-5">
-  <li class="nav-item" *ngFor="let specialty of specialties">
-    <a 
-      class="nav-link" 
-      [class.active]="selectedSpecialty === specialty.id"
-      (click)="onSpecialtyClick(specialty.id)"
-      style="cursor: pointer;">
-      <i [class]="specialty.icon + ' me-2'"></i>
-      {{ specialty.name }}
-    </a>
-  </li>
-</ul>
+<div class="category-wrapper mb-5">
+  <!-- Toggle button for mobile -->
+  <button class="category-toggle mt-3" (click)="toggleCategories()" type="button">
+    <i class="fas fa-filter"></i>
+    <span>{{ showAllCategories ? 'Thu gọn' : 'Chuyên khoa' }}</span>
+    <i class="fas" [ngClass]="showAllCategories ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+  </button>
+
+  <!-- Categories list -->
+  <ul class="nav nav-pills justify-content-center filter-pills" [class.expanded]="showAllCategories">
+    <li class="nav-item" *ngFor="let specialty of specialties; let i = index"
+      [class.hidden-mobile]="!showAllCategories && i >= 3">
+      <a class="nav-link" [class.active]="selectedSpecialty === specialty.id" (click)="onSpecialtyClick(specialty.id)"
+        style="cursor: pointer;">
+        <i [class]="specialty.icon + ' me-2'"></i>
+        {{ specialty.name }}
+      </a>
+    </li>
+  </ul>
+</div>
