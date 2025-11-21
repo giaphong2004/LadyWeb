@@ -22,7 +22,7 @@ export class LibraryComponent implements OnInit {
 
 
   tags$: Observable<any[]>; // Observable để lấy danh sách tags
-  posts: any[] = []; // Mảng để lưu danh sách bài viết
+  posts: any[] = [];
 
   constructor(private publicService: PublicService) {
     // Khởi tạo tags$

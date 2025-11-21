@@ -1,8 +1,8 @@
-
 .auth-container {
     width: 100%;
-    min-width: 520px;
-    text-align: center;
+
+    margin: 0 auto;       /* THÊM DÒNG NÀY: Để căn giữa form trên màn hình lớn */
+    text-align: center;      /* THÊM DÒNG NÀY: Tạo khoảng cách an toàn với mép màn hình mobile */
 }
 
 .header {
@@ -209,4 +209,35 @@ select.form-control {
 
 .fa-heart-pulse {
     color: white
+}
+
+/* --- MẶC ĐỊNH CHO LAPTOP/DESKTOP --- */
+@media (min-width: 769px) {
+    .auth-container {
+        min-width: 520px; /* Giữ độ rộng tối thiểu này cho Laptop để form đẹp */
+        max-width: 600px; /* (Tùy chọn) Giới hạn chiều rộng tối đa để form không bị bè ra quá dài trên màn hình to */
+    }
+}
+
+/* --- RESPONSIVE CHO MOBILE (Điện thoại) --- */
+@media (max-width: 768px) {
+    .auth-container {
+        min-width: unset !important; /* Hủy bỏ giới hạn 520px */
+        width: 100%;      /* Full màn hình điện thoại */
+        padding: 0 15px;  /* Cách lề 2 bên một chút cho thoáng */
+    }
+
+    .form-wrapper {
+        padding: 1.5rem; /* Thu nhỏ padding trong khung */
+    }
+
+    .header h1 {
+        font-size: 1.6rem; /* Giảm cỡ chữ tiêu đề */
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
 }

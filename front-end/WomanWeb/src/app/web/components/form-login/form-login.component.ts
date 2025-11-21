@@ -50,28 +50,28 @@ export class FormLoginComponent implements OnInit {
   // 4. Hàm xử lý sự kiện submit form đăng nhập
   onLoginSubmit(): void {
     if (this.loginForm.invalid) {
-      return; // Dừng lại nếu form không hợp lệ
+      return;
     }
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Đăng nhập thành công!',
-          text: 'Chào mừng bạn trở lại với LadyHeath!',
-          showConfirmButton: false,
-          timer: 2500,
-          timerProgressBar: true,
-        });
-        // Lưu token vào localStorage
+        // 1. Lưu token
         localStorage.setItem('authToken', response.token);
-        // Điều hướng đến trang chính sau khi đăng nhập
+
+        // 2. Đặt "Cờ hiệu" để trang chủ biết là vừa đăng nhập xong
+        localStorage.setItem('showWelcome', 'true');
+
+        // 3. Chuyển hướng ngay lập tức về trang chủ
+        // Vì không hiện popup ở đây nên sẽ KHÔNG bao giờ bị vỡ layout trang Login
         this.router.navigate(['/']);
       },
       error: (err) => {
+        // Lỗi thì vẫn hiện Swal ở trang hiện tại (nhớ giữ heightAuto: false)
         Swal.fire({
           icon: 'error',
           title: 'Đăng nhập thất bại',
           text: err.error.message,
+          heightAuto: false,
+          width: window.innerWidth < 600 ? '90%' : '32em'
         });
       }
     });
@@ -84,6 +84,7 @@ export class FormLoginComponent implements OnInit {
         icon: 'warning',
         title: 'Thông tin chưa hợp lệ',
         text: 'Vui lòng điền đầy đủ và đúng thông tin.',
+        heightAuto: false,
       });
       return;
     }
@@ -93,6 +94,7 @@ export class FormLoginComponent implements OnInit {
           icon: 'success',
           title: 'Thành công!',
           text: 'Bạn đã tạo tài khoản thành công! Vui lòng đăng nhập.',
+          heightAuto: false,
         });
         // 👇 THÊM DÒNG NÀY ĐỂ XÓA SẠCH FORM 👇
         this.signupForm.reset();

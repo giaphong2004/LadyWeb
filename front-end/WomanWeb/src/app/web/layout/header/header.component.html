@@ -1,4 +1,3 @@
-<!-- Header -->
 <header>
   <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
     <div class="container">
@@ -12,12 +11,10 @@
         <span class="fs-4 fw-bold text-pink-dark">LadyHeath</span>
       </a>
 
-      <!-- Mobile Toggle Button -->
       <button class="navbar-toggler d-lg-none" (click)="toggleSidebar()" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Desktop Navigation -->
       <div class="collapse navbar-collapse d-none d-lg-block" id="mainNavbar">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
           <li class="nav-item dropdown">
@@ -36,17 +33,22 @@
           <li class="nav-item"><a class="nav-link" routerLink="/expert">Chuyên gia</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="/chat">Hỏi & Đáp</a></li>
         </ul>
+
         <form class="d-flex me-lg-2 mb-2 mb-lg-0" role="search">
           <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Tìm kiếm">
         </form>
+
         <div *ngIf="!(isLoggedIn$ | async)" class="d-flex align-items-center">
           <a routerLink="/login" class="btn btn-sm btn-outline-secondary me-2">Đăng nhập</a>
           <a routerLink="/login" [queryParams]="{ view: 'signup' }" class="btn btn-sm btn-pink">Đăng ký</a>
         </div>
 
         <div *ngIf="currentUser$ | async as user" class="nav-item dropdown user-profile">
-          <a class="nav-link dropdown-toggle user-display">
-            {{ user.full_name }}
+          <a class="nav-link dropdown-toggle user-display d-flex align-items-center gap-2">
+            <img *ngIf="user.avatar_url" [src]="user.avatar_url" class="user-avatar-tiny" alt="Avatar">
+            <div *ngIf="!user.avatar_url" class="user-avatar-tiny default-bg">
+              {{ user.full_name.charAt(0).toUpperCase() }}
+            </div>
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -66,13 +68,19 @@
     </div>
   </nav>
 
-  <!-- Sidebar Overlay -->
   <div class="sidebar-overlay" [class.show]="isSidebarOpen" (click)="closeSidebar()"></div>
 
-  <!-- Mobile Sidebar -->
   <aside class="mobile-sidebar" [class.show]="isSidebarOpen">
     <div class="sidebar-header">
-      <h5 class="text-pink-dark fw-bold mb-0">Menu</h5>
+      <a class="navbar-brand d-flex align-items-center" routerLink="/">
+        <svg class="text-pink me-2" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+          fill="currentColor">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+          </path>
+        </svg>
+        <span class="fs-4 fw-bold text-pink-dark">LadyHeath</span>
+      </a>
       <button class="btn-close-sidebar" (click)="closeSidebar()" aria-label="Close menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2">
@@ -83,12 +91,60 @@
     </div>
 
     <div class="sidebar-content">
-      <!-- Search -->
+
+      <div class="sidebar-user mb-4 pb-3 border-bottom">
+
+        <div *ngIf="!(isLoggedIn$ | async)" class="d-grid gap-2">
+          <a routerLink="/login" class="btn btn-outline-pink" (click)="closeSidebar()">Đăng nhập</a>
+          <a routerLink="/login" [queryParams]="{ view: 'signup' }" class="btn btn-pink" (click)="closeSidebar()">Đăng
+            ký</a>
+        </div>
+
+        <div *ngIf="currentUser$ | async as user">
+          <div class="user-info-toggle" (click)="toggleSubmenu('user')">
+            <div class="d-flex align-items-center gap-2 overflow-hidden">
+
+              <img *ngIf="user.avatar_url" [src]="user.avatar_url" class="user-avatar-small" alt="Avatar">
+              <div *ngIf="!user.avatar_url" class="user-avatar-small default-bg">
+                {{ user.full_name.charAt(0).toUpperCase() }}
+              </div>
+
+              <div class="user-text-truncate">
+                <div class="fw-bold text-dark text-truncate">{{ user.full_name }}</div>
+                <div class="small text-muted text-truncate">{{ user.email }}</div>
+              </div>
+            </div>
+
+            <svg class="submenu-arrow" [class.rotate]="activeSubmenu === 'user'" xmlns="http://www.w3.org/2000/svg"
+              width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+
+          <ul class="sidebar-submenu" [class.show]="activeSubmenu === 'user'">
+            <li>
+              <a class="sidebar-submenu-link" routerLink="/profile" (click)="closeSidebar()">
+                <i class="bi bi-person me-2"></i> Hồ sơ cá nhân
+              </a>
+            </li>
+            <li *ngIf="user.role === 'admin'">
+              <a class="sidebar-submenu-link" routerLink="/admin" (click)="closeSidebar()">
+                <i class="bi bi-shield-lock me-2"></i> Trang Quản Trị
+              </a>
+            </li>
+            <li>
+              <a class="sidebar-submenu-link text-danger" (click)="onLogout(); closeSidebar()" style="cursor: pointer;">
+                <i class="bi bi-box-arrow-right me-2"></i> Đăng xuất
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
       <div class="sidebar-search mb-3">
         <input class="form-control" type="search" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
       </div>
 
-      <!-- Navigation Menu -->
       <ul class="sidebar-nav">
         <li class="sidebar-nav-item">
           <a class="sidebar-nav-link" (click)="toggleSubmenu('tools')">
@@ -109,6 +165,7 @@
                 thai</a></li>
           </ul>
         </li>
+
         <li class="sidebar-nav-item">
           <a class="sidebar-nav-link" routerLink="/library" (click)="closeSidebar()">
             <span>Sức khỏe A-Z</span>
@@ -126,43 +183,6 @@
         </li>
       </ul>
 
-      <!-- User Section -->
-      <div class="sidebar-user mt-4 pt-4 border-top">
-        <div *ngIf="!(isLoggedIn$ | async)" class="d-grid gap-2">
-          <a routerLink="/login" class="btn btn-outline-pink" (click)="closeSidebar()">Đăng nhập</a>
-          <a routerLink="/login" [queryParams]="{ view: 'signup' }" class="btn btn-pink" (click)="closeSidebar()">Đăng
-            ký</a>
-        </div>
-
-        <div *ngIf="currentUser$ | async as user">
-          <div class="user-info mb-3">
-            <div class="user-avatar">
-              {{ user.full_name.charAt(0).toUpperCase() }}
-            </div>
-            <div class="user-details">
-              <div class="user-name">{{ user.full_name }}</div>
-              <div class="user-email">{{ user.email }}</div>
-            </div>
-          </div>
-          <ul class="sidebar-nav">
-            <li class="sidebar-nav-item">
-              <a class="sidebar-nav-link" routerLink="/profile" (click)="closeSidebar()">
-                <span>Hồ sơ</span>
-              </a>
-            </li>
-            <li class="sidebar-nav-item" *ngIf="user.role === 'admin'">
-              <a class="sidebar-nav-link" routerLink="/admin" (click)="closeSidebar()">
-                <span>Trang Quản Trị</span>
-              </a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a class="sidebar-nav-link" (click)="onLogout(); closeSidebar()" style="cursor: pointer;">
-                <span>Đăng xuất</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
   </aside>
 </header>

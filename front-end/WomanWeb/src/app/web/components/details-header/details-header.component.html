@@ -1,7 +1,7 @@
 <header class="article-header" *ngIf="post">
   <h1 class="article-title">{{ post.title }}</h1>
   <div class="article-meta">
-    <img [src]="post.author.avatar" alt="Tác giả {{ post.author.full_name }}">
+    <img [src]="post.author.avatar_url" alt="Tác giả {{ post.author.full_name }}">
     <div>
       <strong>{{ post.author.full_name }}</strong><br>
       <span>Cập nhật ngày {{ post.updated_at | date: 'dd/MM/yyyy' }}</span>

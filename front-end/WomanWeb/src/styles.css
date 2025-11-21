@@ -1,3 +1,10 @@
+  /* Dán vào đầu file styles.css */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
   :root {
     --brand-pink: #e91e63;
     --brand-pink-dark: #c2185b;
@@ -62,3 +69,29 @@ body{
   color: var(--text-dark);
   }
 
+/* --- FIX RESPONSIVE SWEETALERT2 --- */
+@media (max-width: 576px) {
+  /* Ép popup chỉ chiếm 90% màn hình điện thoại */
+  .swal2-popup {
+    width: 90% !important;
+    padding: 1em !important; /* Giảm đệm cho gọn */
+  }
+
+  /* Giảm cỡ chữ tiêu đề cho đỡ to */
+  .swal2-title {
+    font-size: 1.25rem !important;
+  }
+
+  /* Giảm cỡ chữ nội dung */
+  .swal2-html-container {
+    font-size: 0.9rem !important;
+  }
+
+
+}
+
+/* Khắc phục lỗi thanh cuộn khi hiện popup */
+body.swal2-shown > [aria-hidden="true"] {
+  transition: 0.1s filter;
+  filter: blur(2px); /* (Tùy chọn) Làm mờ nền cho đẹp */
+}

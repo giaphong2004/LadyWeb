@@ -175,6 +175,7 @@
     img.img-fluid {
         transform: rotate(-0.5deg);
         border-radius: 1rem !important;
+        margin: auto;
     }
 
     .display-5 {

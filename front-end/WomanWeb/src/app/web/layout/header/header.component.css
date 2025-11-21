@@ -296,6 +296,68 @@
   text-overflow: ellipsis;
 }
 
+/* --- FIX RESPONSIVE USER INFO TRONG SIDEBAR --- */
+
+/* Style cho nút toggle user info */
+.user-info-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%; /* Đảm bảo không vượt quá khung cha */
+}
+
+.user-info-toggle:hover {
+  background-color: #e9ecef;
+}
+
+.user-avatar-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* --- THÊM CLASS MỚI: Dành cho Avatar trên Desktop Navbar (nhỏ hơn xíu) --- */
+.user-avatar-tiny {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: flex; /* Để căn giữa chữ cái nếu không có ảnh */
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+}
+
+/* --- THÊM CLASS MỚI: Nền màu hồng (chỉ dùng khi hiện chữ cái) --- */
+.default-bg {
+  background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-pink-dark) 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+/* Chỉnh lại link trong menu user cho đẹp */
+.sidebar-submenu-link i {
+  font-size: 1.1rem;
+  vertical-align: middle;
+  color: #6c757d;
+}
+
+.sidebar-submenu-link:hover i {
+  color: var(--brand-pink);
+}
 /* --- Responsive: Ẩn/hiện các phần tử --- */
 @media (min-width: 992px) {
   /* Desktop: ẩn mobile sidebar */

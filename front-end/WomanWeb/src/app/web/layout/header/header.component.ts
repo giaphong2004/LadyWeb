@@ -20,6 +20,8 @@ export class HeaderComponent {
     this.currentUser$ = this.authService.currentUser$;
   }
 
+
+
   toggleSidebar(): void {
     this.isSidebarOpen = !this.isSidebarOpen;
     if (this.isSidebarOpen) {
