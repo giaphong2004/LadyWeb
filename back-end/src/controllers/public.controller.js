@@ -64,7 +64,7 @@ exports.getPostBySlug = async (req, res) => {
         const post = await Post.findOne({
             where: { slug: req.params.slug, status: 'published' },
             include: [
-                { model: User, as: 'author', attributes: ['id', 'full_name'] },
+                { model: User, as: 'author', attributes: ['id', 'full_name', 'avatar_url'] },
                 { model: Tag, attributes: ['name', 'slug'], through: { attributes: [] } }
             ]
         });
