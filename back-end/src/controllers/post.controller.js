@@ -39,8 +39,8 @@ exports.getPostById = async (req, res) => {
         const { id } = req.params;
         const post = await Post.findByPk(id, {
             include: [
-                { model: User, as: 'author', attributes: ['id', 'full_name'] },
-                { model: Tag, attributes: ['id', 'name'], through: { attributes: [] } }
+                { model: User, as: 'author', attributes: ['id', 'full_name', 'avatar_url'] },
+                { model: Tag, attributes: ['id', 'name'], through: { attributes: [] } },
             ]
         });
         
