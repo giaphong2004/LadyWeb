@@ -159,7 +159,7 @@ export class ChatComponent implements OnInit, OnDestroy {
           // Bọc đoạn code cập nhật giao diện trong zone.run()
           this.zone.run(() => {
             if (this.selectedConversation?.id && conversationId === this.selectedConversation.id) {
-              
+
               // FIX: Nếu tin nhắn này là của chính mình (đã được thêm bởi optimistic update)
               // thì chỉ cập nhật ID thật, không thêm mới
               if (senderId === this.currentUserId) {
@@ -185,10 +185,10 @@ export class ChatComponent implements OnInit, OnDestroy {
               } else {
                 // Tin nhắn từ người khác - kiểm tra trùng lặp trước khi thêm
                 const isDuplicate = this.messages.some(
-                  msg => msg.id === newMessage.id || 
-                    (msg.sender_id === senderId && 
-                     msg.content === newMessage.content &&
-                     Math.abs(new Date(msg.createdAt).getTime() - new Date(newMessage.createdAt).getTime()) < 2000)
+                  msg => msg.id === newMessage.id ||
+                    (msg.sender_id === senderId &&
+                      msg.content === newMessage.content &&
+                      Math.abs(new Date(msg.createdAt).getTime() - new Date(newMessage.createdAt).getTime()) < 2000)
                 );
 
                 if (!isDuplicate) {
