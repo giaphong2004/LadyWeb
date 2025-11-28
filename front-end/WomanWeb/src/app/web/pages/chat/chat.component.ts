@@ -153,27 +153,48 @@ export class ChatComponent implements OnInit, OnDestroy {
             newMessage.conversation_id = (newMessage as any).conversationId;
           }
 
+          // Lấy sender_id từ message (có thể là senderId hoặc sender_id)
+          const senderId = (newMessage as any).senderId || newMessage.sender_id;
+
           // Bọc đoạn code cập nhật giao diện trong zone.run()
           this.zone.run(() => {
             if (this.selectedConversation?.id && conversationId === this.selectedConversation.id) {
-              // Kiểm tra xem tin nhắn đã tồn tại trong mảng chưa (tránh trùng lặp với optimistic update)
-              const existingMessageIndex = this.messages.findIndex(
-                msg => msg.sender_id === newMessage.sender_id &&
-                  msg.content === newMessage.content &&
-                  Math.abs(new Date(msg.createdAt).getTime() - new Date(newMessage.createdAt).getTime()) < 5000 // Trong vòng 5 giây
-              );
+              
+              // FIX: Nếu tin nhắn này là của chính mình (đã được thêm bởi optimistic update)
+              // thì chỉ cập nhật ID thật, không thêm mới
+              if (senderId === this.currentUserId) {
+                // Tìm tin nhắn tạm thời dựa trên content và thời gian gần đây
+                const tempMessageIndex = this.messages.findIndex(
+                  msg => msg.sender_id === this.currentUserId &&
+                    msg.content === newMessage.content &&
+                    // Tin nhắn tạm thời có ID là timestamp (số lớn) hoặc chưa có ID thật từ server
+                    (msg.id > 1000000000000 || msg.id === 0)
+                );
 
-              if (existingMessageIndex !== -1) {
-                // Thay thế tin nhắn tạm thời bằng tin nhắn thật từ server (cập nhật ID thật)
-                this.messages[existingMessageIndex] = newMessage;
-                this.cdr.detectChanges();
+                if (tempMessageIndex !== -1) {
+                  // Cập nhật tin nhắn tạm thời với dữ liệu thật từ server
+                  this.messages[tempMessageIndex] = {
+                    ...this.messages[tempMessageIndex],
+                    id: newMessage.id, // Cập nhật ID thật
+                    createdAt: newMessage.createdAt
+                  };
+                  this.cdr.detectChanges();
+                }
+                // Nếu không tìm thấy tin nhắn tạm (trường hợp hiếm), không làm gì
+                // để tránh duplicate
               } else {
-                // Nếu không tìm thấy tin nhắn tạm thời, thêm tin nhắn mới
-                // Điều này xảy ra khi:
-                // 1. Tin nhắn từ người khác
-                // 2. Tin nhắn của mình nhưng optimistic update không khớp (ví dụ: gửi quá nhanh)
-                this.messages = [...this.messages, newMessage];
-                this.cdr.detectChanges();
+                // Tin nhắn từ người khác - kiểm tra trùng lặp trước khi thêm
+                const isDuplicate = this.messages.some(
+                  msg => msg.id === newMessage.id || 
+                    (msg.sender_id === senderId && 
+                     msg.content === newMessage.content &&
+                     Math.abs(new Date(msg.createdAt).getTime() - new Date(newMessage.createdAt).getTime()) < 2000)
+                );
+
+                if (!isDuplicate) {
+                  this.messages = [...this.messages, newMessage];
+                  this.cdr.detectChanges();
+                }
               }
             }
           });
