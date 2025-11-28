@@ -11,7 +11,7 @@ class ChatService {
   initialize(server) {
     this.io = socketIo(server, {
       cors: {
-        origin: "http://localhost:4200",
+        origin: ["http://localhost:4200", "https://lady-web.vercel.app"],
         methods: ["GET", "POST"],
         credentials: true
       }
