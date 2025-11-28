@@ -13,7 +13,8 @@
       <app-chat-header [chatPartner]="getChatPartner()"></app-chat-header>
 
       <!-- Message Area: Truyền vào danh sách tin nhắn -->
-      <app-chat-message-area [messages]="messages" [currentUserId]="currentUserId">
+      <app-chat-message-area [messages]="messages" [currentUserId]="currentUserId"
+        [conversationId]="selectedConversation?.id">
       </app-chat-message-area>
 
       <!-- Input Area: Lắng nghe sự kiện gửi tin nhắn -->

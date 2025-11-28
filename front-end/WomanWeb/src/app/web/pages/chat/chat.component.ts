@@ -113,11 +113,18 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.chatSocket.onNewMessage()
       .pipe(
         // Mỗi khi có tin nhắn mới, chúng ta sẽ tải lại danh sách cuộc trò chuyện
-        // để đảm bảo tab "Trò chuyện" luôn được cập nhật (Fix cho Yêu cầu 2)
+        // để đảm bảo tab "Trò chuyện" luôn được cập nhật
         switchMap(newMessage => {
-          // 3. Bọc đoạn code cập nhật giao diện trong zone.run()
+          // FIX: Backend gửi conversationId (camelCase), frontend dùng conversation_id (snake_case)
+          // Chuẩn hóa message để có cả 2 trường
+          const conversationId = (newMessage as any).conversationId || newMessage.conversation_id;
+          if ((newMessage as any).conversationId && !newMessage.conversation_id) {
+            newMessage.conversation_id = (newMessage as any).conversationId;
+          }
+
+          // Bọc đoạn code cập nhật giao diện trong zone.run()
           this.zone.run(() => {
-            if (this.selectedConversation?.id && newMessage.conversation_id === this.selectedConversation.id) {
+            if (this.selectedConversation?.id && conversationId === this.selectedConversation.id) {
               // Kiểm tra xem tin nhắn đã tồn tại trong mảng chưa (tránh trùng lặp với optimistic update)
               const existingMessageIndex = this.messages.findIndex(
                 msg => msg.sender_id === newMessage.sender_id &&
@@ -126,16 +133,17 @@ export class ChatComponent implements OnInit, OnDestroy {
               );
 
               if (existingMessageIndex !== -1) {
-                // Thay thế tin nhắn tạm thời bằng tin nhắn thật từ server
+                // Thay thế tin nhắn tạm thời bằng tin nhắn thật từ server (cập nhật ID thật)
                 this.messages[existingMessageIndex] = newMessage;
+                this.cdr.detectChanges();
               } else {
                 // Nếu không tìm thấy tin nhắn tạm thời, thêm tin nhắn mới
-                // (Trường hợp tin nhắn từ người khác)
-                if (newMessage.sender_id !== this.currentUserId) {
-                  this.messages = [...this.messages, newMessage];
-                }
+                // Điều này xảy ra khi:
+                // 1. Tin nhắn từ người khác
+                // 2. Tin nhắn của mình nhưng optimistic update không khớp (ví dụ: gửi quá nhanh)
+                this.messages = [...this.messages, newMessage];
+                this.cdr.detectChanges();
               }
-              this.cdr.detectChanges(); // Buộc Angular kiểm tra thay đổi
             }
           });
           // Luôn tải lại danh sách
