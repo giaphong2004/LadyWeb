@@ -2,16 +2,19 @@
 
 .chat-sidebar {
   width: 320px;
+  min-width: 320px;
   border-right: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
   background-color: #fdfcff;
-  height: 100%; /* Đảm bảo sidebar có full height */
+  height: 100%;
+  transition: transform 0.3s ease, width 0.3s ease;
 }
 
 .sidebar-tabs {
   display: flex;
   border-bottom: 1px solid #e0e0e0;
+  flex-shrink: 0;
 }
 
 .sidebar-tabs button {
@@ -36,6 +39,7 @@
   padding: 16px;
   border-bottom: 1px solid #e0e0e0;
   background-color: #f8f7ff;
+  flex-shrink: 0;
 }
 
 .sidebar-header h3 {
@@ -48,8 +52,7 @@
 .contact-list {
   overflow-y: auto;
   flex-grow: 1;
-  max-height: calc(100vh - 300px); /* Giới hạn height để có thể scroll */
-  min-height: 0; /* Quan trọng để flex hoạt động đúng */
+  min-height: 0;
 }
 
 /* Custom scrollbar */
@@ -90,6 +93,7 @@
 .contact-avatar {
   width: 48px;
   height: 48px;
+  min-width: 48px;
   border-radius: 50%;
   margin-right: 12px;
   object-fit: cover;
@@ -97,11 +101,15 @@
 
 .contact-info {
   flex-grow: 1;
+  min-width: 0; /* Allow text truncation */
 }
 
 .contact-name {
   font-weight: 600;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .contact-status {
@@ -111,4 +119,105 @@
 
 .contact-status.online {
   color: #28a745;
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+/* Large Tablet */
+@media (max-width: 992px) {
+  .chat-sidebar {
+    width: 280px;
+    min-width: 280px;
+  }
+
+  .contact-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+  }
+
+  .contact-item {
+    padding: 10px 14px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .chat-sidebar {
+    width: 260px;
+    min-width: 260px;
+  }
+
+  .sidebar-tabs button {
+    padding: 12px 8px;
+    font-size: 0.9rem;
+  }
+
+  .contact-avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    margin-right: 10px;
+  }
+
+  .contact-name {
+    font-size: 0.95rem;
+  }
+
+  .contact-status {
+    font-size: 0.75rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .chat-sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    z-index: 100;
+    transform: translateX(-100%);
+    border-right: none;
+  }
+
+  .chat-sidebar.show {
+    transform: translateX(0);
+  }
+
+  .sidebar-tabs button {
+    padding: 14px 12px;
+    font-size: 0.95rem;
+  }
+
+  .sidebar-header {
+    padding: 14px 16px;
+  }
+
+  .sidebar-header h3 {
+    font-size: 1rem;
+  }
+
+  .contact-item {
+    padding: 14px 16px;
+  }
+
+  .contact-avatar {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    margin-right: 12px;
+  }
+
+  .contact-name {
+    font-size: 1rem;
+  }
+
+  .contact-status {
+    font-size: 0.8rem;
+  }
 }

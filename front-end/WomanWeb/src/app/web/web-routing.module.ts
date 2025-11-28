@@ -13,6 +13,7 @@ import { LibraryComponent } from './pages/library/library.component';
 import { DetailsComponent } from './pages/details/details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ExpertComponent } from './pages/expert/expert.component';
+import { GetStartedComponent } from './pages/get-started/get-started.component';
 
 import { DetailsProfileComponent } from './pages/details-profile/details-profile.component';
 import { ChatComponent } from './pages/chat/chat.component';
@@ -60,13 +61,16 @@ const routes: Routes = [{
   component: ChatComponent
 },
 {
-  path: '',
+  path: 'home',
   component: MainLayoutComponent, // Layout này có header và footer
   children: [
     { path: '', component: HomeComponent }, // Trang chủ
     // { path: 'about', component: AboutComponent }, // Các trang khác cũng đặt vào đây
     // { path: 'contact', component: ContactComponent },
   ]
+},
+{
+  path: '', component: GetStartedComponent // Trang Get Started là trang mặc định
 },
 ];
 

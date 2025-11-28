@@ -13,9 +13,11 @@ export class ChatSidebarComponent {
   @Input() experts: Expert[] | null = [];
   @Input() conversations: Conversation[] | null = [];
   @Input() selectedConversationId: number | null = null;
+  @Input() isOpen: boolean = true; // For mobile toggle
 
   @Output() expertSelected = new EventEmitter<Expert>();
   @Output() conversationSelected = new EventEmitter<Conversation>();
+  @Output() sidebarClosed = new EventEmitter<void>(); // Emit when sidebar should close
 
   // Biến để quản lý tab đang hoạt động
   activeTab: 'conversations' | 'experts' = 'conversations';
@@ -34,10 +36,19 @@ export class ChatSidebarComponent {
 
   selectConversation(conversation: Conversation): void {
     this.conversationSelected.emit(conversation);
+    this.closeSidebarOnMobile();
   }
 
   selectExpert(expert: Expert): void {
     this.expertSelected.emit(expert);
+    this.closeSidebarOnMobile();
+  }
+
+  closeSidebarOnMobile(): void {
+    // Emit event to close sidebar on mobile after selection
+    if (window.innerWidth <= 576) {
+      this.sidebarClosed.emit();
+    }
   }
 
   // Lấy avatar cho conversation dựa trên role của user hiện tại

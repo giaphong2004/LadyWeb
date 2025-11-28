@@ -2,13 +2,14 @@
 
 .chat-layout {
   display: flex;
-  height: calc(100vh - 200px); /* Chiều cao linh hoạt */
-  min-height: 500px; /* Đảm bảo height tối thiểu */
+  height: calc(100vh - 200px);
+  min-height: 500px;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   overflow: hidden;
   background-color: #fff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
 .chat-main {
@@ -16,6 +17,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  min-width: 0; /* Prevent flex item overflow */
 }
 
 .no-chat-selected {
@@ -27,10 +29,149 @@
   color: #888;
   background-color: #f9f9f9;
   text-align: center;
+  padding: 2rem;
+}
+
+.no-chat-icon {
+  font-size: 4rem;
+  color: #ddd;
+  margin-bottom: 1.5rem;
 }
 
 .no-chat-selected h2 {
   font-size: 1.5rem;
   margin-bottom: 8px;
   color: #333;
+}
+
+.no-chat-selected p {
+  font-size: 1rem;
+  max-width: 300px;
+  margin-bottom: 1.5rem;
+}
+
+/* Mobile start button - hidden on desktop */
+.mobile-start-btn {
+  display: none;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-pink-dark) 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+}
+
+.mobile-start-btn i {
+  font-size: 1rem;
+}
+
+/* Sidebar overlay - hidden by default */
+.sidebar-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+/* Large Tablet */
+@media (max-width: 992px) {
+  .chat-layout {
+    height: calc(100vh - 180px);
+    min-height: 450px;
+  }
+
+  .no-chat-icon {
+    font-size: 3.5rem;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .chat-layout {
+    height: calc(100vh - 160px);
+    min-height: 400px;
+    border-radius: 8px;
+  }
+
+  .no-chat-icon {
+    font-size: 3rem;
+  }
+
+  .no-chat-selected h2 {
+    font-size: 1.25rem;
+  }
+
+  .no-chat-selected p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .container.py-5 {
+    padding: 0.5rem !important;
+  }
+
+  .chat-layout {
+    height: calc(100dvh - 120px);
+    min-height: 300px;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .no-chat-selected {
+    padding: 1.5rem;
+  }
+
+  .no-chat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .no-chat-selected h2 {
+    font-size: 1.1rem;
+  }
+
+  .no-chat-selected p {
+    font-size: 0.85rem;
+    max-width: 250px;
+    margin-bottom: 1.25rem;
+  }
+
+  .mobile-start-btn {
+    display: inline-flex;
+  }
+
+  /* Sidebar overlay for mobile */
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
 }

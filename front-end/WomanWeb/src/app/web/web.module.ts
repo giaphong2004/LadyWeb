@@ -70,6 +70,7 @@ import { ChatSidebarComponent } from './components/chat-sidebar/chat-sidebar.com
 import { ChatHeaderComponent } from './components/chat-header/chat-header.component';
 import { ChatMessageAreaComponent } from './components/chat-message-area/chat-message-area.component';
 import { ChatInputAreaComponent } from './components/chat-input-area/chat-input-area.component';
+import { GetStartedComponent } from './pages/get-started/get-started.component';
 
 
 @NgModule({
@@ -134,7 +135,8 @@ import { ChatInputAreaComponent } from './components/chat-input-area/chat-input-
     ChatSidebarComponent,
     ChatHeaderComponent,
     ChatMessageAreaComponent,
-    ChatInputAreaComponent
+    ChatInputAreaComponent,
+    GetStartedComponent
   ],
   imports: [
     CommonModule,

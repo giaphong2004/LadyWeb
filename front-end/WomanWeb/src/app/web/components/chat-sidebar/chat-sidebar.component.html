@@ -1,5 +1,5 @@
 <!-- chat-sidebar.component.html -->
-<aside class="chat-sidebar">
+<aside class="chat-sidebar" [class.show]="isOpen">
   <!-- Tab переключатель - chỉ hiển thị nếu user là 'user' -->
   <div class="sidebar-tabs" *ngIf="shouldShowExpertsTab">
     <button [class.active]="activeTab === 'conversations'" (click)="activeTab = 'conversations'">

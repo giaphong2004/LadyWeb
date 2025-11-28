@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../../shared/models/chat.models';
 
 @Component({
@@ -9,4 +9,9 @@ import { User } from '../../../shared/models/chat.models';
 })
 export class ChatHeaderComponent {
   @Input() chatPartner: User | null = null;
+  @Output() menuToggle = new EventEmitter<void>();
+
+  onMenuClick(): void {
+    this.menuToggle.emit();
+  }
 }

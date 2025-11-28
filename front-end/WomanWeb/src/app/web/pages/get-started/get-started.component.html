@@ -1,0 +1,265 @@
+<div class="get-started-container">
+  <!-- Background Layer -->
+  <div class="gs-background">
+    <div class="gs-bg-image"></div>
+    <div class="gs-bg-overlay"></div>
+    <div class="gs-bg-gradient"></div>
+  </div>
+
+  <!-- Floating Decorative Elements -->
+  <div class="gs-floating-elements">
+    <div class="gs-float-circle gs-circle-1"></div>
+    <div class="gs-float-circle gs-circle-2"></div>
+    <div class="gs-float-circle gs-circle-3"></div>
+  </div>
+
+  <!-- Header/Navigation -->
+  <header class="gs-header">
+    <div class="gs-logo">
+      <a routerLink="/home">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <span>LadyHealth</span>
+      </a>
+    </div>
+    <div class="gs-header-actions">
+      <a routerLink="/home" class="gs-explore-link">Khám phá</a>
+      <a routerLink="/login" class="gs-signin-link">Đăng nhập</a>
+    </div>
+  </header>
+
+  <!-- Main Hero Section -->
+  <main class="gs-main">
+    <!-- Hero Content -->
+    <section class="gs-hero-section">
+      <div class="gs-hero-content">
+        <h1 class="gs-title">
+          <span class="gs-highlight">Sức Khỏe Của Bạn,</span>
+          <span class="gs-subtitle">Hạnh Phúc Của Bạn</span>
+        </h1>
+
+        <p class="gs-description">
+          Chào mừng bạn đến với LadyHealth - nền tảng chăm sóc sức khỏe toàn diện
+          dành riêng cho phụ nữ Việt Nam. Theo dõi chu kỳ, kết nối chuyên gia,
+          và khám phá kiến thức y khoa đáng tin cậy.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="gs-cta-section">
+          <a routerLink="/login" [queryParams]="{ view: 'signup' }" class="gs-btn-primary">
+            <i class="fa-solid fa-rocket"></i>
+            Bắt đầu miễn phí
+          </a>
+          <a routerLink="/home" class="gs-btn-secondary">
+            <i class="fa-solid fa-play-circle"></i>
+            Tìm hiểu thêm
+          </a>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="gs-quick-stats">
+          <div class="gs-stat">
+            <span class="gs-stat-number">1000+</span>
+            <span class="gs-stat-label">Người dùng</span>
+          </div>
+          <div class="gs-stat-divider"></div>
+          <div class="gs-stat">
+            <span class="gs-stat-number">50+</span>
+            <span class="gs-stat-label">Chuyên gia</span>
+          </div>
+          <div class="gs-stat-divider"></div>
+          <div class="gs-stat">
+            <span class="gs-stat-number">4.9</span>
+            <span class="gs-stat-label">Đánh giá</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="gs-features-section">
+      <h2 class="gs-section-title">Tại sao chọn LadyHealth?</h2>
+
+      <div class="gs-features-grid">
+        <div class="gs-feature-card">
+          <div class="gs-feature-icon">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <h3>Theo dõi chu kỳ thông minh</h3>
+          <p>Dự đoán chính xác ngày kinh nguyệt, rụng trứng với thuật toán AI tiên tiến</p>
+        </div>
+
+        <div class="gs-feature-card">
+          <div class="gs-feature-icon">
+            <i class="fa-solid fa-user-doctor"></i>
+          </div>
+          <h3>Tư vấn chuyên gia</h3>
+          <p>Chat trực tiếp với bác sĩ và chuyên gia sức khỏe phụ nữ uy tín</p>
+        </div>
+
+        <div class="gs-feature-card">
+          <div class="gs-feature-icon">
+            <i class="fa-solid fa-book-medical"></i>
+          </div>
+          <h3>Thư viện kiến thức</h3>
+          <p>Hàng ngàn bài viết y khoa được xác minh bởi đội ngũ chuyên gia</p>
+        </div>
+
+        <div class="gs-feature-card">
+          <div class="gs-feature-icon">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <h3>Công cụ tính toán</h3>
+          <p>Tính ngày rụng trứng, ngày dự sinh, kiểm tra thai kỳ nhanh chóng</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="gs-how-section">
+      <h2 class="gs-section-title">Bắt đầu chỉ trong 3 bước</h2>
+
+      <div class="gs-steps">
+        <div class="gs-step">
+          <div class="gs-step-number">1</div>
+          <div class="gs-step-content">
+            <h3>Tạo tài khoản</h3>
+            <p>Đăng ký miễn phí chỉ với email của bạn</p>
+          </div>
+        </div>
+
+        <div class="gs-step-connector"></div>
+
+        <div class="gs-step">
+          <div class="gs-step-number">2</div>
+          <div class="gs-step-content">
+            <h3>Cập nhật thông tin</h3>
+            <p>Nhập thông tin chu kỳ để nhận dự đoán chính xác</p>
+          </div>
+        </div>
+
+        <div class="gs-step-connector"></div>
+
+        <div class="gs-step">
+          <div class="gs-step-number">3</div>
+          <div class="gs-step-content">
+            <h3>Khám phá tính năng</h3>
+            <p>Sử dụng các công cụ và kết nối với chuyên gia</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="gs-testimonials-section">
+      <h2 class="gs-section-title">Người dùng nói gì về chúng tôi?</h2>
+
+      <!-- Scroll hint for mobile -->
+      <p class="gs-scroll-hint">
+        <i class="fa-solid fa-hand-pointer"></i>
+        Vuốt để xem thêm
+      </p>
+
+      <div class="gs-testimonials">
+        <div class="gs-testimonial-card">
+          <div class="gs-testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="gs-testimonial-text">"App rất dễ sử dụng và dự đoán chu kỳ cực kỳ chính xác. Tôi không còn lo lắng
+            về việc theo dõi nữa!"</p>
+          <div class="gs-testimonial-author">
+            <div class="gs-author-avatar">M</div>
+            <div class="gs-author-info">
+              <span class="gs-author-name">Minh Anh</span>
+              <span class="gs-author-title">Nhân viên văn phòng</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gs-testimonial-card">
+          <div class="gs-testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="gs-testimonial-text">"Tính năng tư vấn với chuyên gia rất hữu ích. Tôi được giải đáp mọi thắc mắc
+            một cách nhanh chóng."</p>
+          <div class="gs-testimonial-author">
+            <div class="gs-author-avatar">T</div>
+            <div class="gs-author-info">
+              <span class="gs-author-name">Thu Hương</span>
+              <span class="gs-author-title">Sinh viên</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gs-testimonial-card">
+          <div class="gs-testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="gs-testimonial-text">"Thư viện kiến thức phong phú giúp tôi hiểu rõ hơn về cơ thể mình. Highly
+            recommend!"</p>
+          <div class="gs-testimonial-author">
+            <div class="gs-author-avatar">L</div>
+            <div class="gs-author-info">
+              <span class="gs-author-name">Lan Phương</span>
+              <span class="gs-author-title">Giáo viên</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="gs-final-cta">
+      <div class="gs-final-cta-content">
+        <h2>Sẵn sàng bắt đầu hành trình chăm sóc bản thân?</h2>
+        <p>Tham gia cùng hàng ngàn phụ nữ đang sử dụng LadyHealth mỗi ngày</p>
+        <a routerLink="/login" [queryParams]="{ view: 'signup' }" class="gs-btn-primary gs-btn-large">
+          <i class="fa-solid fa-user-plus"></i>
+          Tạo tài khoản miễn phí ngay
+        </a>
+        <p class="gs-signin-text">
+          Đã có tài khoản?
+          <a routerLink="/login" class="gs-signin-link-inline">Đăng nhập ngay</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Trust Indicators -->
+  <section class="gs-trust-section">
+    <div class="gs-trust-container">
+      <div class="gs-trust-item">
+        <i class="fa-solid fa-check-circle"></i>
+        <span>Miễn phí 100%</span>
+      </div>
+      <div class="gs-trust-item">
+        <i class="fa-solid fa-lock"></i>
+        <span>Bảo mật cao</span>
+      </div>
+      <div class="gs-trust-item">
+        <i class="fa-solid fa-headset"></i>
+        <span>Hỗ trợ 24/7</span>
+      </div>
+      <div class="gs-trust-item">
+        <i class="fa-solid fa-certificate"></i>
+        <span>Chuyên gia uy tín</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="gs-footer">
+    <p>&copy; 2025 LadyHealth. Tất cả quyền được bảo lưu.</p>
+  </footer>
+</div>

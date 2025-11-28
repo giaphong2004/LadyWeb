@@ -6,23 +6,130 @@
   padding: 12px 20px;
   border-bottom: 1px solid #e0e0e0;
   background-color: #fff;
+  flex-shrink: 0;
+}
+
+/* Mobile menu toggle button */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  margin-right: 12px;
+  cursor: pointer;
+  color: var(--brand-pink);
+  font-size: 1.25rem;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.mobile-menu-btn:hover {
+  background-color: #f5f0ff;
 }
 
 .avatar {
   width: 48px;
   height: 48px;
+  min-width: 48px;
   border-radius: 50%;
   margin-right: 16px;
   object-fit: cover;
+}
+
+.user-info {
+  flex-grow: 1;
+  min-width: 0; /* Allow text truncation */
 }
 
 .user-info .name {
   font-weight: 600;
   font-size: 1.1rem;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .user-info .status {
   font-size: 0.85rem;
-  color: #28a745; /* Màu xanh cho online */
+  color: #28a745;
+}
+
+/* ========================================
+   RESPONSIVE STYLES
+   ======================================== */
+
+/* Large Tablet */
+@media (max-width: 992px) {
+  .chat-header {
+    padding: 10px 16px;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    margin-right: 12px;
+  }
+
+  .user-info .name {
+    font-size: 1rem;
+  }
+
+  .user-info .status {
+    font-size: 0.8rem;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .chat-header {
+    padding: 10px 14px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    margin-right: 10px;
+  }
+
+  .user-info .name {
+    font-size: 0.95rem;
+  }
+
+  .user-info .status {
+    font-size: 0.75rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .chat-header {
+    padding: 10px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    margin-right: 10px;
+  }
+
+  .user-info .name {
+    font-size: 0.9rem;
+  }
+
+  .user-info .status {
+    font-size: 0.7rem;
+  }
 }

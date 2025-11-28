@@ -62,7 +62,7 @@ export class FormLoginComponent implements OnInit {
 
         // 3. Chuyển hướng ngay lập tức về trang chủ
         // Vì không hiện popup ở đây nên sẽ KHÔNG bao giờ bị vỡ layout trang Login
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         // Lỗi thì vẫn hiện Swal ở trang hiện tại (nhớ giữ heightAuto: false)

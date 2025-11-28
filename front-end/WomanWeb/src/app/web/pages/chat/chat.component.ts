@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone, ChangeDetectorRef, HostListener } from '@angular/core';
 // SỬA LỖI: Import từ các đường dẫn gốc của RxJS
 import { BehaviorSubject, Observable, Subject, combineLatest } from 'rxjs';
 import { takeUntil, switchMap, filter, take } from 'rxjs/operators';
@@ -30,6 +30,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   currentUserId: number | null = null;
   private destroy$ = new Subject<void>();
 
+  // Mobile sidebar state
+  isSidebarOpen: boolean = true;
+
   constructor(
     private chatApi: ChatApiService,
     private chatSocket: ChatSocketService,
@@ -50,6 +53,34 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     // LOGIC MỚI: Xử lý route khi component được khởi tạo
     this.handleRouteParameters();
+
+    // Check initial screen size for sidebar state
+    this.checkScreenSize();
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize(): void {
+    // On mobile (<=576px), sidebar is hidden by default
+    // On larger screens, sidebar is always visible
+    if (window.innerWidth <= 576) {
+      this.isSidebarOpen = !this.selectedConversation; // Show sidebar if no chat selected
+    } else {
+      this.isSidebarOpen = true;
+    }
+  }
+
+  toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  closeSidebar(): void {
+    if (window.innerWidth <= 576) {
+      this.isSidebarOpen = false;
+    }
   }
 
   // --- HÀM ĐÃ SỬA LỖI ---

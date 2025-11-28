@@ -4,13 +4,18 @@
     <!-- Sidebar: Truyền vào danh sách chuyên gia và cuộc trò chuyện -->
     <!-- Lắng nghe sự kiện khi người dùng chọn -->
     <app-chat-sidebar [experts]="experts$ | async" [conversations]="conversations$ | async"
-      [selectedConversationId]="selectedConversation?.id" (expertSelected)="onExpertSelected($event)"
-      (conversationSelected)="onConversationSelected($event)">
+      [selectedConversationId]="selectedConversation?.id" [isOpen]="isSidebarOpen"
+      (expertSelected)="onExpertSelected($event)" (conversationSelected)="onConversationSelected($event)"
+      (sidebarClosed)="closeSidebar()">
     </app-chat-sidebar>
+
+    <!-- Mobile sidebar overlay -->
+    <div class="sidebar-overlay" [class.show]="isSidebarOpen" (click)="closeSidebar()"></div>
 
     <main class="chat-main" *ngIf="selectedConversation; else noChatSelected">
       <!-- Header: Truyền vào thông tin người đang chat cùng -->
-      <app-chat-header [chatPartner]="getChatPartner()"></app-chat-header>
+      <app-chat-header [chatPartner]="getChatPartner()" (menuToggle)="toggleSidebar()">
+      </app-chat-header>
 
       <!-- Message Area: Truyền vào danh sách tin nhắn -->
       <app-chat-message-area [messages]="messages" [currentUserId]="currentUserId"
@@ -24,8 +29,13 @@
     <!-- Hiển thị khi chưa có cuộc trò chuyện nào được chọn -->
     <ng-template #noChatSelected>
       <div class="no-chat-selected">
+        <i class="fas fa-comments no-chat-icon"></i>
         <h2>Chào mừng bạn đến với WomenCare Chat</h2>
         <p>Chọn một chuyên gia hoặc một cuộc trò chuyện để bắt đầu.</p>
+        <button class="mobile-start-btn" (click)="toggleSidebar()">
+          <i class="fas fa-user-md"></i>
+          Chọn chuyên gia
+        </button>
       </div>
     </ng-template>
 
