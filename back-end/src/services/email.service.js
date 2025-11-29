@@ -1,15 +1,19 @@
 // services/email.service.js
 
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 
-// Cấu hình transporter (phương tiện vận chuyển mail)
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.GMAIL_USER, // Lấy từ file .env
-        pass: process.env.GMAIL_PASS  // Lấy từ file .env
-    }
-});
+// Debug: Log biến môi trường (ẩn giá trị thực)
+console.log('=== EMAIL SERVICE CONFIGURATION ===');
+console.log('SENDGRID_API_KEY exists:', !!process.env.SENDGRID_API_KEY);
+console.log('GMAIL_USER exists:', !!process.env.GMAIL_USER);
+
+// Cấu hình SendGrid API
+if (process.env.SENDGRID_API_KEY) {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    console.log('✅ SendGrid Web API initialized');
+} else {
+    console.error('❌ SENDGRID_API_KEY not found!');
+}
 
 /**
  * Gửi email mời chuyên gia với mật khẩu tạm thời
@@ -18,9 +22,9 @@ const transporter = nodemailer.createTransport({
  * @param {string} temporaryPassword Mật khẩu tạm thời
  */
 const sendInvitationEmail = async (expertEmail, expertName, temporaryPassword) => {
-    const mailOptions = {
-        from: `"LadyHeath Web" <${process.env.GMAIL_USER}>`,
+    const msg = {
         to: expertEmail,
+        from: process.env.GMAIL_USER, // Email đã verify trên SendGrid
         subject: 'Thư mời trở thành Chuyên gia trên LadyHeath Web',
         html: `
             <h1>Chào mừng ${expertName},</h1>
@@ -36,12 +40,16 @@ const sendInvitationEmail = async (expertEmail, expertName, temporaryPassword) =
     };
 
     try {
-        await transporter.sendMail(mailOptions);
-        console.log(`Invitation email sent to ${expertEmail}`);
+        console.log(`Attempting to send invitation email to ${expertEmail}...`);
+        const response = await sgMail.send(msg);
+        console.log(`✅ Invitation email sent successfully to ${expertEmail}`);
+        return response;
     } catch (error) {
-        console.error(`Error sending email to ${expertEmail}:`, error);
-        // Ném lỗi để controller có thể xử lý
-        throw new Error('Could not send invitation email.');
+        console.error(`❌ Error sending email to ${expertEmail}:`, error.message);
+        if (error.response) {
+            console.error('SendGrid error details:', error.response.body);
+        }
+        throw new Error(`Could not send invitation email: ${error.message}`);
     }
 };
 
