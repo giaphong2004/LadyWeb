@@ -18,6 +18,7 @@ import { GuestGuard } from '../shared/auth/guest.guard';
 
 import { DetailsProfileComponent } from './pages/details-profile/details-profile.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { HealthDashboardComponent } from './pages/health-dashboard/health-dashboard.component';
 
 const routes: Routes = [{
   path: 'login', component: LoginSignupComponent
@@ -60,6 +61,10 @@ const routes: Routes = [{
 {
   path: 'chat/:expertId',
   component: ChatComponent
+},
+{
+  path: 'health-dashboard',
+  component: HealthDashboardComponent
 },
 {
   path: 'home',

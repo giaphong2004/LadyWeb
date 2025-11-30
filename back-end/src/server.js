@@ -24,6 +24,12 @@ const PostTag = require('./models/postTag.model');
 const Conversation = require('./models/conversation.model');
 const Message = require('./models/message.model');
 
+// Health Toolkit Models
+const UserHealthProfile = require('./models/userHealthProfile.model');
+const CycleHistory = require('./models/cycleHistory.model');
+const DailyLog = require('./models/dailyLog.model');
+const SymptomPattern = require('./models/symptomPattern.model');
+
 
 // Thiết lập mối quan hệ
 // User <-> ExpertProfile (One-to-One)
@@ -49,6 +55,19 @@ Conversation.hasMany(Message, { as: 'messages', foreignKey: 'conversation_id' })
 Message.belongsTo(Conversation, { foreignKey: 'conversation_id' });
 Message.belongsTo(User, { as: 'sender', foreignKey: 'sender_id' });
 
+// ---- Health Toolkit Associations ----
+User.hasOne(UserHealthProfile, { foreignKey: 'user_id', as: 'HealthProfile' });
+UserHealthProfile.belongsTo(User, { foreignKey: 'user_id' });
+
+User.hasMany(CycleHistory, { foreignKey: 'user_id', as: 'cycles' });
+CycleHistory.belongsTo(User, { foreignKey: 'user_id' });
+
+User.hasMany(DailyLog, { foreignKey: 'user_id', as: 'dailyLogs' });
+DailyLog.belongsTo(User, { foreignKey: 'user_id' });
+
+User.hasMany(SymptomPattern, { foreignKey: 'user_id', as: 'symptomPatterns' });
+SymptomPattern.belongsTo(User, { foreignKey: 'user_id' });
+
 // làm cho các model có sẵn trong routes và chat service
 app.locals.models = { Conversation, Message, User };
 global.models = { Conversation, Message, User, ExpertProfile };
@@ -65,6 +84,7 @@ const tagRoutes = require('./routes/tag.routes');
 const publicRoutes = require('./routes/public.routes');
 const chatRoutes = require('./routes/chat.routes');
 const aiRoutes = require('./routes/ai.routes');
+const healthRoutes = require('./routes/health.routes');
 
 
 app.use('/api/auth', authRoutes);
@@ -78,6 +98,7 @@ app.use('/api/tags', tagRoutes);
 app.use('/api/public', publicRoutes); 
 app.use('/api/chat', chatRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/health', healthRoutes);
 
 
 // Route cơ bản để kiểm tra server
