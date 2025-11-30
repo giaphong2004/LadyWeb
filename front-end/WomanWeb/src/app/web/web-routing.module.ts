@@ -14,6 +14,7 @@ import { DetailsComponent } from './pages/details/details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ExpertComponent } from './pages/expert/expert.component';
 import { GetStartedComponent } from './pages/get-started/get-started.component';
+import { GuestGuard } from '../shared/auth/guest.guard';
 
 import { DetailsProfileComponent } from './pages/details-profile/details-profile.component';
 import { ChatComponent } from './pages/chat/chat.component';
@@ -70,7 +71,9 @@ const routes: Routes = [{
   ]
 },
 {
-  path: '', component: GetStartedComponent // Trang Get Started là trang mặc định
+  path: '',
+  component: GetStartedComponent, // Trang Get Started là trang mặc định
+  canActivate: [GuestGuard] // Nếu đã đăng nhập sẽ redirect đến /home
 },
 ];
 
