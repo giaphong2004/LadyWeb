@@ -50,7 +50,7 @@ export class ExpertsHeaderComponent {
 
     try {
       // BƯỚC 1: Gọi API backend để lấy chữ ký xác thực
-      const authApiUrl = 'https://ladyweb-production.up.railway.app/api/imagekit/auth';
+      const authApiUrl = 'https://woman-web-production.up.railway.app/api/imagekit/auth';
       const authParams = await firstValueFrom(this.http.get<any>(authApiUrl));
 
       // BƯỚC 2: Dùng chữ ký để gọi hàm upload

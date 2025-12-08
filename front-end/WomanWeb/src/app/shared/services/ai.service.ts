@@ -23,7 +23,7 @@ export interface QuickQuestion {
   providedIn: 'root'
 })
 export class AiService {
-  private apiUrl = 'https://ladyweb-production.up.railway.app/api/ai';
+  private apiUrl = 'https://woman-web-production.up.railway.app/api/ai';
 
   constructor(private http: HttpClient) { }
 

@@ -184,7 +184,7 @@ export interface CalendarDay {
   providedIn: 'root'
 })
 export class HealthToolkitService {
-  private apiUrl = 'https://ladyweb-production.up.railway.app/api/health';
+  private apiUrl = 'https://woman-web-production.up.railway.app/api/health';
 
   // State management
   private dashboardData$ = new BehaviorSubject<DashboardData | null>(null);

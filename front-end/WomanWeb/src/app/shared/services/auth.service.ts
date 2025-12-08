@@ -29,7 +29,7 @@ export interface User {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://ladyweb-production.up.railway.app/api/auth';
+  private apiUrl = 'https://woman-web-production.up.railway.app/api/auth';
 
   // Subject cho trạng thái đăng nhập
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false);
