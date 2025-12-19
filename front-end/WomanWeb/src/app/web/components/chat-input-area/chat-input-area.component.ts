@@ -14,7 +14,7 @@ export class ChatInputAreaComponent {
     const content = this.messageContent.trim();
     if (content) {
       this.messageSent.emit(content);
-      this.messageContent = ''; // Xóa input sau khi gửi
+      this.messageContent = '';
     }
   }
 }

@@ -15,71 +15,35 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ExpertComponent } from './pages/expert/expert.component';
 import { GetStartedComponent } from './pages/get-started/get-started.component';
 import { GuestGuard } from '../shared/auth/guest.guard';
-
 import { DetailsProfileComponent } from './pages/details-profile/details-profile.component';
 import { ChatComponent } from './pages/chat/chat.component';
-import { HealthDashboardComponent } from './pages/health-dashboard/health-dashboard.component';
 
-const routes: Routes = [{
-  path: 'login', component: LoginSignupComponent
-},
-{
-  path: 'tools', component: ToolsComponent
-},
-{
-  path: 'menstrual', component: MenstrualComponent
-},
-{
-  path: 'ovulation', component: OvulationComponent
-},
-{
-  path: 'pregnancy', component: PregnancyComponent
-},
-{
-  path: 'pregnancy-test', component: PregnancyTestComponent
-},
-{
-  path: 'library', component: LibraryComponent
-},
-{
-  path: 'details', component: DetailsComponent
-},
-{ path: 'posts/:slug', component: DetailsComponent },
-{
-  path: 'profile',
-  component: ProfileComponent
-},
-{
-  path: 'expert', component: ExpertComponent
-},
-{
-  path: 'expert/:id', component: DetailsProfileComponent
-},
-{
-  path: 'chat', component: ChatComponent
-},
-{
-  path: 'chat/:expertId',
-  component: ChatComponent
-},
-{
-  path: 'health-dashboard',
-  component: HealthDashboardComponent
-},
-{
-  path: 'home',
-  component: MainLayoutComponent, // Layout này có header và footer
-  children: [
-    { path: '', component: HomeComponent }, // Trang chủ
-    // { path: 'about', component: AboutComponent }, // Các trang khác cũng đặt vào đây
-    // { path: 'contact', component: ContactComponent },
-  ]
-},
-{
-  path: '',
-  component: GetStartedComponent, // Trang Get Started là trang mặc định
-  canActivate: [GuestGuard] // Nếu đã đăng nhập sẽ redirect đến /home
-},
+const routes: Routes = [
+  // Ngoài layout
+  { path: 'login', component: LoginSignupComponent },
+  { path: '', component: GetStartedComponent, canActivate: [GuestGuard], pathMatch: 'full' },
+
+  // Bên trong layout có header/footer
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'tools', component: ToolsComponent },
+      { path: 'menstrual', component: MenstrualComponent },
+      { path: 'ovulation', component: OvulationComponent },
+      { path: 'pregnancy', component: PregnancyComponent },
+      { path: 'pregnancy-test', component: PregnancyTestComponent },
+      { path: 'library', component: LibraryComponent },
+      { path: 'details', component: DetailsComponent },
+      { path: 'posts/:slug', component: DetailsComponent },
+      { path: 'profile', component: ProfileComponent },
+      { path: 'expert', component: ExpertComponent },
+      { path: 'expert/:id', component: DetailsProfileComponent },
+      { path: 'chat', component: ChatComponent },
+      { path: 'chat/:expertId', component: ChatComponent },
+    ],
+  },
 ];
 
 @NgModule({

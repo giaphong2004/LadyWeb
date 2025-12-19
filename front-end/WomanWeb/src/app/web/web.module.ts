@@ -71,7 +71,6 @@ import { ChatHeaderComponent } from './components/chat-header/chat-header.compon
 import { ChatMessageAreaComponent } from './components/chat-message-area/chat-message-area.component';
 import { ChatInputAreaComponent } from './components/chat-input-area/chat-input-area.component';
 import { GetStartedComponent } from './pages/get-started/get-started.component';
-import { HealthDashboardComponent } from './pages/health-dashboard/health-dashboard.component';
 
 
 @NgModule({
@@ -138,7 +137,6 @@ import { HealthDashboardComponent } from './pages/health-dashboard/health-dashbo
     ChatMessageAreaComponent,
     ChatInputAreaComponent,
     GetStartedComponent,
-    HealthDashboardComponent
   ],
   imports: [
     CommonModule,

@@ -6,7 +6,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-login-signup',
   templateUrl: './login-signup.component.html',
   styleUrls: ['./login-signup.component.css'],
-  standalone: false // Nếu bạn sử dụng Angular standalone components, hãy để false
+  standalone: false
 })
 export class LoginSignupComponent implements OnInit, OnDestroy {
 

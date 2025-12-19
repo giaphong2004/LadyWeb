@@ -22,7 +22,6 @@ import { AiAssistantComponent } from './web/components/ai-assistant/ai-assistant
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
-
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
