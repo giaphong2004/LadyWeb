@@ -8,6 +8,9 @@ const dbConfig = {
   logging: false,
   dialectOptions: {
     connectTimeout: 20000,
+    ssl: {
+      rejectUnauthorized: false,
+    },
   },
   pool: {
     max: 10,
