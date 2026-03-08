@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PostService {
-  private apiUrl = 'https://woman-web-production.up.railway.app/api/posts';
+  private apiUrl = 'https://ladyweb-production.up.railway.app/api/posts';
 
   constructor(private http: HttpClient) { }
 

@@ -109,6 +109,22 @@ app.get('/', (req, res) => {
 // Kết nối database và khởi động server
 const PORT = process.env.PORT || 3000;
 
+// Debug: kiểm tra biến DB đang dùng
+console.log('=== DB CONFIG CHECK ===');
+console.log('MYSQL_URL exists:', Boolean(process.env.MYSQL_URL));
+console.log('DATABASE_URL exists:', Boolean(process.env.DATABASE_URL));
+console.log('DB_HOST:', process.env.DB_HOST || '(not set)');
+console.log('MYSQLHOST:', process.env.MYSQLHOST || '(not set)');
+console.log('DB_PORT:', process.env.DB_PORT || '(not set)');
+console.log('MYSQLPORT:', process.env.MYSQLPORT || '(not set)');
+console.log('DB_NAME:', process.env.DB_NAME || '(not set)');
+console.log('MYSQLDATABASE:', process.env.MYSQLDATABASE || '(not set)');
+console.log('DB_USER:', process.env.DB_USER || '(not set)');
+console.log('MYSQLUSER:', process.env.MYSQLUSER || '(not set)');
+console.log('DB_PASSWORD exists:', Boolean(process.env.DB_PASSWORD));
+console.log('MYSQLPASSWORD exists:', Boolean(process.env.MYSQLPASSWORD));
+console.log('========================');
+
 sequelize.authenticate()
   .then(() => {
     console.log('Database connected successfully.');
