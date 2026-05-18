@@ -43,14 +43,3 @@ const sequelize = connectionUrl
     );
 
 module.exports = sequelize;
-
-// ĐOẠN CODE TEST - XOÁ TRƯỚC KHI COMMIT
-sequelize.authenticate()
-  .then(() => {
-    console.log('✅ Kết nối thành công tới Database trên Railway!');
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error('❌ Lỗi kết nối:', err);
-    process.exit(1);
-  });
