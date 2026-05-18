@@ -9,6 +9,11 @@
 
     <section *ngIf="isLoginMode" class="form-section">
       <h2>Đăng nhập</h2>
+      <div class="demo-notice"
+        style="display: flex; gap: 10px; justify-content: center; align-items: center; background: #eef2ff; color: #4338ca; border-left: 3px solid #6366f1; padding: 10px; margin-bottom: 20px; border-radius: 4px; font-size: 0.85em;">
+        <span><i class="fas fa-info-circle"></i> <strong> Demo:</strong> Admin&#64;gmail.com</span>
+        <span><strong>Pass:</strong> 111111</span>
+      </div>
       <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
         <div class="form-group">
           <label for="login-email">Địa chỉ Email</label>
