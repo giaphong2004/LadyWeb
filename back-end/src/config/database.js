@@ -11,8 +11,8 @@ const dbConfig = {
   logging: false,
   dialectOptions: {
     connectTimeout: 20000,
-    // Bỏ hẳn SSL mặc định, chỉ dùng khi có biến REQUIRE_SSL=true
-    ...(process.env.REQUIRE_SSL === 'true' ? {
+    // Bỏ hẳn SSL mặc định, chỉ dùng khi có biến REQUIRE_SSL=true hoặc hostname chứa rlwy.net
+    ...((process.env.REQUIRE_SSL === 'true' || (process.env.DB_HOST && process.env.DB_HOST.includes('rlwy.net'))) ? {
         ssl: {
           rejectUnauthorized: false,
         }
